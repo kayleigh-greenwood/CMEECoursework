@@ -1,1 +1,1 @@
-My CMEE COursework Repository
+My CMEE Coursework Repository
