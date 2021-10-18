@@ -1,35 +1,35 @@
-# README file for week 1
+# Week 1 Contents
 ###### Author: Kayleigh Greenwood (kayleigh.greenwood21@imperial.ac.uk)
 
-## Contents of week 1 code:
-### UNIX and LINUX
-## UnixPrac1.txt
+## Coding Practicals
+#### UNIX and LINUX
+##### UnixPrac1.txt
 Contains commands which manipulate the FASTA files
-### SHELL SCRIPTING
-## boilerplate.sh
+#### SHELL SCRIPTING
+##### boilerplate.sh
 Simple boilerplate for shell scripts
-## variables.sh
+##### variables.sh
 Illustrates the different types of shell variables
-## MyExampleScript.sh
+##### MyExampleScript.sh
 Introduction to the $USER variable
-## tabtocsv.sh
+##### tabtocsv.sh
 Substitutes the tabs in the files with commas
-## CountLines.sh
+##### CountLines.sh
 Counts and displays the number of lines in a file
-## ConcatenateTwoFiles.sh
+##### ConcatenateTwoFiles.sh
 Concatenates the contents of two files
-## tiff2png.sh
+##### tiff2png.sh
 Converts tif files to png format (by creating a new file)
-## csvtospace.sh
+##### csvtospace.sh
 Substitutes the commas in the files with spaces
-### SCIENTIFIC DOCUMENTS WITH LaTeX
-## FirstExample.tex
+#### SCIENTIFIC DOCUMENTS WITH LaTeX
+##### FirstExample.tex
 Example LaTeX code document
-## FirstBiblio.bib
+##### FirstBiblio.bib
 Bibliography for example LaTeX document
-## FirstExample.pdf
+##### FirstExample.pdf
 Example LaTeX document - compiled
-## CompileLaTeX.sh
+##### CompileLaTeX.sh
 Compiles LaTeX with bibtex
 
         		
