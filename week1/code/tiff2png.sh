@@ -1,20 +1,48 @@
 #!/bin/bash
+# Author: Kayleigh Greenwood kg21@imperial.ac.uk
+# Script: tifftopng.sh
+# Description: converting .tif(and .tiff) files to .png
+# Install Requirements: imagemagick
+# Arguments: 0 (converts all tif files in the directory it is run in, doesnt need arguments)
+# Output: New .png file (maintains old input file)
+# Date: Oct 17th 2021
 
-for f in *.tif; #loop function telling the script to run the loop for every .tif file, and sets the prefix before '.tif' to the variable  'f' inside the function
-    do
-        echo "Converting $f"; #prints to console that the file is being converted by referring to it by the file name without extension
-        convert "$f" "$(basename "$f" .tif).png"; #uses convert "" "" function to convert one thing to another
+# problems
+# case sensitive
+# prints end statement even if tif files have been found
 
-        # convert is used to convert various aspects of an image
-        # co     
+count=`ls -1 *.tif 2>/dev/null | wc -l` # sets the variable 'count' equal to the amount of .tif files in the current directory
+if [ $count = 0 ] # if there are no tif files
+then 
+    echo -e "\nNo .tif files found to be converted.\n"
+elif [ $count != 0 ] # if there are tif files
+then
+    for f in *.tif; # I have nested this for loop because when the script was run without tif files in the directory, it would try to run *.tif as a file. This ensures the loop is only run when there are .tif files presesnt.
+    do  
+        NewName="$(basename "$f")" # Removes path (for the purpose of checking if the converted file already exists)
+        echo -e $"\nFile Found: $NewName \n"
+        NewName2="${NewName%.*}" # Removes suffix (for the purpose of checking if the converted file already exists)
+        echo -e $"New file name will be: $NewName2.png \n"
+        if [ -f $NewName2.png ] # if the converted version of this file already exists
+        then
+            echo "Warning: File exists. Override it\n? [y/n]" # gives the user the option of continuing or stopping
+            read a 
+            echo
+            if [ $a == y ] || [ $a == Y ] # if the user has entered y
+            then
+                echo -e "\nConverting $f\n"; 
 
-nvert function is formatted as such: convert [input options] input file [output options] output file
-        # to use convert to convert between image formats, use: convert [input file] [output file], as no options are necessary
-        # here, "$f" is 'input file'
-        # and "$(basename "$f" .tif).png" is 'output file'.
-        # basename is used here to isolate the file name for use in the output
-        # basename is a function which returns the basename of a file without the suffix or directory
-        # the format of the basename function is: basename string [SUFFIX]
-        # that is used here as: basename "$f" .tif
+                convert "$f" "$(basename "$f" .tif).png"; # converts file from tif to png
+                echo -e "\nDone\n"
+            else
+                echo -e "\nProcces terminated. File not converted\n" # if user doesn't enter y, image isn't converted
+            fi
+        else # if converted version doesn't already exist, it is created
+            echo -e "\nConverting $f\n"; 
+            convert "$f" "$(basename "$f" .tif).png";
 
+            echo -e "\nDone\n"
+        fi
     done
+fi
+exit

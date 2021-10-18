@@ -1,9 +1,24 @@
 #!/bin/bash
+# Author: Kayleigh Greenwood kg21@imperial.ac.uk
+# Script: CountLines.sh
+# Description: counts the number of newlines in a file.
+#
+# Prints the output into the terminal
+# Arguments: 1 -> printed newline count
+# Date: Oct 15th 2021
 
-NumLines=`wc -l < $1` #creates a variable and assigns a value to it
-#wc alone summongs lines, words and characters but coding -l afterwards specifies line count only
-# < inputs the value to its right into the command on its left. Without it, the line count would still print, but so would other information about the file that comes out in a regular wc function. Here we want the line count only.
-# $1 is the variable passed to the function
+if [[ -f $1 ]] # if the user has entered a file
+then
+    NumLines=`wc -l < $1` #counts the number of newlines in the file the user has inputted and assigning this value to NumLines
 
-echo "The file $1 has $NumLines lines" #Prints line count of the variable to the console
-echo # prints an empty line
+    Filename=$(basename $1) # removes path
+
+    echo -e "\nNewlines in '$Filename': $NumLines.\n" #Prints line count of the variable to the console
+elif [ -z $1 ] # if there hasn't entered anything
+then
+    echo 'Error: Please input a file to produce the newline count.'
+else # if the user has entered something but it isn't an existing file
+    echo 'Error: Wrong input format. Please input existing files only.'
+fi
+
+exit

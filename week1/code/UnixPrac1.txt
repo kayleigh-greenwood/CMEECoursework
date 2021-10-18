@@ -1,0 +1,91 @@
+#### 1 ####
+
+# INSTRUCTIONS: 
+    count how many lines there are in each file
+
+# ANSWER:
+    find ../data/*.fasta -exec wc -l {} \; # works when run from data
+
+# EXPLANATION:
+    # finds every file ending in 'fasta'
+    # executes a function (wc -l) on each file
+    # wc -l displays the line count
+
+
+#### 2 #### 
+
+# INSTRUCTIONS: 
+    # print everything starting from the second line for E. coli
+
+# ANSWER:
+    tail +2 ../data/E.coli.fasta
+
+# EXPLANATION:
+    # tail +2 starts printing the file from line 2 onwards
+
+
+
+#### 3 ####
+
+# INSTRUCTIONS: 
+    # count the sequence length of this genome
+
+# ANSWER:
+    tail +2 ../data/E.coli.fasta | tr -d '\n' | wc -m 
+
+# EXPLANATION:
+    # prints file from line 2 onwards, passes to next command
+    # removes all new lines (because character count includes new lines, so wouldn't give an accurate sequence length), passes result to next command
+    # wc -m counts the characters
+
+
+
+
+#### 4 ####
+
+# INSTRUCTIONS: 
+    # count the matches of a particular sequence "ATGC" in the genome of E. coli (hint: Start by removing the first line and removing newline characters)
+
+# ANSWER:
+    tail +2 ../data/E.coli.fasta | tr -d '\n'| grep -o ATGC | wc -l
+
+# EXPLANATION:
+    # prints file from line 2 onwards, passes to next command
+    # removes all new lines (because we will count ATGCs by putting each on a new line and counting the lines, so must erase any new line characters which already exist), passes result to next command
+    # grep command finds every ATGC
+    # '-o' function of grep prints every result of ATGC on a new line
+    # wc -l counts the number of new lines, and therefore the number of ATGC's.
+
+
+
+
+#### 5 ####
+
+# INSTRUCTIONS: 
+    # compute the AT/GC ratio. That is, the (A+T)/(G+C) ratio. This is a summary measure of base composition of double-stranded DNA. DNA from different organisms and lineages has different ratios of the A-to-T and G-to-C base pairs. For example DNA from organisms that live in hot springs have a higher GC content, which takes advantage of the increased thermal stability of the GC base pair (google “Chargaff’s rule”).
+
+# ANSWER:
+    echo " $(tail +2 ../data/E.coli.fasta | grep -o 'A\|T' | wc -l ) / $(tail +2 ../data/E.coli.fasta | grep -o 'G\|C' | wc -l ) " | bc -l
+
+# EXPLANATION:
+    # bc uses the basic calculator function.
+    # bc doesn't have division loaded unless you give it access to a more extensive math library by coding the argument -l 
+    # echo "" is used to display the result to the terminal
+    # $ is needed inside the echo function to make sure the code is interpreted as numbers
+    # grep function with wc -l works the same way as Q4 but finds A's or T's instead. \| means 'or'.
+
+### WORKING OUT - NOT PART OF ANSWER###
+
+    # tail +2 E.coli.fasta | grep -o A | wc -l # = 1153640
+    # tail +2 E.coli.fasta | grep -o T | wc -l # = 1152814
+    # tail +2 E.coli.fasta | grep -o G | wc -l # = 1188801
+    # tail +2 E.coli.fasta | grep -o C | wc -l # = 1190880
+
+    # tail +2 E.coli.fasta | grep -o 'A\|T' | wc -l # A + T = 2306454
+    # tail +2 E.coli.fasta | grep -o 'G\|C' | wc -l # G + C = 2379681
+
+    # echo $((tail +2 E.coli.fasta | grep -o 'A\|T' | wc -l/)/(tail +2 E.coli.fasta | grep -o 'G\|C' | wc -l )) # doesnt work gives error
+    # echo " (10) / (2) " | bc -l # works
+
+    # echo " (tail +2 E.coli.fasta | grep -o 'A + T' | wc -l ) / (tail +2 E.coli.fasta | grep -o 'G + C' | wc -l ) " | bc -l # doesnt work
+    # echo " $(tail +2 E.coli.fasta | grep -o 'A\|T' | wc -l ) / $(tail +2 E.coli.fasta | grep -o 'G\|C' | wc -l ) " | bc -l !!! works
