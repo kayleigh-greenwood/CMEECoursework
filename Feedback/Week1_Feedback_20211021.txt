@@ -253,7 +253,7 @@ No .tif files found to be converted.
 
 Code ran without errors
 
-Time consumed = 0.00579s
+Time consumed = 0.00416s
 
 ======================================================================
 Inspecting script file CountLines.sh...
@@ -299,7 +299,7 @@ Error: Please input a file to produce the newline count.
 
 Code ran without errors
 
-Time consumed = 0.00443s
+Time consumed = 0.00355s
 
 ======================================================================
 Inspecting script file FirstBiblio.bib...
@@ -406,7 +406,7 @@ Error: Please input a file to be changed
 
 Code ran without errors
 
-Time consumed = 0.00369s
+Time consumed = 0.00335s
 
 ======================================================================
 Inspecting script file variables.sh...
@@ -500,7 +500,7 @@ ERROR: Not enough integers entered. Please enter 2 integers
 
 Code ran without errors
 
-Time consumed = 0.00476s
+Time consumed = 0.00449s
 
 ======================================================================
 Inspecting script file FirstExample.tex...
@@ -589,7 +589,7 @@ This is a shell script!
 
 Code ran without errors
 
-Time consumed = 0.00377s
+Time consumed = 0.00383s
 
 ======================================================================
 Inspecting script file csvtospace.sh...
@@ -712,7 +712,7 @@ Error: Please input a file to be changed
 
 Code ran without errors
 
-Time consumed = 0.00389s
+Time consumed = 0.00364s
 
 ======================================================================
 Inspecting script file ConcatenateTwoFiles.sh...
@@ -767,7 +767,7 @@ Error: Please enter three objects; two files to be concatenated and the desired 
 
 Code ran without errors
 
-Time consumed = 0.00341s
+Time consumed = 0.00334s
 
 ======================================================================
 Inspecting script file UnixPrac1.txt...
@@ -936,35 +936,35 @@ rm: cannot remove '*.log': No such file or directory
 rm: cannot remove '*.bbl': No such file or directory
 rm: cannot remove '*.blg': No such file or directory
 
-** (evince:96657): WARNING **: 14:04:55.054: Error when getting information for file “/home/mhasoba/Documents/Teaching/IC_CMEE/2021-22/Coursework/StudentRepos/KayleighJadeGreenwood_kg21/week1/code/.pdf”: No such file or directory
+** (evince:98945): WARNING **: 14:11:36.068: Error when getting information for file “/home/mhasoba/Documents/Teaching/IC_CMEE/2021-22/Coursework/StudentRepos/KayleighJadeGreenwood_kg21/week1/code/.pdf”: No such file or directory
 
-** (evince:96657): WARNING **: 14:04:55.055: set_filenames: Error when getting information for file “/home/mhasoba/Documents/Teaching/IC_CMEE/2021-22/Coursework/StudentRepos/KayleighJadeGreenwood_kg21/week1/code/.pdf”: No such file or directory
+** (evince:98945): WARNING **: 14:11:36.068: set_filenames: Error when getting information for file “/home/mhasoba/Documents/Teaching/IC_CMEE/2021-22/Coursework/StudentRepos/KayleighJadeGreenwood_kg21/week1/code/.pdf”: No such file or directory
 
-** (evince:96657): WARNING **: 14:04:55.070: Error setting file metadata: No such file or directory
+** (evince:98945): WARNING **: 14:11:36.087: Error setting file metadata: No such file or directory
 
-** (evince:96657): WARNING **: 14:04:55.070: Error setting file metadata: No such file or directory
+** (evince:98945): WARNING **: 14:11:36.087: Error setting file metadata: No such file or directory
 
-** (evince:96657): WARNING **: 14:04:55.070: Error setting file metadata: No such file or directory
+** (evince:98945): WARNING **: 14:11:36.087: Error setting file metadata: No such file or directory
 
-** (evince:96657): WARNING **: 14:04:55.070: Error setting file metadata: No such file or directory
+** (evince:98945): WARNING **: 14:11:36.087: Error setting file metadata: No such file or directory
 
-** (evince:96657): WARNING **: 14:04:55.070: Error setting file metadata: No such file or directory
+** (evince:98945): WARNING **: 14:11:36.087: Error setting file metadata: No such file or directory
 
-** (evince:96657): WARNING **: 14:04:55.070: Error setting file metadata: No such file or directory
+** (evince:98945): WARNING **: 14:11:36.087: Error setting file metadata: No such file or directory
 
-** (evince:96657): WARNING **: 14:04:55.070: Error setting file metadata: No such file or directory
+** (evince:98945): WARNING **: 14:11:36.087: Error setting file metadata: No such file or directory
 
-** (evince:96657): WARNING **: 14:04:55.070: Error setting file metadata: No such file or directory
+** (evince:98945): WARNING **: 14:11:36.087: Error setting file metadata: No such file or directory
 
-** (evince:96657): WARNING **: 14:04:55.070: Error setting file metadata: No such file or directory
+** (evince:98945): WARNING **: 14:11:36.087: Error setting file metadata: No such file or directory
 
-** (evince:96657): WARNING **: 14:04:55.070: Error setting file metadata: No such file or directory
+** (evince:98945): WARNING **: 14:11:36.087: Error setting file metadata: No such file or directory
 
-** (evince:96657): WARNING **: 14:04:55.070: Error setting file metadata: No such file or directory
+** (evince:98945): WARNING **: 14:11:36.087: Error setting file metadata: No such file or directory
 
-** (evince:96657): WARNING **: 14:04:55.071: Error setting file metadata: No such file or directory
+** (evince:98945): WARNING **: 14:11:36.087: Error setting file metadata: No such file or directory
 
-** (evince:96657): WARNING **: 14:04:55.075: Error setting file metadata: No such file or directory
+** (evince:98945): WARNING **: 14:11:36.092: Error setting file metadata: No such file or directory
 
 ======================================================================
 Inspecting script file MyExampleScript.sh...
@@ -1014,7 +1014,7 @@ Hello mhasoba
 
 Code ran without errors
 
-Time consumed = 0.00688s
+Time consumed = 0.00388s
 
 ======================================================================
 ======================================================================
