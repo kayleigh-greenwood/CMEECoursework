@@ -9,14 +9,53 @@ birds = ( ('Passerculus sandwichensis','Savannah sparrow',18.7),
 # lists containing the latin names, common names and mean body masses for
 # each species in birds, respectively. 
 
-# list comprehension that creates list of latin names for each species in birds 
+print(type(birds))
+## LATIN NAMES ##
+
+# loop version
+
+bird_latin = []
+for species in birds:
+    bird_latin.append(species[0])
+
+print(bird_latin)
+
+#lc version
+bird_latin = [species[0] for species in birds]
+print(bird_latin)
+
+## NORMAL NAMES ##
+
+# For loop
+normal_names = []
+for species in birds:
+    normal_names.append(species[1])
+
+print(normal_names)
+
 
 # list comprehension that creates list of common names for each species in birds
 
-# list comprehension that creates list of body masses for each species in birds
 
+normal_names = [species[1] for species in birds]
+print(normal_names)
 
+## BODY MASS ##
 
+# for loops
+
+body_mass = []
+for species in birds:
+    body_mass.append(species[2])
+
+print(body_mass)
+
+# list comprehension 
+
+body_mass = [species[2] for species in birds]
+print(body_mass)
+
+# write each as for loop and convert
 
 
 
