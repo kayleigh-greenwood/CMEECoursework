@@ -1,3 +1,5 @@
+
+
 # what does each of foo_x do?
 
 def foo_1(x):
@@ -8,7 +10,6 @@ def foo_2(x,y):
     if x > y:
         return x
     return y
-
 # returns whichever number is bigger, unless they are equal, in which case it returns y.
 
 def foo_3(x, y, z):
@@ -32,7 +33,6 @@ def foo_4(x):
     for i in range(1, x + 1): #creates a loop running from 1 to x (x + 1 will display x because of python's indexing starting at 0, the loop stops just before the end of the range)
         result = result * i # multiplies the current iteration by the previous one. same function as factorial
     return result
-
 # calculates factorial of x
 
 def foo_5(x): # a recursive function that calculates the factorial of x

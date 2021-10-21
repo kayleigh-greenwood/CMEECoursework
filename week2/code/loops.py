@@ -1,3 +1,4 @@
+
 # FOR loops in Python
 
 for i in range(5):
@@ -9,7 +10,7 @@ for k in my_list:
 
 total = 0
 summands = [0, 1, 11, 111, 1111]
-for s in simmands:
+for s in summands:
     total = total + s
     print(total)
 
