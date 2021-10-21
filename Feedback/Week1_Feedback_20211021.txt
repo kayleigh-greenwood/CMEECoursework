@@ -1,0 +1,1032 @@
+Starting code feedback for Kayleigh Jade, Week1
+
+Current Points = 100
+
+Note that: 
+(1) Major sections begin with a double "====" line 
+(2) Subsections begin with a single "====" line 
+(3) Code output or text file content are printed within single "*****" lines 
+
+======================================================================
+======================================================================
+Your Git repo size this week is about 2.35 MiB on disk 
+
+PART 1: Checking project workflow...
+
+Found the following directories in parent directory: .git, week2, Feedback, week1
+
+Found the following files in parent directory: README.md, .gitignore
+
+Checking for key files in parent directory...
+
+Found .gitignore in parent directory, great! 
+
+Printing contents of .gitignore:
+
+**********************************************************************
+*~ 
+*.tmp
+
+**********************************************************************
+
+Found README in parent directory, named: README.md
+
+Printing contents of README.md:
+
+**********************************************************************
+My CMEE Coursework Repository
+<<<<<<< HEAD
+
+Contents:
+<<<<<<< Updated upstream
+    Week 1
+=======
+>>>>>>> 52da6b916707a76bca3aeef13b253118ac597acf
+=======
+    week 1
+    	UNIX and LINUX
+    	Shell Scripting
+>>>>>>> Stashed changes
+
+**********************************************************************
+
+======================================================================
+Looking for the weekly directories...
+
+Found 2 weekly directories: week1, week2
+
+The Week1 directory will be assessed 
+
+======================================================================
+======================================================================
+PART 2: Checking weekly code and workflow...
+
+======================================================================
+Assessing WEEK1...
+
+Found the following directories: code, sandbox, results, data
+
+Found the following files: README.md
+
+Checking for readme file in weekly directory...
+
+Found README in parent directory, named: README.md
+
+Printing contents of README.md:
+
+**********************************************************************
+# Week 1 Coding Practicals
+This README file contains details about the scripts from classwork and practicals in CMEE week 1.
+
+
+  
+
+## UNIX and LINUX
+
+    UnixPrac1.txt
+
+**Summary:** Contains commands which manipulate the FASTA files
+**Input:** FASTA files
+**Output:** Prints to terminal
+    
+## SHELL SCRIPTING
+
+	boilerplate.sh
+**Summary:** Simple boilerplate for shell scripts
+
+**Input:** n/a
+
+**Output:** Prints to terminal
+
+
+	variables.sh
+
+**Summary:** Illustrates the different types of shell variables
+
+**Input:** n/a
+
+**Output:** Prints to terminal
+
+
+	MyExampleScript.sh
+
+**Summary:** Introduction to the $USER variable
+
+**Input:** n/a
+
+**Output:** Prints to terminal
+
+
+
+	tabtocsv.sh
+**Summary:** Substitutes the tabs in the files with commas
+
+**Input:** 1 File with tab separated values
+
+**Output:** Results
+
+
+
+	CountLines.sh
+
+**Summary:** Counts and displays the number of lines in a file
+
+**Input:** 1 File
+
+**Output:** Prints to terminal
+
+
+	ConcatenateTwoFiles.sh
+
+**Summary:** Concatenates the contents of two files
+
+
+	tiff2png.sh
+
+**Summary:** Converts tif files to png format (by creating a new file)
+
+
+	csvtospace.sh
+**Summary:** Substitutes the commas in the files with spaces
+
+
+
+## SCIENTIFIC DOCUMENTS WITH LaTeX
+
+	FirstExample.tex
+
+**Summary:** Example LaTeX code document
+
+
+	FirstBiblio.bib
+
+**Summary:** Bibliography for example LaTeX document
+
+
+	FirstExample.pdf
+**Summary:** Example LaTeX document - compiled
+
+
+	CompileLaTeX.sh
+
+**Summary:** Compiles LaTeX with bibtex
+
+
+
+###### Author: Kayleigh Greenwood (kayleigh.greenwood21@imperial.ac.uk)
+**********************************************************************
+
+Results directory is empty - good! 
+
+Found 12 code files: tiff2png.sh, CountLines.sh, FirstBiblio.bib, tabtocsv.sh, variables.sh, FirstExample.tex, boilerplate.sh, csvtospace.sh, ConcatenateTwoFiles.sh, UnixPrac1.txt, CompileLaTeX.sh, MyExampleScript.sh
+
+======================================================================
+Testing script/code files...
+
+======================================================================
+Inspecting script file tiff2png.sh...
+
+File contents are:
+
+**********************************************************************
+#!/bin/bash
+# Author: Kayleigh Greenwood kg21@imperial.ac.uk
+# Script: tifftopng.sh
+# Description: converting .tif(and .tiff) files to .png
+# Install Requirements: imagemagick
+# Arguments: 0 (converts all tif files in the directory it is run in, doesnt need arguments)
+# Output: New .png file (maintains old input file)
+# Date: Oct 17th 2021
+
+# problems
+# case sensitive
+# prints end statement even if tif files have been found
+
+count=`ls -1 *.tif 2>/dev/null | wc -l` # sets the variable 'count' equal to the amount of .tif files in the current directory
+if [ $count = 0 ] # if there are no tif files
+then 
+    echo -e "\nNo .tif files found to be converted.\n"
+elif [ $count != 0 ] # if there are tif files
+then
+    for f in *.tif; # I have nested this for loop because when the script was run without tif files in the directory, it would try to run *.tif as a file. This ensures the loop is only run when there are .tif files presesnt.
+    do  
+        NewName="$(basename "$f")" # Removes path (for the purpose of checking if the converted file already exists)
+        echo -e $"\nFile Found: $NewName \n"
+        NewName2="${NewName%.*}" # Removes suffix (for the purpose of checking if the converted file already exists)
+        echo -e $"New file name will be: $NewName2.png \n"
+        if [ -f $NewName2.png ] # if the converted version of this file already exists
+        then
+            echo "Warning: File exists. Override it\n? [y/n]" # gives the user the option of continuing or stopping
+            read a 
+            echo
+            if [ $a == y ] || [ $a == Y ] # if the user has entered y
+            then
+                echo -e "\nConverting $f\n"; 
+
+                convert "$f" "$(basename "$f" .tif).png"; # converts file from tif to png
+                echo -e "\nDone\n"
+            else
+                echo -e "\nProcces terminated. File not converted\n" # if user doesn't enter y, image isn't converted
+            fi
+        else # if converted version doesn't already exist, it is created
+            echo -e "\nConverting $f\n"; 
+            convert "$f" "$(basename "$f" .tif).png";
+
+            echo -e "\nDone\n"
+        fi
+    done
+fi
+exit
+**********************************************************************
+
+Testing tiff2png.sh...
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+
+No .tif files found to be converted.
+
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.00579s
+
+======================================================================
+Inspecting script file CountLines.sh...
+
+File contents are:
+
+**********************************************************************
+#!/bin/bash
+# Author: Kayleigh Greenwood kg21@imperial.ac.uk
+# Script: CountLines.sh
+# Description: counts the number of newlines in a file.
+#
+# Prints the output into the terminal
+# Arguments: 1 -> printed newline count
+# Date: Oct 15th 2021
+
+if [[ -f $1 ]] # if the user has entered a file
+then
+    NumLines=`wc -l < $1` #counts the number of newlines in the file the user has inputted and assigning this value to NumLines
+
+    Filename=$(basename $1) # removes path
+
+    echo -e "\nNewlines in '$Filename': $NumLines.\n" #Prints line count of the variable to the console
+elif [ -z $1 ] # if there hasn't entered anything
+then
+    echo 'Error: Please input a file to produce the newline count.'
+else # if the user has entered something but it isn't an existing file
+    echo 'Error: Wrong input format. Please input existing files only.'
+fi
+
+exit
+**********************************************************************
+
+Testing CountLines.sh...
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+Error: Please input a file to produce the newline count.
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.00443s
+
+======================================================================
+Inspecting script file FirstBiblio.bib...
+
+File contents are:
+
+**********************************************************************
+@article{verhulst1838notice,
+  title={Notice sur la loi que la population suit dans son accroissement},
+  author={Verhulst, Pierre-Fran{\c{c}}ois},
+  journal={Corresp. Math. Phys.},
+  volume={10},
+  pages={113--126},
+  year={1838}
+}
+**********************************************************************
+
+Testing FirstBiblio.bib...
+
+======================================================================
+Inspecting script file tabtocsv.sh...
+
+File contents are:
+
+**********************************************************************
+#!/bin/bash
+# Author: Kayleigh Greenwood kg21@imperial.ac.uk
+# Script: tabtocsv.sh
+# Description: substitute the tabs in the files with commas
+#
+# Saves the output into a .csv file
+# Arguments: 1 -> tab delimited file
+# Date: Oct 6th 2021
+
+
+if [[ -f $1 ]] # if the user has inputted a file
+then
+    if grep -q "    " "$1"
+    then
+        Filename=$(basename "$1") # removes path
+        Filename2="${Filename%.*}" # removes suffix
+        if [ -f ../results/$Filename2.csv ] # BUT the output file already exists in results
+        then # ask the user to decide next step
+            echo $" The intended output file, $Filename2.csv, already exists. Enter 1 to overwrite, 2 to append and 3 to abort."
+            read a 
+            if [ $a == 1 ]
+            then #overwrite
+                echo -e "\nRemoving tabs in $Filename and replacing with spaces ...\n" #prints what the function will do to the variable into the console
+
+                cat $1 | tr -s "\t" "," > ../results/$Filename2.csv #../results/ before basename
+                echo "$Filename2.csv overwritten."
+                echo -e "\nDone!\n" #Displays that the function has finished into the console
+            elif [ $a == 2 ]
+            then #append
+                echo -e "\nRemoving tabs in $Filename and replacing with spaces ...\n" #prints what the function will do to the variable into the console
+
+                cat $1 | tr -s "\t" "," >> ../results/$Filename2.csv #../results/ before basename
+                echo "Results appended to $Filename2.csv."
+                echo -e "\nDone!\n" #Displays that the function has finished into the console
+            else # abort
+                echo -e "\n Operation aborted"
+                exit
+            fi
+        else
+            echo -e "\nRemoving tabs in $Filename and replacing with spaces ...\n"
+
+            cat $1 | tr -s "," " " >> ../results/$Filename2.csv
+            # replaces commas with spaces and inputs the result into a new .txt file
+
+            echo "$Filename2.csv created"
+
+            echo "Done!" #Displays that the function has finished into the console
+        fi
+    else # if there aren't tabs in the file
+        echo "Error: No tabs found in this file"
+    fi
+elif [ -z $1 ] # if the user hasn't entered anything
+then
+    echo 'Error: Please input a file to be changed'
+else # if the user has entered something but it isn't an existing file
+    echo 'Error: Wrong input format. Please input existing files only.'
+fi
+
+
+exit #marks that the function has ended
+
+# uses [tr -s "" ""] to replace one instance of something with another.
+# in this case, replaces each tab (tab = \t) with a comma.
+# '>>' appends the result of this to a .csv file of the filename which was passed to it.
+# uses Filename 2 to create the new file
+
+
+**********************************************************************
+
+Testing tabtocsv.sh...
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+Error: Please input a file to be changed
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.00369s
+
+======================================================================
+Inspecting script file variables.sh...
+
+File contents are:
+
+**********************************************************************
+#!/bin/bash
+# Author: Kayleigh Greenwood kg21@imperial.ac.uk
+# Script: variables.sh
+# Description: Illustrates the use of variables, changes the name of a string, and computes the sum of two numbers
+#
+# Prints outputs into the terminal
+# Arguments: 0
+# Date: Oct 17th 2021
+
+# Special variables
+echo 
+echo "This script was called with $# parameters"
+echo "This script's name is $0"
+echo "The arguments are $@"
+echo "The first argument is $1"
+echo "The second argument is $2"
+
+
+# Assigned variables; Explicit declaration:
+MY_VAR='some string' #Creates the variable(MyVar) and assigns it a value (some string)
+echo 'the current value of the variable is:' $MY_VAR #Prints the value of the variable in the console
+echo
+echo 'Please enter a new string' #Asks user to re-assign a value to the variable
+read MY_VAR #Tells the programme that the value the user enters on this line is the new value of the 'MyVar' variable
+echo
+ 
+if [[ $MY_VAR == "" ]]
+then
+    echo "ERROR: No string entered"
+else
+    echo -e 'You have changed the current value of the variable to:' $MY_VAR '\n' #prints the variable's new value in the console
+fi 
+
+## Assigned variables; Reading (multiple values) from user input:
+echo 'Enter two integers separated by a space(s)' #prints instructions for user in console
+read a b #Tells the programme that the two numbers entered by the user are the values for the new variables a and b, respectively
+echo
+
+INPUTS=($a$b)
+
+
+ONLY_NUMBERS=$(printf '%s\n' "${INPUTS//[[:digit:]]/}" | wc -w)  # checks if there are anything other than numbers in the string. returns the amount of none-number things in the string
+
+
+if (( $ONLY_NUMBERS > 0 )) # checks if the user has entered anything but integers
+then
+    echo "ERROR: there are letters present. Please only enter 2 integers"
+elif [ -z $b ] # makes sure the user has entered at least 2 integers
+then
+    echo "ERROR: Not enough integers entered. Please enter 2 integers"
+
+else
+    MY_SUM=$(expr $a + $b) #stores the sum of variables a and b into a new variable 'mysum' using expr command.
+    echo 'You entered' $a 'and' $b'.' 
+    echo 'Their sum is:' $MY_SUM
+fi
+
+exit
+
+**********************************************************************
+
+Testing variables.sh...
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+
+This script was called with 0 parameters
+This script's name is variables.sh
+The arguments are 
+The first argument is 
+The second argument is 
+the current value of the variable is: some string
+
+Please enter a new string
+
+ERROR: No string entered
+Enter two integers separated by a space(s)
+
+ERROR: Not enough integers entered. Please enter 2 integers
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.00476s
+
+======================================================================
+Inspecting script file FirstExample.tex...
+
+File contents are:
+
+**********************************************************************
+\documentclass[12pt]{article}
+
+\title{A Simple Document}
+
+\author{Kayleigh Greenwood}
+
+\date{17/10/2021}
+
+\begin{document}
+  \maketitle
+
+  \begin{abstract}
+    This paper analyzes a seminal equation in population biology.
+  \end{abstract}
+
+  \section{Introduction}
+    Blah Blah
+
+  \section{Materials \& Methods}
+
+  A foundational equation of population biology is:
+
+  \begin{equation}
+    \frac{dN}{dt} = r N (1 - \frac{N}{K})
+  \end{equation}
+
+  It was first proposed by Verhulst in 1838 \cite{verhulst1838notice}.
+
+  \bibliographystyle{plain}
+
+  \bibliography{FirstBiblio}
+
+\end{document}
+
+
+**********************************************************************
+
+Testing FirstExample.tex...
+
+======================================================================
+Inspecting script file boilerplate.sh...
+
+File contents are:
+
+**********************************************************************
+#!/bin/bash 
+#'shebang' which tells the bash interpreter that this is a bash script and that it should be interpreted and run as such
+
+# Author: Kayleigh Greenwood kg21@imperial.ac.uk
+# Script: boilerplate.sh
+# Desc: simple boilerplate for shell scripts
+# Arguments: none
+# Date: Oct 6th 2021
+
+echo -e "\nThis is a shell script! \n" 
+
+#Prints a message to the console with empty lines above and below it
+
+#what does -e do? -e enables interpretation of backslash escapes (enables interpretation of shortcuts inside the quotation marks). 
+#what would happen without -e? There would have been no empty lines above or below the text, and the \n would have printed out either side of the text
+#what does \n do? \n means 'new line' and so inserts a line of empty space
+
+#exit
+
+
+**********************************************************************
+
+Testing boilerplate.sh...
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+
+This is a shell script! 
+
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.00377s
+
+======================================================================
+Inspecting script file csvtospace.sh...
+
+File contents are:
+
+**********************************************************************
+#!/bin/bash
+# Author: Kayleigh Greenwood kg21@imperial.ac.uk
+# Script: csvtospace.sh
+# Description: substitutes commas with spaces.
+#
+# Saves the output into a .txt file
+# Arguments: 1 -> comma delimited file
+# Date: Oct 15th 2021
+
+if [[ -f $1 ]] # if the user has inputted a file
+then
+    if grep -q "," "$1" # AND there are commas in this file
+    then
+        Filename=$(basename "$1") # removes path
+        Filename2="${Filename%.*}" # removes suffix
+        
+        if [ -f ../results/$Filename2.txt ] # BUT the output file already exists in results
+        then # ask the user to decide next step
+            echo $" The intended output file, $Filename2.txt, already exists. Enter 1 to overwrite, 2 to append and 3 to abort."
+            read a 
+            if [ $a == 1 ]
+            then # overwrite
+                echo -e "\nRemoving commas in $Filename and replacing with spaces ...\n"
+
+                cat $1 | tr -s "," " " > ../results/$Filename2.txt 
+                # replaces commas with spaces and inputs the result into a new .txt file
+
+                echo "$Filename2.txt overwritten."
+                echo -e "\nDone!\n" #Displays that the function has finished into the console
+            elif [ $a == 2 ]
+            then # append
+                echo -e "\nRemoving commas in $Filename and replacing with spaces ...\n"
+
+                cat $1 | tr -s "," " " >> ../results/$Filename2.txt 
+                # replaces commas with spaces and inputs the result into a new .txt file
+
+                echo "Result appended to $Filename2.txt"
+                echo -e "\nDone!\n" #Displays that the function has finished into the console
+            else # abort
+                echo -e "\n Operation aborted"
+                exit
+            fi
+        else # output file doesnt exist, so convert and create
+            echo -e "\nRemoving commas in $Filename and replacing with spaces ...\n"
+
+            cat $1 | tr -s "," " " >> ../results/$Filename2.txt 
+            # replaces commas with spaces and inputs the result into a new .txt file
+
+            echo "$Filename2.txt created"
+            echo -e "\nDone!\n" #Displays that the function has finished into the console
+        fi
+    else # if there aren't commas in the file
+        echo "Error: No commas found in this file"
+    fi
+elif [ -z $1 ] # if the user has not input anything
+then
+    echo 'Error: Please input a file to be changed'
+else # if the user has input something, but it isn't an existing file
+    echo 'Error: Wrong input format. Please input existing files only.'
+fi
+
+exit #marks that the function has ended
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# what if someone input a .txt file and the input and output was the same location? the original file would be erased! can this be fixed?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# add error messages to deal with wrong or missing inputs
+# run script on csv data files in Temperatures in master repository
+**********************************************************************
+
+Testing csvtospace.sh...
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+Error: Please input a file to be changed
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.00389s
+
+======================================================================
+Inspecting script file ConcatenateTwoFiles.sh...
+
+File contents are:
+
+**********************************************************************
+#!/bin/bash
+# Author: Kayleigh Greenwood kg21@imperial.ac.uk
+# Script: ConcatenateTwoFiles.sh
+# Description: Concatenates two files and assigns the output to a new file
+#
+# Saves the output into a new file, the name of which the user specifies
+# Arguments: 3. $1 and $2 are the files to be concatenated and $3 is the new name of the output file which the script creates
+# Date: Oct 16th 2021
+
+
+
+if [ -z "$3" ] # if there has not been three arguments entered
+then
+    echo 'Error: Please enter three objects; two files to be concatenated and the desired name of the output file'
+elif [ -f "$1" -a -f "$2" ] # if the first two arguments are both existing files (necessary for cat command)
+then
+    #user passes three arguments to the function: the two files to concatenate($1 and $2), and the variable they want the combination to be stored in ($3)
+    cat $1 > ../results/$3 #assigns the value of the first inputted variable ($1) to the third inputted variable ($3) which replaces any prior content/value.
+    cat $2 >> ../results/$3 #appends the value of the second inputted variable ($2) to the $3 variable
+    # the contents of the two inputted variables have been added to $3
+
+    echo -e "\nMerged File is called $3 and contains:\n" #Prints statement to console
+    cat ../results/$3
+
+    #prints the value of the variable $3 to the console, which contains the contents of the first inputted variable ($1) followed by the second ($2).
+else
+    echo -e 'Error: Wrong input type. The first two inputs must be existing files.\n'
+fi 
+
+
+
+
+
+**********************************************************************
+
+Testing ConcatenateTwoFiles.sh...
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+Error: Please enter three objects; two files to be concatenated and the desired name of the output file
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.00341s
+
+======================================================================
+Inspecting script file UnixPrac1.txt...
+
+File contents are:
+
+**********************************************************************
+#### 1 ####
+
+# INSTRUCTIONS: 
+    count how many lines there are in each file
+
+# ANSWER:
+    find ../data/*.fasta -exec wc -l {} \; # works when run from data
+
+# EXPLANATION:
+    # finds every file ending in 'fasta'
+    # executes a function (wc -l) on each file
+    # wc -l displays the line count
+
+
+#### 2 #### 
+
+# INSTRUCTIONS: 
+    # print everything starting from the second line for E. coli
+
+# ANSWER:
+    tail +2 ../data/E.coli.fasta
+
+# EXPLANATION:
+    # tail +2 starts printing the file from line 2 onwards
+
+
+
+#### 3 ####
+
+# INSTRUCTIONS: 
+    # count the sequence length of this genome
+
+# ANSWER:
+    tail +2 ../data/E.coli.fasta | tr -d '\n' | wc -m 
+
+# EXPLANATION:
+    # prints file from line 2 onwards, passes to next command
+    # removes all new lines (because character count includes new lines, so wouldn't give an accurate sequence length), passes result to next command
+    # wc -m counts the characters
+
+
+
+
+#### 4 ####
+
+# INSTRUCTIONS: 
+    # count the matches of a particular sequence "ATGC" in the genome of E. coli (hint: Start by removing the first line and removing newline characters)
+
+# ANSWER:
+    tail +2 ../data/E.coli.fasta | tr -d '\n'| grep -o ATGC | wc -l
+
+# EXPLANATION:
+    # prints file from line 2 onwards, passes to next command
+    # removes all new lines (because we will count ATGCs by putting each on a new line and counting the lines, so must erase any new line characters which already exist), passes result to next command
+    # grep command finds every ATGC
+    # '-o' function of grep prints every result of ATGC on a new line
+    # wc -l counts the number of new lines, and therefore the number of ATGC's.
+
+
+
+
+#### 5 ####
+
+# INSTRUCTIONS: 
+    # compute the AT/GC ratio. That is, the (A+T)/(G+C) ratio. This is a summary measure of base composition of double-stranded DNA. DNA from different organisms and lineages has different ratios of the A-to-T and G-to-C base pairs. For example DNA from organisms that live in hot springs have a higher GC content, which takes advantage of the increased thermal stability of the GC base pair (google “Chargaff’s rule”).
+
+# ANSWER:
+    echo " $(tail +2 ../data/E.coli.fasta | grep -o 'A\|T' | wc -l ) / $(tail +2 ../data/E.coli.fasta | grep -o 'G\|C' | wc -l ) " | bc -l
+
+# EXPLANATION:
+    # bc uses the basic calculator function.
+    # bc doesn't have division loaded unless you give it access to a more extensive math library by coding the argument -l 
+    # echo "" is used to display the result to the terminal
+    # $ is needed inside the echo function to make sure the code is interpreted as numbers
+    # grep function with wc -l works the same way as Q4 but finds A's or T's instead. \| means 'or'.
+
+### WORKING OUT - NOT PART OF ANSWER###
+
+    # tail +2 E.coli.fasta | grep -o A | wc -l # = 1153640
+    # tail +2 E.coli.fasta | grep -o T | wc -l # = 1152814
+    # tail +2 E.coli.fasta | grep -o G | wc -l # = 1188801
+    # tail +2 E.coli.fasta | grep -o C | wc -l # = 1190880
+
+    # tail +2 E.coli.fasta | grep -o 'A\|T' | wc -l # A + T = 2306454
+    # tail +2 E.coli.fasta | grep -o 'G\|C' | wc -l # G + C = 2379681
+
+    # echo $((tail +2 E.coli.fasta | grep -o 'A\|T' | wc -l/)/(tail +2 E.coli.fasta | grep -o 'G\|C' | wc -l )) # doesnt work gives error
+    # echo " (10) / (2) " | bc -l # works
+
+    # echo " (tail +2 E.coli.fasta | grep -o 'A + T' | wc -l ) / (tail +2 E.coli.fasta | grep -o 'G + C' | wc -l ) " | bc -l # doesnt work
+    # echo " $(tail +2 E.coli.fasta | grep -o 'A\|T' | wc -l ) / $(tail +2 E.coli.fasta | grep -o 'G\|C' | wc -l ) " | bc -l !!! works
+**********************************************************************
+
+Testing UnixPrac1.txt...
+
+======================================================================
+Inspecting script file CompileLaTeX.sh...
+
+File contents are:
+
+**********************************************************************
+#!/bin/bash
+# Author: Kayleigh Greenwood kg21@imperial.ac.uk
+# Script: CompileLaTeX.sh
+# Description: Compiles latex with bibtex
+#
+# Outputs: pdf latex file
+# Arguments: 1 (.tex latex code)
+# Date: Oct 17th 2021
+
+input=$1 # set $1 to a variable so that it can be manipulated to remove the suffix
+
+if [[ $input == *.tex ]] # if there is a .tex suffic
+then # remove the suffix
+    input=$(basename "$1" .tex)
+    echo $input
+fi
+
+##Creates pdf
+pdflatex $input.tex
+bibtex $input
+pdflatex $input.tex
+pdflatex $input.tex
+evince $input.pdf &
+
+##Cleanup, removes intermediary files
+rm *.aux
+rm *.log
+rm *.bbl
+rm *.blg
+**********************************************************************
+
+Testing CompileLaTeX.sh...
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(/usr/share/texlive/texmf-dist/tex/latex/tools/.tex
+LaTeX2e <2020-02-02> patch level 2
+L3 programming layer <2020-02-14> File ignored)
+*
+! Emergency stop.
+<*> .tex
+        
+!  ==> Fatal error occurred, no output PDF file produced!
+Transcript written on .log.
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdf
+**********************************************************************
+
+Encountered error (or warning):
+bibtex: Need exactly one file argument.
+Try `bibtex --help' for more information.
+rm: cannot remove '*.aux': No such file or directory
+rm: cannot remove '*.log': No such file or directory
+rm: cannot remove '*.bbl': No such file or directory
+rm: cannot remove '*.blg': No such file or directory
+
+** (evince:96657): WARNING **: 14:04:55.054: Error when getting information for file “/home/mhasoba/Documents/Teaching/IC_CMEE/2021-22/Coursework/StudentRepos/KayleighJadeGreenwood_kg21/week1/code/.pdf”: No such file or directory
+
+** (evince:96657): WARNING **: 14:04:55.055: set_filenames: Error when getting information for file “/home/mhasoba/Documents/Teaching/IC_CMEE/2021-22/Coursework/StudentRepos/KayleighJadeGreenwood_kg21/week1/code/.pdf”: No such file or directory
+
+** (evince:96657): WARNING **: 14:04:55.070: Error setting file metadata: No such file or directory
+
+** (evince:96657): WARNING **: 14:04:55.070: Error setting file metadata: No such file or directory
+
+** (evince:96657): WARNING **: 14:04:55.070: Error setting file metadata: No such file or directory
+
+** (evince:96657): WARNING **: 14:04:55.070: Error setting file metadata: No such file or directory
+
+** (evince:96657): WARNING **: 14:04:55.070: Error setting file metadata: No such file or directory
+
+** (evince:96657): WARNING **: 14:04:55.070: Error setting file metadata: No such file or directory
+
+** (evince:96657): WARNING **: 14:04:55.070: Error setting file metadata: No such file or directory
+
+** (evince:96657): WARNING **: 14:04:55.070: Error setting file metadata: No such file or directory
+
+** (evince:96657): WARNING **: 14:04:55.070: Error setting file metadata: No such file or directory
+
+** (evince:96657): WARNING **: 14:04:55.070: Error setting file metadata: No such file or directory
+
+** (evince:96657): WARNING **: 14:04:55.070: Error setting file metadata: No such file or directory
+
+** (evince:96657): WARNING **: 14:04:55.071: Error setting file metadata: No such file or directory
+
+** (evince:96657): WARNING **: 14:04:55.075: Error setting file metadata: No such file or directory
+
+======================================================================
+Inspecting script file MyExampleScript.sh...
+
+File contents are:
+
+**********************************************************************
+#!/bin/bash
+# Author: Kayleigh Greenwood kg21@imperial.ac.uk
+# Script: MyExampleScript.sh
+# Description: introduction to $USER, the environmental variable
+#
+# Arguments: 0
+# Date: Oct 17th 2021
+
+echo 
+#Prints an empty line to the console
+
+msg1="Hello" 
+#Creates the variable 'msg1' and assins it the value of a "Hello" string
+
+msg2=$USER 
+#creates the variable 'msg2' and assigns it the value of the $USER environment variable
+
+echo "$msg1 $msg2" 
+#Greets the user by printing the values of msg1(Hello) and msg2(user) into the console
+
+echo "Hello $USER" 
+#Another way of greeting the user in the console without assigning hello to a variable
+
+echo 
+
+**********************************************************************
+
+Testing MyExampleScript.sh...
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+
+Hello mhasoba
+Hello mhasoba
+
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.00688s
+
+======================================================================
+======================================================================
+Finished running scripts
+
+Ran into 1 errors
+
+======================================================================
+======================================================================
+
+FINISHED WEEKLY ASSESSMENT
+
+Current Points for the Week = 100
+
+NOTE THAT THESE ARE POINTS, NOT MARKS FOR THE WEEK!
