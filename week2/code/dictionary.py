@@ -32,22 +32,13 @@ taxa = [ ('Myotis lucifugus','Chiroptera'),
 
 ## script ##
 
-taxa_dic = dict.fromkeys(['Afrosoricida','Carnivora','Chiroptera','Rodentia'], [])
+# taxa_dic = dict.fromkeys(['Afrosoricida','Carnivora','Chiroptera','Rodentia'], [])
+taxa_dic = {x[1]: [] for x in taxa}
 
 print(taxa_dic)
 
 for species in taxa:
-    if (species[1] == "Afrosoricida"):
-        # print(species)
-        # print(species[1])
-        # print(species[0])
-        taxa_dic["Afrosoricida"].append(species[0])
-    # elif (species[1] == "Carnivora"):
-    #     taxa_dic["Carnivora"].append(species[0])
-    # elif (species[1] == "Chiroptera"):
-    #     taxa_dic["Chiroptera"].append(species[0])
-    # elif (species[1] == "Rodentia"):
-    #     taxa_dic["Rodentia"].append(species[0])
+    taxa_dic[species[1]].append(species[0])
 
 print(taxa_dic)
 
