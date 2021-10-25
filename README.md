@@ -4,9 +4,9 @@ This README file contains details about the scripts from classwork and practical
 
 
 ## Contents
-Unix and Linux
-Shell Scripting
-Python
-R
-Statistics in R
+Unix and Linux <br />
+Shell Scripting <br />
+Python <br />
+R <br />
+Statistics in R <br />
 
