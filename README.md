@@ -1,13 +1,12 @@
-My CMEE Coursework Repository
-<<<<<<< HEAD
+# Kayleigh's CMEE Coursework Repository
 
-Contents:
-<<<<<<< Updated upstream
-    Week 1
-=======
->>>>>>> 52da6b916707a76bca3aeef13b253118ac597acf
-=======
-    week 1
-    	UNIX and LINUX
-    	Shell Scripting
->>>>>>> Stashed changes
+This README file contains details about the scripts from classwork and practicals in CMEE week 2.
+
+
+## Contents
+Unix and Linux
+Shell Scripting
+Python
+R
+Statistics in R
+
