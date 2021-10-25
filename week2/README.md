@@ -1,4 +1,4 @@
-# Week 2: Python Coding Practicals
+# Week 2: Computing
 
 This README file contains details about the scripts from classwork and practicals in CMEE week 2.
 
@@ -22,6 +22,7 @@ This README file contains details about the scripts from classwork and practical
 **Summary:** Intro to conditionals and functions
 **Input:** numerical input into functions
 **Output:** Prints to terminal
+**Imports:** sys
 
     cfexercises2.py
 
@@ -49,7 +50,7 @@ This README file contains details about the scripts from classwork and practical
 
     basic_io2.py
 
-**Summary:** save the elements of a list to a file
+**Summary:** save data to a file
 **Input:** n/a
 **Output:** testout.txt in sandbox
 
@@ -80,9 +81,9 @@ This README file contains details about the scripts from classwork and practical
 
 **Summary:** Example of use of __name__=='__main__' and using_name
 **Input:** n/a
-**Output:** 
+**Output:** prints to terminal
 
-    sys.argv
+    sysargv.py
 
 **Summary:** Explais sys.argv in a practical way
 **Input:** various arguments
@@ -92,15 +93,17 @@ This README file contains details about the scripts from classwork and practical
 
     control_flow.py
 
-**Summary:** uses various control flow tools. Contains various functions which analyse numbers
+**Summary:** create various functions which analyse numbers using control flow tools
 **Input:** n/a
 **Output:** prints to terminal
+**Imports:** sys
 
     test_control_flow.py
 
 **Summary:** Intro to unit testing, contains simple tests for each function embedded in the docstring. functions which exemplify the use of control statements
 **Input:** -v (run test_control_flow.py -v)
 **Output:** prints to terminal
+**Import:** sys, doctest
 
     debugme.py
 
@@ -111,16 +114,32 @@ This README file contains details about the scripts from classwork and practical
 
     lc1.py
 
-**Summary:** 
-**Input:** 
-**Output:** 
+**Summary:** using list comprehensions and loops to make lists from bird data
+**Input:** n/a
+**Output:** prints to terminal
 
-## TOPIC
+    lc2.py
 
-    script_name.extension
+**Summary:** use list comprehensions and loops to make lists from rainfall data
+**Input:** n/a
+**Output:** prints to terminal
 
-**Summary:** 
-**Input:** 
-**Output:** 
+    dictionary.py
 
+**Summary:** populate a dictionary derived from taxa so that it maps order names to sets of taxa
+**Input:** n/a
+**Output:** prints to terminal
+
+    tuple.py
+
+**Summary:** print out items from a tuple
+**Input:** n/a
+**Output:** prints to terminal
+
+    align_seqs.py
+
+**Summary:** align two DNA sequences such that they are as similar as possible.
+**Input:** n/a
+**Output:** saves to sequences.txt file in results
+**Imports:** sys, csv
 ###### Author: Kayleigh Greenwood (kayleigh.greenwood21@imperial.ac.uk)
