@@ -4,6 +4,9 @@
 __author__ = 'Kayleigh Greenwood (kayleigh.greenwood21@imperial.ac.uk)'
 __version__ = '0.0.1'
 
+## imports ##
+from pprint import pprint
+
 ## data ##
 
 taxa = [ ('Myotis lucifugus','Chiroptera'),
@@ -18,27 +21,18 @@ taxa = [ ('Myotis lucifugus','Chiroptera'),
          ('Canis lupus', 'Carnivora'),
         ]
 
-## instructions ##
-# write a short python script DONE
-# to populate a dictionary called taxa_dic
-# derived from taxa
-# so that it maps order names
-# to sets of taxa
-
-## notes to help ##
-# dictionary = hash table of key value pairs enclosed by curly braces - key can be number or string, value can be any python object
-# example format: GenomeSize = {'Homo Sapients': 3200, 'E.coli': 4600}
-
-
 ## script ##
 
-# taxa_dic = dict.fromkeys(['Afrosoricida','Carnivora','Chiroptera','Rodentia'], [])
-taxa_dic = {x[1]: [] for x in taxa}
+taxa_dic = {x[1]: [] for x in taxa} 
+# creates dictionary called taxa_dic and assigns it the following:
+# for every item in taxa, 
+# create a key of the same name as it's second item (index 1).
+# assign each key the value of an empty list
 
-print(taxa_dic)
+for species in taxa: # for each item in taxa,
+    taxa_dic[species[1]].append(species[0]) 
+    # locate the key with the same name as it's second item (eg Rodentia, Carnivora...)
+    # and add the first item of species as the key's value
 
-for species in taxa:
-    taxa_dic[species[1]].append(species[0])
-
-print(taxa_dic)
+pprint(taxa_dic) # make each key print on a new line
 

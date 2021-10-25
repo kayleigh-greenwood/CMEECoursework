@@ -1,3 +1,10 @@
+#!/usr/bin/env python3
+"""Print out items from a tuple"""
+
+__author__ = 'Kayleigh Greenwood (kayleigh.greenwood21@imperial.ac.uk)'
+__version__ = '0.0.1'
+
+## DATA ##
 birds = ( ('Passerculus sandwichensis','Savannah sparrow',18.7),
           ('Delichon urbica','House martin',19),
           ('Junco phaeonotus','Yellow-eyed junco',19.5),
@@ -5,29 +12,7 @@ birds = ( ('Passerculus sandwichensis','Savannah sparrow',18.7),
           ('Tachycineata bicolor','Tree swallow',20.2),
         )
 
-# print these tuples on separate lines
-# as loop
-print("\n")
-for species in birds:
-    print("Latin Name:", species[0])
-    print("Common name:", species[1])
-    print("Mass:", species[2] ,"\n")
 
+## SCRIPT ##   
 
-
-
-
-# as list comprehension
-
-
-# Birds is a tuple of tuples of length three: latin name, common name, mass.
-# write a (short) script to print these on a separate line or output block by species 
-# 
-# A nice example output is:
-# 
-# Latin name: Passerculus sandwichensis
-# Common name: Savannah sparrow
-# Mass: 18.7
-# ... etc.
-
-# Hints: use the "print" command! You can use list comprehensions!
+for species in birds: print("\nLatin Name:", species[0], "\nCommon name:", species[1], "\nMass:", species[2] ,"\n")

@@ -1,4 +1,12 @@
+#!/usr/bin/env python3
+
+"""Example of function with a bug"""
+
+__author__ = 'Kayleigh Greenwood (kayleigh.greenwood21@imperial.ac.uk)'
+__version__ = '0.0.1'
+
 def buggyfunc(x):
+    """Function with zero division error"""
     y = x
     for i in range(x):
         try:

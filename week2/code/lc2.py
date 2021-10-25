@@ -4,6 +4,8 @@
 __author__ = 'Kayleigh Greenwood (kayleigh.greenwood21@imperial.ac.uk)'
 __version__ = '0.0.1'
 
+# DATA
+
 # Average UK Rainfall (mm) for 1910 by month
 # http://www.metoffice.gov.uk/climate/uk/datasets
 rainfall = (('JAN',111.4),
@@ -21,6 +23,8 @@ rainfall = (('JAN',111.4),
            )
 
  
+ # SCRIPT
+
 #############################################
 print("USING LIST COMPREHENSIONS:", "\n")
 #############################################

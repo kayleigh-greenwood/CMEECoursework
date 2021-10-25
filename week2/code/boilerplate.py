@@ -8,7 +8,7 @@ You can use several lines"""
 # tells user how to use the python code
 
 __appname__ = '[application name here]'
-__autor__ = 'Kayleigh Greenwood (kayleigh.greenwood21@imperial.ac.uk)'
+__author__ = 'Kayleigh Greenwood (kayleigh.greenwood21@imperial.ac.uk)'
 __version__ = '0.0.1'
 __license__ = "License for this code/program"
 

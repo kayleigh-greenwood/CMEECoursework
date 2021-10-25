@@ -21,9 +21,9 @@ def foo_2(x=2,y=5):
     return y
 
 def foo_3(x=4, y=10, z=6):
-    """ensure the largest number is at the end of the sequence. Use tmp to store values whilst swapping values around"""
+    """ensure the largest number is at the end of the sequence."""
     if x > y:
-        tmp = y
+        tmp = y # Use tmp to store values whilst swapping values around
         y = x
         x = tmp
     if y > z:
@@ -64,6 +64,6 @@ def main(argv):
     return 0
 
 if __name__ == "__main__":
-    """Make sure the "main" function is called from command line"""
+    # Make sure the "main" function is called from command line
     status = main(sys.argv) # directs the interpreter to pass the argument variables to the main function
     sys.exit(status) #exits the program explicitly, returning an appropriate status code  (in this code, main states above that it will return 0, so 0 is returned)
