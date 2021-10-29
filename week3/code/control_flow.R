@@ -17,7 +17,7 @@ if (z <= 0.5) {
 
 ### for loops
 
-for (i in seq(10)){
+for (i in 1:10){ # generates includive sequence
     j <- i * i
     print(paste(i, " squared is", j))
 }

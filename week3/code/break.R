@@ -5,6 +5,6 @@ i <- 0 #Initialize i
              } # Break out of the while loop! 
         else { 
             cat("i equals " , i , " \n")
-            i <- i + 1 # Update i
+            i <- i + 1 # Add 1 until 10 is reached
     }
 }
