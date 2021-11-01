@@ -76,10 +76,10 @@ This README file contains details about the scripts from classwork and practical
 **Input:** n/a <br />
 **Output:** Prints to terminal and produces histogram <br />
 
-    V
-**Summary:** <br />
+    Vectorize2.R
+**Summary:** Vectorizes the ricker model and adds fluctuation <br />
 **Input:** n/a <br />
-**Output:** <br />
+**Output:** Prints to terminal <br />
 
 ***
 ## Big Data Analyses and Stats
