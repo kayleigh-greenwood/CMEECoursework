@@ -1,82 +1,65 @@
 ################################################################
-################## Wrangling the Pound Hill Dataset using tidyverse ############
+################## Wrangling the Pound Hill Dataset ############
 ################################################################
+
+############# Load the dataset (COMPLETE) ###############
+rm(list=ls())
+
 require(tidyverse)
-############# Load the dataset ###############
 
-# tidyverse version
-MyData <- as.matrix(read_csv("../data/PoundHillData.csv", col_names = FALSE)) # guarantees data is imported as is. Otherwise, read.csv would convert first row to column headers
+MyData <- as.matrix(read_csv("../data/PoundHillData.csv", col_names = FALSE)) 
+# guarantees data is imported as is. Otherwise, read.csv would convert first row to column headers
 
-# tidyverse version
-MyMetaData <- read_csv2("../data/PoundHillMetaData.csv", col_names = TRUE) # header is true because the file does contain headers
+MyMetaData <- read_csv2("../data/PoundHillMetaData.csv", col_names = TRUE) 
+# header is true because the file does contain headers
 
-############# Inspect the dataset ###############
-head(MyData) # Output can be seen in Text1 (in sandbox and notes)
-dim(MyData) # dimensions
-str(MyData) # compactly display the structure
-fix(MyData) #you can also do this
-fix(MyMetaData)
+############# Inspect the dataset (COMPLETE)###############
 
-############# Transpose ###############
-# To get those species into columns and treatments into rows 
-TempData <- t(MyData) #Swaps rows and columns around
-head(TempData) # output can be seen in Text2 in sandbox
-dim(TempData)
+as_tibble(MyData) 
+# tidyverse equivalent to head(MyData) as it displays the first 10 lines, but head is better
+dim_desc(MyData) 
+# dimensions, equivalent to dim()
+dplyr::glimpse(MyData) 
+# compactly display the structure
+# like str(), but nicer!
+# dbl means double precision floating point number
+utils::View(MyData) 
+# you can also do this
+# equivalent to fix()
+utils::View(MyMetaData)
 
-# method in progress with tidyverse
-# TempData %>%
-#    rownames_to_column() %>%  ## gave an error message about this line needing something in the brackets
-#    pivot_longer(-rowname) %>% 
-#    pivot_wider(names_from=rowname, values_from=value) 
+############# Transpose (COMPLETE)###############
+# To get the species into columns and treatments into rows 
+MyData <- t(MyData) #Swaps rows and columns around
+# no viable way to do it in tidyverse
 
-############# Convert raw matrix to data frame ###############
+############# Replace species absences with zeros (COMPLETE) ###############
+MyData <- replace_na(MyData, 0)
 
-### NEXT TIME, FIX THIS SECTION
-TempData <- as.data.frame(TempData[-1,],stringsAsFactors = FALSE) 
-# MyData[-1] means MyData without the first row (in this case, removes the headers)
-#stringsAsFactors = F is important as it may restrict the things we can do to the strings otherwise
-colnames(TempData) <- TempData[1,] # assign column names as actual column names from original data
+############# Convert raw matrix to data frame (HELP)###############
 
-# find tidyverse way of doing this
+TempData <- tibble::as_tibble(MyData[-1,],stringsAsFactors = FALSE) 
+ 
+colnames(TempData) <- MyData[1,] # assign column names as actual column names from original data
+# there is a way to do this in tidyverse with rename but this method is better
 
-############# Convert from wide to long format  ###############
-require(tidyverse)
-MyWrangledData <- tidyr::pivot_longer(TempData, cols=2:5,names_to="Species",values_to="Count")
+############# Convert from wide to long format (COMPELTE)  ###############
+MyWrangledData <- tidyr::pivot_longer(TempData, cols=5:45,names_to="Species",values_to="Count")
 
-############# Replace species absences with zeros ###############
-MyData[MyData == ""] = 0 # puts a zero in every empty box
+############ Coerce column types
 
-# tidyverse version
-replace_na(MyWrangledData, )
-
+# this section is necessary because we set stringsAsFactors to false at the beginning to avoid it converting unwanted sections
 # this means we must specify which parts we do want as factors
-MyWrangledData[, "Cultivation"] <- as.factor(MyWrangledData[, "Cultivation"])
-MyWrangledData[, "Block"] <- as.factor(MyWrangledData[, "Block"])
-MyWrangledData[, "Plot"] <- as.factor(MyWrangledData[, "Plot"])
-MyWrangledData[, "Quadrat"] <- as.factor(MyWrangledData[, "Quadrat"])
-MyWrangledData[, "Count"] <- as.integer(MyWrangledData[, "Count"])
 
-str(MyWrangledData)
-head(MyWrangledData)
-dim(MyWrangledData)
+MyWrangledData <- MyWrangledData %>%
+    mutate(across(c(Cultivation, Block, Plot, Quadrat), as.factor))
+    # uses across to apply the same function (as.factor) to mutate multiple columns
 
-
-### tasks i need to find a tidyverse function for ###
-# change datatype to a factor
-# change datatype to integer
-# change from wide to long format (currently using melt)
-# convert raw matrix to data frame
-# replace absences with zero
-# transpose
-# load data
-# inspect data
-# assign column names as actual column names from original data
-# next time: carry on with this task
-
+MyWrangledData <- MyWrangledData %>%
+    mutate(across(c(Count), as.integer))
 
 
 ############# Exploring the data (extend the script below)  ###############
-
 
 MyWrangledData <- tibble::as_tibble(MyWrangledData)
 # a tibble in tidyverse is equivalent to R's traditional dataframe
@@ -86,10 +69,10 @@ MyWrangledData <- tibble::as_tibble(MyWrangledData)
 # tibbles complain more (eg when a variable doesnt exist)
 # tibble displays data along with data type while displaying 
 # whereas data frames do not
+
 MyWrangledData
 
-dplyr::glimpse(MyWrangledData) #like str(), but nicer!
-# dbl means double precision floating point number
+dplyr::glimpse(MyWrangledData) 
 
 dplyr::filter(MyWrangledData, Count>100) #like subset(), but nicer!
 
