@@ -1,8 +1,27 @@
+Ricker <- function(N0=1, r=1, K=10, generations=50)
+{
+  # Runs a simulation of the Ricker model
+  # Returns a vector of length generations
+  
+  N <- rep(NA, generations)    
+  # Creates a vector of NA, repeated 'generations' times
+  
+  N[1] <- N0 
+  # sets the value of the first item in vector N, which is input as an argument
+  for (t in 2:generations)
+  # loops from 2 to generations
+  {
+    N[t] <- N[t-1] * exp(r*(1.0-(N[t-1]/K)))
+    # perform the ricker equation to update N
+  }
+  return (N)
+}
 
+plot(Ricker(generations=10), type="l")
 
 
 # notes 
-# difference equation, not differentil equation
+# difference equation, not differential equation
 # discrete time equation
 # updating the value of a variable with respect to what its value was in a previous time step
 # r is growth rate parameter

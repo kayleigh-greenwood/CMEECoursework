@@ -1,4 +1,4 @@
-# Week 1 Coding Practicals
+# Week 1: Computing
 This README file contains details about the scripts from classwork and practicals in CMEE week 1.
 
 

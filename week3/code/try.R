@@ -13,6 +13,8 @@ doit <- function(x){
 #### generate population ####
 
 set.seed(1345) # again, to get the same result for illustration
+# only used for debugging, remove once finished.
+# used to get the same result for illustration
 
 popn <- rnorm(50)
 
@@ -20,16 +22,21 @@ hist(popn)
 
 #### lapply ####
 
-#lapply(1:15, function(i) doit(popn))
+# lapply(1:15, function(i) doit(popn))
+
 
 # gave 4 means (out of the 15 we asked for) and the ran error message saying there werent enough unique values
+# stops after one of the lines encounters an error and doesnt run the rest
+# use try to avoid this
 
 #### lapply using try ####
 
-#result <- lapply(1:15, function(i) try(doit(popn), FALSE))
+result <- lapply(1:15, function(i) try(doit(popn), FALSE))
 
 # in this run, it only gave 13 means (out of the 15 we asked for) but no error message as above
 # the FALSE modifier for the try command suppresses any error message, but result will still contain them
+# prints error when line doesnt work but continues running the rest
+# the full error messages are stored in result
 
 #### store results manually using a loop ####
 

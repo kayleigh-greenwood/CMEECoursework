@@ -10,7 +10,7 @@ MyData <- as.matrix(read.csv("../data/PoundHillData.csv", header = FALSE)) # gua
 MyMetaData <- read.csv("../data/PoundHillMetaData.csv", header = TRUE, sep = ";") # header is true because the file does contain headers
 
 ############# Inspect the dataset ###############
-head(MyData) # Output can be seen in Text1 (in sandbox and notes)
+head(MyData)
 dim(MyData) # dimensions
 str(MyData) # compactly display the structure
 fix(MyData) #you can also do this
