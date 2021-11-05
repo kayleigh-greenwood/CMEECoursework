@@ -40,15 +40,15 @@ dev.off()
 
 ### generate the statistics of linear models
 
-make_model <- function(Data){
-    summary(lm(MyDF$Predator.mass ~ MyDF$Prey.mass))
+make_model <- function(df){
+    summary(lm(df$Predator.mass ~ df$Prey.mass))
 }
 
 ModelAnswers <- dlply(.data = MyDF, .variables = as.quoted(.(Type.of.feeding.interaction, Predator.lifestage)), .fun = make_model)
 # dlply applies a function to specific subsets of a dataframe
 
 
-
+# data.frame(Intercept, Slope, RSquared, PValue)
 ### pick out the stats i want and put them in a dataframe
 
 StatSummary1 <- ldply(ModelAnswers, function(x){
