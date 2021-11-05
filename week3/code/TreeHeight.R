@@ -40,6 +40,13 @@ for(i in 1:nrow(TreeData)) {
 } 
 # calculates tree height and adds it to column
 
+#Amelias loop
+for(i in 1:nrow(TreeData)) {
+    n <- TreeHeight(TreeData[i,3], TreeData[i,2])
+    TreeData[i,4] <- n
+}
+
+
 write.csv(TreeData, "../results/TreeHts.csv", row.names=FALSE)  
 # writes the contents of TreeData into a file in results, without the rows being numbered.
 

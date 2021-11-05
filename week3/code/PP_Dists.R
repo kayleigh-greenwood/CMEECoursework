@@ -1,71 +1,149 @@
 # # writes  and saves three figures
-
-# ### write scatter plot
-# pdf("../results/name.pdf")
-# plot(MyDF$x, MyDF$y)
-# graphics.off()
-# # OR if variables are log-normally distributed;
-# pdf("../results/name.pdf")
-# plot(log10(MyDF$x), log10(MyDF$y), xlab="log10(title of x axis(units))", ylab="log10(Title of y axis(units))", pch=20, main="figure title")
-# graphics.off()
-# # pch=20 specifies small black circle
-
-
-
-# # write hist
-# pdf("../results/name.pdf")
-# hist(log10(MyDF$variable), xlab="log10(X axis name(units))", ylab="log10(y axis name(units))", col="colour of bars", border="colour of border around bars", main="figure title")
-# graphics.off()
-
-# # write sub-plot hist
-# pdf("../results/name.pdf")
-# par(mfcol=c(2,1)) #initialize multi-paneled plot
-# par(mfg = c(1,1)) # specify which sub-plot to use first 
-# hist(log10(MyDF$variable),
-#     xlab = "log10(variable(unit))", ylab = "Count", col = "box colour", border = "box border colour", 
-#     main = 'Image title') # Add title
-# par(mfg = c(2,1)) # Second sub-plot
-# hist(log10(MyDF$variable), xlab="log10(variable(units))",ylab="Count", col = "box colour", border = "box border colour", main = 'title')
-# graphics.off()
-
-# # write box
-# # single boxplot
-# pdf("../results/name.pdf")
-# boxplot(log10(MyDF$variable), xlab= "log10(x axis label(units))", ylab="Y axis label", main="figure title")
-# graphics.off()
-
-# # boxplot split by a variable
-# pdf("../results/name.pdf")
-# boxplot(log10(MyDF$variable) ~ MyDF$factor, xlab= "x axis label(units))", ylab="log10(Y axis label(units))", main="figure title")
-# graphics.off()
-
+require(ggplot2)
 
 #### actual task ####
-
-# TO DO NEXT TIME:
-# work out why this isn't working (producing three figures)
 
 # import data
 MyDF <- read.csv("../data/EcolArchives-E089-51-D1.csv")
 MyDF$Size.ratio <- NA # creates new column
 
-
+# calculating size ratio
 for (i in 1:nrow(MyDF)){
-    SizeRatio=MyDF$Prey.mass[i]/MyDF$Predator.mass[i]
-    MyDF$Size.ratio[i] <- SizeRatio
+    SizeRatio=MyDF[i,13]/MyDF[i,9]
+    MyDF[i,16] <- SizeRatio
 }
 
-# boxplot split by a variable
-pdf("../results/Predator_mass_by_feeding_interaction_type.pdf")
-boxplot(log10(MyDF$Predator.mass) ~ MyDF$Type.of.feeding.interation, xlab= "Type of feeding interation)", ylab="log10(Predator mass(g))", main="Predator mass by feeding interaction type")
-graphics.off()
+# calculating body size stats by feeding type
+# how to use subset, subset(data, data$x == "whatever")
+MyDFinsectivorous <- subset(MyDF, MyDF$Type.of.feeding.interaction == "insectivorous")
+MyDFpiscivorous <- subset(MyDF, MyDF$Type.of.feeding.interaction == "piscivorous")
+MyDFplanktivorous <- subset(MyDF, MyDF$Type.of.feeding.interaction == "planktivorous")
+MyDFpredacious <- subset(MyDF, MyDF$Type.of.feeding.interaction == "predacious")
+MyDFpredaciouspiscivorous <- subset(MyDF, MyDF$Type.of.feeding.interaction == "predacious/piscivorous")
 
-# boxplot split by a variable
-pdf("../results/Prey_mass_by_feeding_interation_type.pdf")
-boxplot(log10(MyDF$Prey.mass) ~ MyDF$Type.of.feeding.interaction, xlab= "Type of feeding interation)", ylab="log10(Prey mass(g))", main="Prey mass by feeding interaction type")
-graphics.off()
+# creating predator mass histograms
 
-# boxplot split by a variable
-pdf("../results/Size_ratio_of_prey_mass_over_predator_mass_by_feeding_interaction_type.pdf")
-boxplot(log10(MyDF$Size.ratio) ~ MyDF$Type.of.feeding.interaction, xlab= "Type of feeding interation)", ylab="log10(Y axis label(units))", main="Size ratio of prey mass over predator mass by feeding interation type")
-graphics.off()
+pdf("../results/Pred_Subplots.pdf")
+
+par(mfcol=c(5,1)) # initialise multi-paneled plot
+
+par(mfg=c(1,1)) # first sub-plot
+hist(log10(MyDFinsectivorous$Predator.mass), xlab="log10(Predator mass(g))", ylab="Count", main="Predator mass histogram - insectivorous")
+par(mfg=c(2,1)) # second sub-plot
+hist(log10(MyDFpiscivorous$Predator.mass), xlab="log10(Predator mass(g))", ylab="Count", main="Predator mass histogram - piscivorous")
+par(mfg=c(3,1)) # second sub-plot
+hist(log10(MyDFplanktivorous$Predator.mass), xlab="log10(Predator mass(g))", ylab="Count", main="Predator mass histogram - planktivorous")
+par(mfg=c(4,1)) # second sub-plot
+hist(log10(MyDFpredacious$Predator.mass), xlab="log10(Predator mass(g))", ylab="Count", main="Predator mass histogram - predacious")
+par(mfg=c(5,1)) # second sub-plot
+hist(log10(MyDFpredaciouspiscivorous$Predator.mass), xlab="log10(Predator mass(g))", ylab="Count", main="Predator mass histogram - predacious/piscivorous")
+
+dev.off()
+
+# creating prey mass histograms
+
+pdf("../results/Prey_Subplots.pdf")
+
+par(mfcol=c(5,1)) # initialise multi-paneled plot
+
+par(mfg=c(1,1)) # first sub-plot
+hist(log10(MyDFinsectivorous$Prey.mass), xlab="log10(Prey mass(g))", ylab="Count", main="Prey mass histogram - insectivorous")
+par(mfg=c(2,1)) # second sub-plot
+hist(log10(MyDFpiscivorous$Prey.mass), xlab="log10(Prey mass(g))", ylab="Count", main="Prey mass histogram - piscivorous")
+par(mfg=c(3,1)) # second sub-plot
+hist(log10(MyDFplanktivorous$Prey.mass), xlab="log10(Prey mass(g))", ylab="Count", main="Prey mass histogram - planktivorous")
+par(mfg=c(4,1)) # second sub-plot
+hist(log10(MyDFpredacious$Prey.mass), xlab="log10(Prey mass(g))", ylab="Count", main="Prey mass histogram - predacious")
+par(mfg=c(5,1)) # second sub-plot
+hist(log10(MyDFpredaciouspiscivorous$Prey.mass), xlab="log10(Prey mass(g))", ylab="Count", main="Prey mass histogram - predacious/piscivorous")
+
+dev.off()
+
+# creating size ratio histograms
+
+pdf("../results/SizeRatio_Subplots.pdf")
+
+par(mfcol=c(5,1)) # initialise multi-paneled plot
+
+par(mfg=c(1,1)) # first sub-plot
+hist(log10(MyDFinsectivorous$Size.ratio), xlab="log10(Size ratio)", ylab="Count", main="Size ratio histogram - insectivorous")
+par(mfg=c(2,1)) # second sub-plot
+hist(log10(MyDFpiscivorous$Size.ratio), xlab="log10(Size ratio)", ylab="Count", main="Size ratio histogram - piscivorous")
+par(mfg=c(3,1)) # second sub-plot
+hist(log10(MyDFplanktivorous$Size.ratio), xlab="log10(Size ratio)", ylab="Count", main="Size ratio histogram - planktivorous")
+par(mfg=c(4,1)) # second sub-plot
+hist(log10(MyDFpredacious$Size.ratio), xlab="log10(Size ratio)", ylab="Count", main="Size ratio histogram - predacious")
+par(mfg=c(5,1)) # second sub-plot
+hist(log10(MyDFpredaciouspiscivorous$Size.ratio), xlab="log10(Size ratio)", ylab="Count", main="Size ratio histogram - predacious/piscivorous")
+
+dev.off()
+
+
+# initialise new dataframe/matrix (Called DataFrame) to store the calculations with appropriate headers
+    # calculate log mean predator mass by feeding type
+
+    # calculate log median predator mass by feeding type
+
+    # calculate log mean prey mass by feeding type
+
+    # calculate log median prey mass by feeding type
+
+    # calculate log mean size ratio by feeding type
+
+    # calculate log median size ratio by feeding type
+
+# initialise new dataframe/matrix (Called DataFrame) to store the calculations with appropriate headers
+
+FeedingType <- c("insectivorous", "piscivorous", "planktivorous", "predacious", "predacious/piscivorous")
+# create means of predator masses
+MeanLogPredMass <- c()
+MeanLogPredMass<- c(MeanLogPredMass, mean(log(MyDFinsectivorous$Predator.mass)))
+MeanLogPredMass<- c(MeanLogPredMass, mean(log(MyDFpiscivorous$Predator.mass)))
+MeanLogPredMass<- c(MeanLogPredMass, mean(log(MyDFplanktivorous$Predator.mass)))
+MeanLogPredMass<- c(MeanLogPredMass, mean(log(MyDFpredacious$Predator.mass)))
+MeanLogPredMass<- c(MeanLogPredMass, mean(log(MyDFpredaciouspiscivorous$Predator.mass)))
+
+# create medians of predator mass
+MedianLogPredMass <- c()
+MedianLogPredMass<- c(MedianLogPredMass, median(log(MyDFinsectivorous$Predator.mass)))
+MedianLogPredMass<- c(MedianLogPredMass, median(log(MyDFpiscivorous$Predator.mass)))
+MedianLogPredMass<- c(MedianLogPredMass, median(log(MyDFplanktivorous$Predator.mass)))
+MedianLogPredMass<- c(MedianLogPredMass, median(log(MyDFpredacious$Predator.mass)))
+MedianLogPredMass<- c(MedianLogPredMass, median(log(MyDFpredaciouspiscivorous$Predator.mass)))
+
+# create means of prey masses
+MeanLogPreyMass <- c()
+MeanLogPreyMass<- c(MeanLogPreyMass, mean(log(MyDFinsectivorous$Prey.mass)))
+MeanLogPreyMass<- c(MeanLogPreyMass, mean(log(MyDFpiscivorous$Prey.mass)))
+MeanLogPreyMass<- c(MeanLogPreyMass, mean(log(MyDFplanktivorous$Prey.mass)))
+MeanLogPreyMass<- c(MeanLogPreyMass, mean(log(MyDFpredacious$Prey.mass)))
+MeanLogPreyMass<- c(MeanLogPreyMass, mean(log(MyDFpredaciouspiscivorous$Prey.mass)))
+
+# create medians of prey mass
+MedianLogPreyMass <- c()
+MedianLogPreyMass<- c(MedianLogPreyMass, median(log(MyDFinsectivorous$Prey.mass)))
+MedianLogPreyMass<- c(MedianLogPreyMass, median(log(MyDFpiscivorous$Prey.mass)))
+MedianLogPreyMass<- c(MedianLogPreyMass, median(log(MyDFplanktivorous$Prey.mass)))
+MedianLogPreyMass<- c(MedianLogPreyMass, median(log(MyDFpredacious$Prey.mass)))
+MedianLogPreyMass<- c(MedianLogPreyMass, median(log(MyDFpredaciouspiscivorous$Prey.mass)))
+
+# create means of size ratio
+MeanLogSizeRatio <- c()
+MeanLogSizeRatio <- c(MeanLogSizeRatio, mean(log(MyDFinsectivorous$Size.ratio)))
+MeanLogSizeRatio <- c(MeanLogSizeRatio, mean(log(MyDFpiscivorous$Size.ratio)))
+MeanLogSizeRatio <- c(MeanLogSizeRatio, mean(log(MyDFplanktivorous$Size.ratio)))
+MeanLogSizeRatio <- c(MeanLogSizeRatio, mean(log(MyDFpredacious$Size.ratio)))
+MeanLogSizeRatio <- c(MeanLogSizeRatio, mean(log(MyDFpredaciouspiscivorous$Size.ratio)))
+
+
+# create medians of size ratio
+MedianLogSizeRatio <- c()
+MedianLogSizeRatio <- c(MedianLogSizeRatio, median(log(MyDFinsectivorous$Size.ratio)))
+MedianLogSizeRatio <- c(MedianLogSizeRatio, median(log(MyDFpiscivorous$Size.ratio)))
+MedianLogSizeRatio <- c(MedianLogSizeRatio, median(log(MyDFplanktivorous$Size.ratio)))
+MedianLogSizeRatio <- c(MedianLogSizeRatio, median(log(MyDFpredacious$Size.ratio)))
+MedianLogSizeRatio <- c(MedianLogSizeRatio, median(log(MyDFpredaciouspiscivorous$Size.ratio)))
+
+AveragesDataFrame <- data.frame(FeedingType, MeanLogPredMass, MedianLogPredMass, MeanLogPreyMass, MedianLogPreyMass, MeanLogSizeRatio, MedianLogSizeRatio)
+
+write.csv(AveragesDataFrame, "../results/PP_Results.csv")

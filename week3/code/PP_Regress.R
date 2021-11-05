@@ -1,27 +1,10 @@
-## TO DO NEXT TIME: keep adjusting figure to get it as similar to the example as possible
-
 
 # import predator-prey dataset
-
 require(ggplot2)
+require(plyr)
 MyDF <- read.csv("../data/EcolArchives-E089-51-D1.csv")
 
-
-# iteration1 works
-    # plot(MyDF$Prey.mass, MyDF$Predator.mass, xlab="Prey mass in grams", ylab="Predator mass in grams", pch=3, log="xy")
-
-# iteration 2 trying to split into multiple graphs - works
-    # p <- ggplot(MyDF, aes(x = Prey.mass, y = Predator.mass)) + geom_point(pch=3) + facet_wrap( Type.of.feeding.interaction ~ ., ncol=1 )
-    # q <- p + scale_x_log10() + scale_y_log10()
-
-# iteration 3 - colours - works
-
-    # p <- ggplot(MyDF, aes(x = Prey.mass, y = Predator.mass, colour = Predator.lifestage)) + geom_point(pch=3) + facet_wrap( Type.of.feeding.interaction ~ ., ncol=1 )
-    # q <- p + scale_x_log10() + scale_y_log10()
-    # q <- q + theme(legend.position = "bottom")
-
-# iteration 4 - lines - works
-
+# creates figure
 p <- ggplot(MyDF, aes(x = Prey.mass, y = Predator.mass, colour = Predator.lifestage), geom=c("point", "smooth")) + geom_point(pch=3) + geom_smooth(method = "lm", fullrange=TRUE) + (facet_wrap( Type.of.feeding.interaction ~ ., ncol=1 ))
 q <- p + scale_x_log10() + scale_y_log10()
 q <- q + theme(legend.position = "bottom")
@@ -53,3 +36,41 @@ q <- q + theme(legend.position = "bottom")
 pdf("../results/PP_Regress.pdf")
 print(q)
 dev.off()
+
+
+### generate the statistics of linear models
+
+make_model <- function(Data){
+    summary(lm(MyDF$Predator.mass ~ MyDF$Prey.mass))
+}
+
+ModelAnswers <- dlply(.data = MyDF, .variables = as.quoted(.(Type.of.feeding.interaction, Predator.lifestage)), .fun = make_model)
+# dlply applies a function to specific subsets of a dataframe
+
+
+
+### pick out the stats i want and put them in a dataframe
+
+StatSummary1 <- ldply(ModelAnswers, function(x){
+    Intercept <- x$coefficients[1]
+    Slope <- x$coefficients[2]
+    RSquared <- x$r.squared
+    PValue <- x$coefficients[8]
+    data.frame(Intercept, Slope, RSquared, PValue)
+})
+
+
+StatSummary2 <- ldply(ModelAnswers, function(x){
+    FStat <- x$fstatistic[1]
+    data.frame(FStat)
+})
+# ldply: for each element of a list, apply a function and combine results into a data frame
+
+
+# merge data frames
+
+FinalDataFrame <- merge(StatSummary1, StatSummary2, by=c("Type.of.feeding.interaction", "Predator.lifestage"), all=T)
+# by specifies which columns to merge
+
+write.csv(FinalDataFrame, "../results/PP_Regress_Results.csv")
+
