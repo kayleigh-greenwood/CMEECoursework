@@ -12,6 +12,8 @@
 # The heights of the tree, same units as "distance"
 
 ## FUNCTION ##
+
+# Define function
 TreeHeight<- function(degrees, distance){ 
     # stores function inside variable TreeHeight
     radians <- degrees * pi / 180 
@@ -28,24 +30,18 @@ TreeData <- read.csv("../data/trees.csv")
 # imports data frame to read and puts it into TreeData variable
 
 TreeData$Tree.Height.m <- NA 
-# creates a new column for data frame in Tree Height
+# creates a new column for data frame in TreeData named Tree.Height.m
 
+# for loop that calculates tree height for each data entry and adds it to Tree.Height.m column
 for(i in 1:nrow(TreeData)) { 
-    # for each row in treedata
+    # for each row(and therefore data point) in treedata
     TreeHeightValue=TreeHeight(TreeData[i,3], TreeData[i,2]) 
     # create a new variable and store the output of the tree height function into it
-    # use indexing to get function arguments from same row
+    # use indexing to calculate Tree Height for that row
+
     TreeData[i,4] <- TreeHeightValue 
-    # replace corresponding tree height row value with function output
+    # store result in the Tree.height.m column of each row
 } 
-# calculates tree height and adds it to column
-
-#Amelias loop
-for(i in 1:nrow(TreeData)) {
-    n <- TreeHeight(TreeData[i,3], TreeData[i,2])
-    TreeData[i,4] <- n
-}
-
 
 write.csv(TreeData, "../results/TreeHts.csv", row.names=FALSE)  
 # writes the contents of TreeData into a file in results, without the rows being numbered.
