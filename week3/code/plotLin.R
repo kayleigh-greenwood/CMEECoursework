@@ -33,5 +33,5 @@ p <- p + geom_text(aes(x = 60, y = 0,
                        colour = "blue")
 # creates figure
 pdf("../results/MyLinReg.pdf")
-p
+print(p)
 dev.off()
