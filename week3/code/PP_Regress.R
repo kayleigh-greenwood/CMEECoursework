@@ -1,3 +1,6 @@
+#################################################
+## Generating and accessing regression results ##
+#################################################
 
 # import predator-prey dataset
 require(ggplot2)
