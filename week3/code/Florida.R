@@ -1,3 +1,7 @@
+#####################################################################
+## Calculates correlation coefficient between temperature and time ##
+#####################################################################
+
 # write an R script that will help answer the question: Is Florida getting warmer? 
 # Calculate the correlation coefficients between temperature and time.
 # However, you can’t use the standard p-value calculated for a correlation coefficient, because measurements of climatic variables in successive time-points in a time series (successive seconds, minutes, hours, months, years, etc.) are not independent.
