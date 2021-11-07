@@ -1,3 +1,7 @@
+######################################
+## Plotting two dataframes together ##
+######################################
+
 require(ggplot2)
 
 # build a function object that will calculate the ellipse
