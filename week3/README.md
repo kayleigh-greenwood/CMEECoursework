@@ -62,7 +62,7 @@ This README file contains details about the scripts from classwork and practical
 **Input:** N/A <br />
 **Output:** Prints to terminal <br />
 
-    apply1.R (start here next time)
+    apply1.R
 
 **Summary:** Applying a function to the rows or columns of a matrix <br />
 **Input:** N/A <br />
