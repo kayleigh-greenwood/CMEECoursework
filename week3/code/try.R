@@ -1,3 +1,7 @@
+##############################
+## Illustrates try function ##
+##############################
+
 #### function ####
 
 doit <- function(x){
