@@ -1,3 +1,7 @@
+########################################
+## Annotates a linear regression plot ##
+########################################
+
 require(ggplot2)
 
 # script
@@ -12,14 +16,11 @@ my_data <- data.frame(x = x, y = y)
 my_lm <- summary(lm(y ~ x, data = my_data))
 
 # plot the data
-p <-  ggplot(my_data, aes(x = x, y = y,
-                          colour = abs(my_lm$residual))
-             ) +
-  geom_point() +
-  scale_colour_gradient(low = "black", high = "red") +
-  theme(legend.position = "none") +
-  scale_x_continuous(
-    expression(alpha^2 * pi / beta * sqrt(Theta)))
+p <-  ggplot(my_data, aes(x = x, y = y, colour = abs(my_lm$residual))) +
+                          geom_point() +
+                          scale_colour_gradient(low = "black", high = "red") +
+                          theme(legend.position = "none") +
+                          scale_x_continuous(expression(alpha^2 * pi / beta * sqrt(Theta)))
 
 # add the regression line
 p <- p + geom_abline(
@@ -31,6 +32,7 @@ p <- p + geom_text(aes(x = 60, y = 0,
                        label = "sqrt(alpha) * 2* pi"), 
                        parse = TRUE, size = 6, 
                        colour = "blue")
+                       
 # creates figure
 pdf("../results/MyLinReg.pdf")
 print(p)
