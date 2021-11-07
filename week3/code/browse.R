@@ -1,8 +1,15 @@
+########################################################################
+## Using the browser() function to debug by examining local variables ##
+########################################################################
+
+### define function ###
+
 Exponential <- function(N0 = 1, r = 1, generations = 10){
   # Runs a simulation of exponential growth
   # Returns a vector of length generations
   
-  N <- rep(NA, generations)    # Creates a vector of NA
+  N <- rep(NA, generations)    
+  # Creates a vector of 'generations' amount of 'NA's
   
   N[1] <- N0
   for (t in 2:generations){
@@ -11,5 +18,7 @@ Exponential <- function(N0 = 1, r = 1, generations = 10){
   }
   return (N)
 }
+
+## plot ##
 
 plot(Exponential(), type="l", main="Exponential growth")
