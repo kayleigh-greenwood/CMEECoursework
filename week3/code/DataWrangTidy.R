@@ -2,7 +2,7 @@
 ################## Wrangling the Pound Hill Dataset ############
 ################################################################
 
-############# Load the dataset (COMPLETE) ###############
+############# Load the dataset ###############
 rm(list=ls())
 
 require(tidyverse)
@@ -13,7 +13,7 @@ MyData <- as.matrix(read_csv("../data/PoundHillData.csv", col_names = FALSE))
 MyMetaData <- read_csv2("../data/PoundHillMetaData.csv", col_names = TRUE) 
 # header is true because the file does contain headers
 
-############# Inspect the dataset (COMPLETE)###############
+############# Inspect the dataset ###############
 
 as_tibble(MyData) 
 # tidyverse equivalent to head(MyData) as it displays the first 10 lines, but head is better
@@ -28,38 +28,38 @@ utils::View(MyData)
 # equivalent to fix()
 utils::View(MyMetaData)
 
-############# Transpose (COMPLETE)###############
+############# Transpose ###############
 # To get the species into columns and treatments into rows 
 MyData <- t(MyData) #Swaps rows and columns around
 # no viable way to do it in tidyverse
 
-############# Replace species absences with zeros (COMPLETE) ###############
+############# Replace species absences with zeros ###############
 MyData <- replace_na(MyData, 0)
 
-############# Convert raw matrix to data frame (HELP)###############
+############# Convert raw matrix to data frame ###############
 
 TempData <- tibble::as_tibble(MyData[-1,],stringsAsFactors = FALSE) 
  
 colnames(TempData) <- MyData[1,] # assign column names as actual column names from original data
 # there is a way to do this in tidyverse with rename but this method is better
 
-############# Convert from wide to long format (COMPELTE)  ###############
+############# Convert from wide to long format ###############
 MyWrangledData <- tidyr::pivot_longer(TempData, cols=5:45,names_to="Species",values_to="Count")
 
-############ Coerce column types
+############ Coerce column types ####################
 
 # this section is necessary because we set stringsAsFactors to false at the beginning to avoid it converting unwanted sections
 # this means we must specify which parts we do want as factors
 
 MyWrangledData <- MyWrangledData %>%
-    mutate(across(c(Cultivation, Block, Plot, Quadrat), as.factor))
+    mutate(across(c(Cultivation, Block, Plot, Quadrat, Species), as.factor))
     # uses across to apply the same function (as.factor) to mutate multiple columns
 
 MyWrangledData <- MyWrangledData %>%
     mutate(across(c(Count), as.integer))
 
 
-############# Exploring the data (extend the script below)  ###############
+############# Exploring the data  ###############
 
 MyWrangledData <- tibble::as_tibble(MyWrangledData)
 # a tibble in tidyverse is equivalent to R's traditional dataframe
