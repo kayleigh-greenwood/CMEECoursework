@@ -8,94 +8,100 @@ This README file contains details about the scripts from classwork and practical
 
     basic_io.R
 
-**Summary:** A simple script to illustrate R input-output <br />
-**Input:** trees.csv <br />
+**Summary:** A simple script to illustrate R input-output and how to use the read() and write() functions <br />
+**Input:** trees.csv in data <br />
 **Output:** MyData.csv in results <br />
 
     control_flow.R
 
-**Summary:** Intro to control flow tools  <br />
-**Input:** None <br />
-**Output:** Outputs to terminal <br />
+**Summary:** Intro to control flow tools (if statements, for loops and while loops)  <br />
+**Input:** N/A <br />
+**Output:** Prints to terminal <br />
 
     break.R
 
-**Summary:** Intro to breaking out of loops <br />
-**Input:** n/a <br />
+**Summary:** Intro to breaking out of loops using 'break' <br />
+**Input:** N/A <br />
 **Output:** Prints to terminal <br />
 
     next.R
 
-**Summary:** Intro to using next. Only prints odd numbers <br />
-**Input:** n/a <br />
+**Summary:** Intro to using 'next' to skip to next iteration of for loop. Only prints odd numbers <br />
+**Input:** N/A <br />
 **Output:** Prints to terminal <br />
 
     boilerplate.R
 
-**Summary:** Example R function <br />
-**Input:** n/a <br />
+**Summary:** boilerplate R script <br />
+**Input:** N/A <br />
 **Output:** Prints to terminal <br />
 
 
     R_conditionals.R
 
 **Summary:** Functions with conditionals examples <br />
-**Input:** n/a <br />
+**Input:** N/A <br />
 **Output:** Prints to terminal <br />
 
 
     TreeHeight.R
 
-**Summary:** Calculates tree height using distance and angle. <br />
-**Input:** n/a <br />
-**Output:** Outputs to TreeHts.csv in results <br />
+**Summary:** Calculates tree height  for each entry in a dataset using distance and angle. <br />
+**Input:** trees.csv in data <br />
+**Output:** TreeHts.csv in results <br />
 
     Vectorize1.R
 
-**Summary:** Sums all elements of a matrix. compares sum() and a sum function <br />
-**Input:** n/a <br />
+**Summary:** Sums all elements of a matrix. Compares sum() and a sum function <br />
+**Input:** N/A <br />
 **Output:** Prints to terminal <br />
 
     preallocate.R
 
 **Summary:** Compares times of pre-allocation to no pre-allocation <br />
-**Input:** n/a <br />
+**Input:** N/A <br />
 **Output:** Prints to terminal <br />
 
-    apply1.R
+    apply1.R (start here next time)
 
 **Summary:** Applying a function to the rows or columns of a matrix <br />
-**Input:** n/a <br />
+**Input:** N/A <br />
 **Output:** <br />
 
     apply2.R
 
 **Summary:** Using apply to define own functions <br />
-**Input:** n/a <br />
+**Input:** N/A <br />
 **Output:** <br />
 
     sample.R
 
 **Summary:** Example of vectorization using lapply and sapply <br />
-**Input:** n/a <br />
+**Input:** N/A <br />
 **Output:** Prints to terminal and produces histogram <br />
+    
+    Ricker.R
 
+**Summary:** Plots the ricker model <br />
+**Input:** N/A <br />
+**Output:** Prints to terminal <br />
+   
     Vectorize2.R
 
 **Summary:** Vectorizes the ricker model and adds fluctuation <br />
-**Input:** n/a <br />
+**Input:** N/A <br />
 **Output:** Prints to terminal <br />
 
-    Browse.R
+    browse.R
 
 **Summary:** Using the browser() function to debug by examining local variables <br />
-**Input:** n/a <br />
+**Input:** N/A <br />
 **Output:** Prints to terminal <br />
 
     try.R
 
 **Summary:** illustrates try <br />
-**Input:** n/a <br />
+**Input:** N/A <br />
 **Output:** Prints to terminal <br />
 
     Florida.R
@@ -116,17 +122,27 @@ This README file contains details about the scripts from classwork and practical
     DataWrang.R
 **Summary:** Wrangling the pound hill dataset<br />
 **Input:** PoundHillData.csv, PoundHillMetaData.csv from data <br />
-**Output:** n/a <br />
+**Output:** N/A <br />
 
     DataWrangTidy.R
 **Summary:** Wrangling the pound hill dataset using tidyverse <br />
 **Input:** PoundHillData.csv, PoundHillMetaData.csv from data <br />
 **Output:** <br />
 
+    plotLin.R
+**Summary:** Annotates a linear regression plot <br />
+**Input:** N/A <br />
+**Output:** Figure 'MyLinReg.pdf' in results <br />
+
     PP_Dists.R
 **Summary:** Creating figures <br />
 **Input:** EcolArchives from data <br />
-**Output:** figures in results <br />
+**Output:** Figures in results <br />
+
+    PP_Regress.R
+**Summary:** Creating figures <br />
+**Input:** EcolArchives from data <br />
+**Output:** PP_Regress_Results.csv and PP_Regress.pdf in results <br />
 
     Girko.R
 **Summary:** Plotting two dataframes together <br />
