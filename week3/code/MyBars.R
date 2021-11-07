@@ -1,4 +1,6 @@
-# using geom text to annotate a plot
+########################################
+## Using geom text to annotate a plot ##
+########################################
 
 require(ggplot2)
 a <- read.table("../data/Results.txt", header = TRUE)
