@@ -1,3 +1,7 @@
+######################################################
+## Example of vectorization using lapply and sapply ##
+######################################################
+
 ######### Functions ##########
 
 ## A function to take a sample of size n from a population "popn" and return its mean
@@ -98,7 +102,7 @@ hist(popn) # prints a histogram of population n
 n <- 20 # sample size for each experiment
 num <- 1000 # Number of times to rerun the experiment
 
-print("Usin loops without preallocation on a vector took:" )
+print("Using loops without preallocation on a vector took:" )
 print(system.time(loopy_sample1(popn, n, num)))
 
 print("Using loops with preallocation on a vector took:" )

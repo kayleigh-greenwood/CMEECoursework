@@ -1,3 +1,9 @@
+############################
+## Plots the Ricker model ##
+############################
+
+### define function ###
+
 Ricker <- function(N0=1, r=1, K=10, generations=50)
 {
   # Runs a simulation of the Ricker model
@@ -20,7 +26,7 @@ Ricker <- function(N0=1, r=1, K=10, generations=50)
 plot(Ricker(generations=10), type="l")
 
 
-# notes 
+## notes ##
 # difference equation, not differential equation
 # discrete time equation
 # updating the value of a variable with respect to what its value was in a previous time step
