@@ -1,4 +1,8 @@
-# # writes  and saves three figures
+###########################################
+## Data exploration - creating sub-plots ##
+###########################################
+
+# writes  and saves three figures
 require(ggplot2)
 
 #### actual task ####
