@@ -65,5 +65,7 @@ def main(argv):
 
 if __name__ == "__main__":
     # Make sure the "main" function is called from command line
-    status = main(sys.argv) # directs the interpreter to pass the argument variables to the main function
+    status = main(sys.argv) 
+    # directs the interpreter to pass the argument variables to the main function
+    # sys.argv contains arguments given at command line
     sys.exit(status) #exits the program explicitly, returning an appropriate status code  (in this code, main states above that it will return 0, so 0 is returned)

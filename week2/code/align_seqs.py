@@ -10,31 +10,34 @@ __version__ = '0.0.1'
 import csv
 import sys
 
-
 ### script ###
 
-with open('../data/sequences.csv', 'r') as f: #opens the file to read
-    csvread = csv.reader(f) # creates a csvread variable and reads the file
-    seq1 = 0
-    seq2 = 0
-    for row in csvread:
-        if seq1 == 0: # if seq1 variable hasn't been filled yet,
-            seq1 = row[0] # assign the row to seq1
-        else: # if seq1 variable has been filled
-            seq2 = row[0] # assign the row to seq2
+def assign(data):
+    with open(data, 'r') as f: #opens the file to read
+        csvread = csv.reader(f) # creates a csvread variable and reads the file
+        seq1 = 0
+        seq2 = 0
+        for row in csvread:
+            if seq1 == 0: # if seq1 variable hasn't been filled yet,
+                seq1 = row[0] # assign the row to seq1
+            else: # if seq1 variable has been filled
+                seq2 = row[0] # assign the row to seq2
 
-l1 = len(seq1) # l1 is length of the longest, l2 that of the shortest
-l2 = len(seq2)
-if l1 >= l2: # if l1 is larger than l2
-    s1 = seq1 # Assign the longer sequence s1, and the shorter to s2
-    s2 = seq2
-else: # if l2 is larger than l1
-    s1 = seq2
-    s2 = seq1
-    l1, l2 = l2, l1 # swap the two lengths
+    l1 = len(seq1) # l1 is length of the longest, l2 that of the shortest
+    l2 = len(seq2)
+    if l1 >= l2: # if l1 is larger than l2
+        s1 = seq1 # Assign the longer sequence s1, and the shorter to s2
+        s2 = seq2
+    else: # if l2 is larger than l1
+        s1 = seq2
+        s2 = seq1
+        l1, l2 = l2, l1 # swap the two lengths
+
+    return s1, s2, l1, l2
 
 def calculate_score(s1, s2, l1, l2, startpoint):
-    """compute a score by returning the number of matches starting from an abitrary startpoint chosen by the user"""
+    """compute a score for a specific alignment of two sequences, based on a specific startpoint of the shorter sequence
+    by returning the number of matches starting from an abitrary startpoint chosen by the user"""
     matched = "" # to hold string displaying alignements
     score = 0
     for i in range(l2): # l2 is the shorter length
@@ -55,17 +58,7 @@ def calculate_score(s1, s2, l1, l2, startpoint):
 
     return score
 
-# Test the function with some example starting points:
-# calculate_score(s1, s2, l1, l2, 0)
-# calculate_score(s1, s2, l1, l2, 1)
-# calculate_score(s1, s2, l1, l2, 5)
-
-
-
-
-### ENTRY POINT ###
-def main(argv):
-    """main entry point of the program"""
+def calculate_best(s1, s2, l1, l2):
     # now try to find the best match (highest score) for the two sequences
     my_best_align = None
     my_best_score = -1 # need to set to -1 because in the first loop, we need z to be bigger than my_best_score so that the first loop runs
@@ -73,11 +66,24 @@ def main(argv):
     # z could be 0 because there could be alignments where there are no matches
     # this is why we must set it to -1
 
-    for i in range(l1): # Note that you just take the last alignment with the highest score
+    for i in range(l1): # Loops through what will be the various starting points / alignments to check
         z = calculate_score(s1, s2, l1, l2, i)
         if z > my_best_score:
             my_best_align = "." * i + s2 # update the pattern for my_best_align every time a new highest score is reached.
             my_best_score = z # updates with highest score
+    
+    return my_best_align, my_best_score
+
+### ENTRY POINT ###
+def main(argv):
+    """main entry point of the program"""
+    
+    data = '../data/sequences.csv'
+
+    s1, s2, l1, l2 = assign(data)
+
+    my_best_align, my_best_score = calculate_best(s1, s2, l1, l2)
+    
     print("Results saved into ../results/align_seqs_results.txt")
     # write results into file
     f = open('../results/align_seqs_results.txt', 'w')
@@ -90,10 +96,6 @@ def main(argv):
     f.write("\n")
 
     f.close()
-
-
-# TO DO: find out what to add here
-
 
 
 if __name__ == "__main__": 
