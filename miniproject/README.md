@@ -25,10 +25,9 @@ minpac.lm
 
 ### Model Fitting
 
-
     ModelFitting.R
 
-**Summary:**  <br />
+**Summary:** creates models and plots onto all subsets <br />
 **Input:** ModifiedData.csv in data <br />
 **Output:** PlotID.pdf for each data subset into Plots, Analysis,csv in results  <br />
 **Required packages:** minpack.lm (for NLLS), tidyverse <br />
@@ -37,7 +36,7 @@ minpac.lm
 
     PlotandAnalyse.R
 
-**Summary:**  <br />
+**Summary:** Plots model comparison data into pdfs <br />
 **Input:** Analysis.csv in results results from model fitting <br />
 **Output:** Figures and plots in Plots directory  <br />
 **Required packages:** tidyverse(for ggplot2) <br />
