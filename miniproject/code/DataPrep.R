@@ -41,10 +41,8 @@ MyData <- droplevels(MyData)
 levels(MyData$ID) <- 1:nlevels(MyData$ID)
 # rename ID numbers
 
-levelsummary<- summary(MyData$ID)
-
+levelsummary <- (summary(MyData$ID)[])
 # provides the frequencies of most common levels
-
 
 ## Saving data ##
 write.csv(MyData, "../data/ModifiedData.csv")

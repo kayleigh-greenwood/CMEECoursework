@@ -18,7 +18,7 @@
     \vspace*{\fill}
     
     \begin{center}
-        {\Huge How well do different mathematical models, e.g., based upon population growth (mechanistic) theory vs. phenomenological ones, fit to functional responses data across species?}
+        {\Huge How well do different mathematical models based upon population growth (mechanistic) theory vs. phenomenological ones, fit to microbial growth data?}
     
         \bigskip
         Kayleigh Greenwood
@@ -37,18 +37,11 @@
     \end{titlepage}
 
     \begin{abstract}
-    write at the end
-    1-2 lines on background
-    1-2 lines on objectives
-    1-2 lines on methods
-    1-2 lines on main results
-    1-2 lines on main conclusions + take home messages (dont be vague eg more work is needed or x is useful)
-    about 200 words
+	Microbial growth rates are important to understand in the context of food safety. The standard method for growth prediction used to be null hypothesis testing, however an increasingly popular alternative is mathematical modelling. Both empirical and mechanistic models have been used throughout the literature for modelling microbial growth. I used an existing database to model microbial growth rate data in this study. To test the suitability of empirical and mechanistic models for microbial growth rate studies, I used a cubic polynomial and the logistic model. The Logistic model had the lowest significant AIC values, and most often had the lowest RSS, for the most subsets. From these two selection criteria, the statistics suggest that the mechanistic logistic model both fits microbial growth curves better, explains more of the error, and is more likely to be a correct prediction than the polynomial model. Although these criteria suggest that  mechanistic model would be better for forecasting, larger sample sizes and repeated studies should be undertaken with a wider range of statistical analysis in order to further aid the future of model fitting. 
     \end{abstract}
 
     \section*{Introduction}
     
-    aim for 400 words, 3 paragraphs
 
     Microbial growth rates are important to understand in the context of food safety, as there are significant financial and health burdens of foodborne illnesses \cite{daniel2020burden}, \cite{world2015estimates}. It is important to be able to predict microbial growth as accurately as possible in order to reduce these impacts via precise estimates of shelf life and other characteristics of growth \cite{mcmeekin1996shelf}. The standard method for growth prediction used to be null hypothesis testing, however an increasingly popular alternative is mathematical modelling \cite{foegeding1997driving}. Growth models typically contain four phases; lag, exponential, stationary and death. The death phase is typically excluded in the context of food microbiology, as becuase food is almost certainly spoiled or unit by the time this phase begins, it is irrelevant \cite{ross2003modeling}, and therefore will not be considered throughout this paper. This approach consists of fitting various models to data, each representing a separate hypothesis, and using model selection to determine which model its the best. Model fitting is benefcial as it allows multiple hypothesis to be assessed and compared at once, as opposed to only being able to accept or reject a null hypothesis. Levins (1966) highlighted that the ideal model will never be feasbile, forming the basis of the complexity of modelling, and why there is no one uniform population model which spans population biology. Literature on microbial growth rates contains various models with countless combinations of assumptions and techniques. Commonly used models such as x and x prioritise realism and precision but sacrifce generality. On the other hand, popular general models which prioritise generality, such as x and y, make a trade off with precision.
     
@@ -66,29 +59,31 @@
     To test the suitability of empirical, linear models for microbial growth rate studies, I used a cubic polynomial. The exponential nature of growth means that the log is normally plotted in order to normalize variance, causing the data to behave in a sigmoidal fashion \cite{zwietering1990modeling}. A cubic polynomial has two peaks, and therefore three separate areas, which is the same amount of distinct areas as a growth curve has when studied in microbial growth, suggesting fitting this model would work well as the shape of a cubic curve resembles the shape of a sigmoidal behaviour of the growth rates. For the representative mechanistic model, i chose to fit the Logistic model. The Logistic model is a non-linear model, which I chose to plot because of it's competitive advantage in the estimation of when the death phase has been reached(the maximum value/carrying capacity). Although the death phase itself is not explicitly relevant to microbial growth, a parameter estimate of carrying capacity as accurate as what this model produces has importance in further analysis abilities. Being able to predict carrying capacity as well as the Logistic Model does means that estimates of other values and parameters beyond this analysis are improved. 
 
     \subsection*{Model fitting}
-    I fitted the linear model with ordinary least squares 
-    Describe the mathematical models i fitted and compared to the data, and which methods i used to do this.
+    I fitted the linear model with ordinary least squares, and used NLLS for the non-linear model. I used the nlsLM function in R to fit the non-linear model, within the minpack.l package. 
+
 
     \subsection*{Model selection}
-    Describe how i compared and selected models and why i used the methods i did (AIC/BIC)
-
+    For each plotted subset which fit on it both the linear and non-linear modelI used AIC values as a method of comparing the fit of the two models. Given that a lower AIC is better, I will use this and a general rule of an AIC value difference of 2 to signify significant difference, on each plotted subset as an indicator of model fit. Additionally, I used residual sums of squares to determine which model explained the most error for each plotted subset, with lower RSS values indicating that the model accounts for more error in the data than the other model.
+    
     \subsection*{Computing tools}
 	Due to R being initially formatted as a statistical language, i used R scripts for the majority of my computing, with specialist shell and python scripts for specific tasks. R's syntax made using it for data preparation, model fitting, plotting and analysis more seamless than trying to do similar tasks in Python, and R has especially superior abilities in terms of data visualisation. Despite this, Python's subprocess module made it the perfect vessel through which to run the workflow. Finally, I used bash as a script to aid in the compilation of the LaTeX code by using texcount. 
     
 
     \section*{Results}
 
-    can subsection by hypotheses
-    give averages of variables (exp and resp) eg mean and SD
-    if p is really small say p < x, dont report power
-    What  were  the  results of  your hypothesis  tests,  in  the  order  you describe  them  in  the Methods?
-    describe hypothesis in same order as in results and intro
+	Both the linear and non-linear models were successfully fitted to all 277 subsets of the Logistic growth data set. Figure 1 is an example of one of the 277 subsets that this analysis was run on. Subsets had varying sample sizes, with only 12 out of the 277 subsets having a sample size of 30 or more. 
+	
+	
+	AIC values were calculated for all subsets (Figure 2), with 205 of the values being significant. The Logistic model had the lowest significant AIC value for the most subsets.
+	
+	RSS values were calculated for all but 2 subsets (Figure 3). Overall, the logistic model had a lower RSS more often than the cubic model. 
+
 
     \begin{figure}[H]
     \centering
     \includegraphics[scale=0.75]{../Plots/PlotID146.pdf}
     %TC:ignore
-    \caption{this is a plot of a cubic polynomial and the logistic model fitted to one of the subsets within the dataset.}
+    \caption{Plot of a cubic polynomial and the logistic model fitted to one of the subsets within the dataset.}
     %TC:endignore
     \end{figure}
 
@@ -100,7 +95,7 @@
     %TC:endignore
     \end{figure}
 
-        \begin{figure}[H]
+       \begin{figure}[H]
     \centering
     \includegraphics[scale=0.5]{../results/RSS.pdf}
     %TC:ignore
@@ -110,16 +105,8 @@
 
     \section*{Discussion}
 
-    reminder of aims
-    tie together results / key findings
-    give results broader context - implications
-    add more referencing
-    what do we know now that we didnt before
-    what is the chain of logic and results that means we know it (remember not to repeat anything from results section)
-    extent to which original aims have been satisfied
-    discuss limitations of my study and future work to address limitations
-    what would i do differently if i had more time
-    conclude emphasising how this study in this system is of interest to people who work on other things, or other systems
+	The aim of this study was to determine which of the models (Empirical or Mechanistic) best fit microbial growth data, and to compare model selection criteria. The logistic model had lower AIC values more often than the polynomial did across the subsets, suggesting that the logistic model has a higher likelihood of being an accurate fit. Additionally, the logistic model also had a lower RSS value the majority of the time. A lower RSS value for the likelihood model indicates that the logistic model accounts for more error than the polynomial. From these two selection criteria, the statistics suggest that the mechanistic logistic model both fits microbial growth curves better, explains more of the error, and is more likely to be a correct prediction than the polynomial model. Although these criteria suggest that  mechanistic model would be better for forecasting, larger sample sizes and repeated studies should be undertaken with a wider range of statistical analysis in order to further aid the future of model fitting. 
+
 
     \bibliographystyle{apalike}
 

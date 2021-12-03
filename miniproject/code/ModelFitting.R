@@ -26,6 +26,8 @@ for (i in 1:nlevels(MyData$ID)){
   ## subset
   subset1 <- subset(MyData,ID== i)
   subset1 <- subset1[order(subset1$Time),]
+  # sort time column as ascending to fix plots
+  
   
   ## models
   tryCatch(

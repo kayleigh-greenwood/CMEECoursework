@@ -26,7 +26,7 @@ AICAnalysis <- data.frame(AICHeadings, AIC)
 ## Chart ##
 pdf("../results/AIC.pdf")
 ggplot(AICAnalysis, aes(x=AICHeadings, y=AIC)) +
-  ggtitle("Comparison of Significant AIC Value Between Models for all Subsets") +
+  ggtitle("Comparison of Significant AIC Value Between Models") +
   geom_bar(stat="Identity") +
   xlab("Lowest Significant AIC Value") +
   ylab("Number of subsets")
@@ -46,11 +46,12 @@ RSSAnalysis <- data.frame(RSSHeadings, RSS)
 ## Chart ##
 pdf("../results/RSS.pdf")
 ggplot(RSSAnalysis, aes(x=RSSHeadings, y=RSS)) +
-  ggtitle("Comparison of Lowest RSS Value Between Models for all Subsets") +
+  ggtitle("Comparison of Lowest RSS Value Between Models") +
   geom_bar(stat="Identity") +
   xlab("Lowest RSS Value") +
   ylab("Number of subsets")
 dev.off()
+
 
 
 
