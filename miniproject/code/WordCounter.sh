@@ -5,7 +5,7 @@
 
 echo "creating wordcount.sum"
 
-texcount -1 -sum Report.tex > ../results/wordcount.sum
+texcount -1 -sum WrittenReport.tex > ../results/wordcount.sum
 
 echo "wordcount.sum created"
 # produces a file containing only the word count

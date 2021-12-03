@@ -20,7 +20,9 @@ pdflatex $input.tex
 bibtex $input
 pdflatex $input.tex
 pdflatex $input.tex
-evince $input.pdf &
+
+## relocates pdf
+mv $input.pdf ../results/
 
 ##Cleanup, removes intermediary files
 rm *.aux
