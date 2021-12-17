@@ -1,0 +1,10 @@
+HPC long practical feedback for James ( James Rosindell ) 2021
+ 
+ERROR: no file to source
+ 
+Marks for main questions
+Q 1 :    0 / 2    comments:  c(1,1,2,3,4,4) evaluates as null,  c(1,1,2,3,4,1,1,2,3,2,3,3,4,2,1,1,1) evaluates as null,  c(100,101,101,4,4,4,4,4,4,4,4,4,100,101,3,3,3,4,1,1,1,1,2,3,4) evaluates as null,  2 evaluates as null
+Q 2 :    0 / 1    comments:  8 evaluates as null,  12 evaluates as null,  2 evaluates as null
+Q 3 :    0 / 1    comments:  5 evaluates as null,  10 evaluates as null,  1 evaluates as null
+ 
+Remember this test only marks questions 1-3
