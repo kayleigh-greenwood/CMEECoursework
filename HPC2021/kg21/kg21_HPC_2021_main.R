@@ -629,9 +629,9 @@ draw_tree <- function()  {
 }
 
 # Question 29
-fern <- function(start_position, direction, length, minimum_length=FALSE)  {
+fern <- function(start_position, direction, line_length, minimum_length=FALSE)  {
   if (minimum_length==FALSE){
-    minimum_length = line_length*0.03
+    minimum_length = line_length*0.01
   }
   # draws a line and returns end point of line, refines this as new start point for next line
   start_position = turtle(start_position, direction, line_length)
@@ -639,22 +639,46 @@ fern <- function(start_position, direction, length, minimum_length=FALSE)  {
   # calls the function again
   if (line_length >= minimum_length){
     fern(start_position, direction, line_length*0.87, minimum_length)
-    fern(start_position, direction-(pi/4), line_length*0.38, minimum_length)
+    fern(start_position, (direction+(pi/4)), line_length*0.38, minimum_length)
   }
 }
 
 draw_fern <- function()  {
-  plot(x=0, y=0, xlim = c(-6, 6), ylim = c(0, 10), type="n", xlab = "x", ylab = "y")
+  plot(x=0, y=0, xlim = c(-15, 15), ylim = c(0, 30), type="n", xlab = "x", ylab = "y")
   fern(c(0, 0), 1.5708, 4)
 }
 
 # Question 30
-fern2 <- function(start_position, direction, length, dir)  {
+fern2 <- function(start_position, direction, line_length, minimum_length=FALSE, dir)  {
+    dir = dir*-1
+    if (minimum_length==FALSE){
+      minimum_length = line_length*0.005
+    }
   
-}
-draw_fern2 <- function()  {
-  # clear any existing graphs and plot your graph within the R window
+    # draws a line and returns end point of line, refines this as new start point for next line
+      start_position = turtle(start_position, direction, line_length)
 
+    # calls the function again
+    if (line_length >= minimum_length){
+        # draw straight line
+        fern2(start_position, direction, line_length*0.87, minimum_length, dir)
+      
+      # draw side line (either left or right)
+
+        # swap dir 
+        if (dir>0){ # right
+          fern2(start_position, direction = (direction+(pi/4)), line_length*0.38, minimum_length, dir)
+        } else { # left
+          fern2(start_position, direction= (direction-(pi/4)), line_length*0.38, minimum_length, dir)
+        }
+      } else {
+      return("done")
+      }
+}
+
+draw_fern2 <- function()  {
+  plot(x=0, y=0, xlim = c(-15, 15), ylim = c(0, 55), type="n", xlab = "x", ylab = "y")
+  fern2(c(0, 0), direction=1.5708, line_length=7, dir=1)
 }
 
 # Challenge questions - these are optional, substantially harder, and a maximum of 16% is available for doing them.  
