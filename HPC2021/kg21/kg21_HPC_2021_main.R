@@ -276,7 +276,7 @@ question_16 <- function()  {
     
   }
 
-  # create mean
+  # create mean of octaves
   oct_vect_mean1 <- oct_vect1/101
   oct_vect_mean2 <- oct_vect2/101
   
@@ -343,16 +343,140 @@ cluster_run <- function(speciation_rate, size, wall_time, interval_rich, interva
 # Questions 18 and 19 involve writing code elsewhere to run your simulations on the cluster
 # personal speciation rate: 0.0066439
 # Question 20 
+
 process_cluster_results <- function()  {
-  combined_results <- list() #create your list output here to return
-  # save results to an .rda file
+  sumoct500 <- c()
+  sumoct1000 <- c()
+  sumoct2500 <- c()
+  sumoct5000 <- c()
   
+  
+  for (i in 1:100){
+      load(file=paste("to_delete/kgResult/resultiter", i, ".rda", sep=""))
+    
+      burn_in_threshold <- burn_in_generations/interval_oct
+      # gives the last index of oct that is part of the burn in generation
+      
+      equil_threshold <- burn_in_threshold
+      
+      abundanceoctaves <- abundanceoctaves[(equil_threshold+1):length(abundanceoctaves)]
+      # filters out data before burn in generations
+      
+      sumoct <- c(abundanceoctaves[[1]])
+      for (i in 2:length(abundanceoctaves)){ 
+        sumoct <- sum_vect(sumoct, abundanceoctaves[[i]])
+      }
+      meanoct <- sumoct/length(abundanceoctaves)
+      # creates a mean octave vector for all those in this iteration
+      
+      if (size == 500){
+      sumoct500 <- sum_vect(sumoct500, meanoct)
+    } else if (size == 1000) {
+      sumoct1000 <- sum_vect(sumoct1000, meanoct)
+    } else if (size == 2500) {
+      sumoct2500 <- sum_vect(sumoct2500, meanoct)
+    } else if (size == 5000) {
+      sumoct5000 <- sum_vect(sumoct5000, meanoct)
+    } 
+    # adds to relevant sum depending on size
+  }  
+  
+  meanoct500 <- sumoct500/25
+  meanoct1000 <- sumoct1000/25
+  meanoct2500 <- sumoct2500/25
+  meanoct5000 <- sumoct5000/25
+
+  combined_results <- list(meanoct500, meanoct1000, meanoct2500, meanoct5000) #create your list output here to return
+  
+  # save results to an .rda file
+  save(combined_results, file = "cluster_octave_results.rda")
 }
+  
+### sumoct results a few times
+
+# OCTAVE RESULTS
+# sumoct500
+# [1] 3.3210530 2.7455943 2.4735527 2.3017003 2.1222470 1.8718514 1.4593860 0.8061967 0.1491802
+
+# sumoct1000
+#  [1] 6.65362911 5.48791312 4.93669950 4.55815569 4.16370404 3.59566578 2.73605005 1.51060336 0.39541773 0.01273489
+
+# sumoct2500
+# [1] 1.097956e+01 9.015459e+00 8.150157e+00 7.495795e+00 6.636754e+00 5.703724e+00 4.278743e+00 2.392159e+00 7.236815e-01 6.095666e-02 6.067417e-05
+
+# sumoct5000
+#  [1] 1.349400e+01 1.130978e+01 9.996325e+00 9.206014e+00 8.409399e+00 7.138242e+00 5.260504e+00 2.900949e+00 9.034062e-01 8.735990e-02 9.103186e-04
 
 plot_cluster_results <- function()  {
+  
     # clear any existing graphs and plot your graph within the R window
+    graphics.off()
+  
     # load combined_results from your rda file
+    load(file = "cluster_octave_results.rda")
+    size500data <- combined_results[[1]]
+    size1000data <- combined_results[[2]]
+    size2500data <- combined_results[[3]]
+    size5000data <- combined_results[[4]]
+
+    
+    # determine bin names
+
+    binstartingvals500 <- c(1)
+    for (i in (2:length(size500data))){
+      binstartingvals500 <- append(binstartingvals500, binstartingvals500[i-1]*2)
+    }
+    binnames500 <- c()
+    for (i in (1:length(size500data))){
+      binnames500 <- append(binnames500, paste(binstartingvals500[i], "≤ x <", 2*binstartingvals500[i]))
+    }
+    
+    binstartingvals1000 <- c(1)
+    for (i in (2:length(size1000data))){
+      binstartingvals1000 <- append(binstartingvals1000, binstartingvals1000[i-1]*2)
+    }
+    binnames1000 <- c()
+    for (i in (1:length(size1000data))){
+      binnames1000 <- append(binnames1000, paste(binstartingvals1000[i], "≤ x <", 2*binstartingvals1000[i]))
+    }
+    
+    binstartingvals2500 <- c(1)
+    for (i in (2:length(size2500data))){
+      binstartingvals2500 <- append(binstartingvals2500, binstartingvals2500[i-1]*2)
+    }
+    binnames2500 <- c()
+    for (i in (1:length(size2500data))){
+      binnames2500 <- append(binnames2500, paste(binstartingvals2500[i], "≤ x <", 2*binstartingvals2500[i]))
+    }
+    
+    binstartingvals5000 <- c(1)
+    for (i in (2:length(size5000data))){
+      binstartingvals5000 <- append(binstartingvals5000, binstartingvals5000[i-1]*2)
+    }
+    binnames5000 <- c()
+    for (i in (1:length(size5000data))){
+      binnames5000 <- append(binnames5000, paste(binstartingvals5000[i], "≤ x <", 2*binstartingvals5000[i]))
+    }
     # plot the graphs
+    # initialise multi panelled plot
+    par(mfcol=c(2,2))
+    
+    # plot size 500 first
+    par(mfg=c(1,1))
+    barplot(size500data, names.arg = binnames500, ylim=c(0,(1.1*(max(size500data)))), main= "Mean Species Abundance Distribution for Community Size 500", xlab = "Species Abundance (Individuals per species)", ylab = "Frequency (number of species)")
+    
+    # plot size 1000
+    par(mfg=c(1,2))
+    barplot(size1000data, names.arg = binnames1000, ylim=c(0,(1.1*(max(size1000data)))), main= "Mean Species Abundance Distribution for Community Size 1000", xlab = "Species Abundance (Individuals per species)", ylab = "Frequency (number of species)")
+    
+    # plot size 2500
+    par(mfg=c(2,1))
+    barplot(size2500data, names.arg = binnames2500, ylim=c(0,(1.1*(max(size2500data)))), main= "Mean Species Abundance Distribution for Community Size 2500", xlab = "Species Abundance (Individuals per species)", ylab = "Frequency (number of species)")
+    
+    # plot size 5000
+    par(mfg=c(2,2))
+    barplot(size5000data, names.arg = binnames5000, ylim=c(0,(1.1*(max(size5000data)))), main= "Mean Species Abundance Distribution for Community Size 5000", xlab = "Species Abundance (Individuals per species)", ylab = "Frequency (number of species)")
+    
     
     return(combined_results)
 }
@@ -362,7 +486,7 @@ question_21 <- function()  {
   width <- 3
   size <- 8
   dimension <- log(size)/log(width)
-  return("Size is dependant on the dimension of the object, and the width needing to be multiplied by, and is therefore equivalent to width ^ dimension. This equation can be rearranged to make dimension the subject by taking a log of both sides and using the rule that log(n^x)=xlog(n). Given that an objects' dimension can be calculated by log(size)/log(width), I calculated the size (how many multiples of original object) needed to satisfy an increment to a certain width. Because the object was initially split into thirds along both axes, and so contains 3 sub-objects within its length, i decided a width i would use to calculate size would be 3. Because the object contains 8 copies of itself, the size would be 8 as the object would need to be 8 times as big to be 3 times as wide. I then input these numbers into the log equation to get dimension = log(8)/log(3), which gave 1.892789 as the objects' dimension. The dimension isn't quite 2, as the shape is not completely filled and therefore the surface area is not enough to classify as 2 dimensional.")
+  return("Size is dependant on the dimension of the object, and the width needing to be multiplied by, and is therefore equivalent to width ^ dimension. This equation can be rearranged to make dimension the subject by taking a log of both sides and using the rule that log(n^x)=xlog(n). Given that an objects' dimension can be calculated by log(size)/log(width), I calculated the size (how many multiples of original object) needed to satisfy an increment to a certain width. Because the object was initially split into thirds along both axes, and so contains 3 sub-objects within its length, i decided a width i would use to calculate size would be 3. Because the object contains 8 copies of itself, the size would be 8 as the object would need to be 8 times as big to be 3 times as wide. I then input these numbers into the log equation to get dimension = log(8)/log(3), which gave 1.892789 as the objects' dimension. The dimension isn't quite 2, as the shape is not completely filled and therefore the surface area is not enough to classify as 2 dimensional. Because the dimension is not a whole number and is fractional, this shape is a fractal.")
 }
 
 # Question 22
@@ -370,7 +494,7 @@ question_22 <- function()  {
   width <- 3
   size <- 20
   dimension <- log(size)/log(width)
-  return("The same equation can be used as above (log(size)/log(width)) to find dimension. For the same reasons, i used 3 as the width i wanted to multiply by. To determine size, i counted the amount of cubes within the menger sponge. Given that in the Sierpinski carpet above, i counted 8 copies of itself within the shape, this cubic shape will contain 8 cubes on the front and 8 on the back, but only 4 in the middle, making a total of 20 versions of itself, within itself, giving a size of 20. These numbers create the equation log(20)/log(3), which equate to the dimension of 2.726833. Again, this shape is not quite 3 dimensional as areas within it have been removed.")
+  return("The same equation can be used as above (log(size)/log(width)) to find dimension. For the same reasons, i used 3 as the width i wanted to multiply by. To determine size, i counted the amount of cubes within the menger sponge. Given that in the Sierpinski carpet above, i counted 8 copies of itself within the shape, this cubic shape will contain 8 cubes on the front and 8 on the back, but only 4 in the middle, making a total of 20 versions of itself, within itself, giving a size of 20. These numbers create the equation log(20)/log(3), which equate to the dimension of 2.726833. Again, this shape is not quite 3 dimensional as areas within it have been removed. As above, because the dimension is fractional, the object is a fractal.")
 }
 
 # Question 23
@@ -379,59 +503,149 @@ chaos_game <- function()  {
   A <- c(0,0)
   B <- c(3,4)
   C <- c(4,1)
-  plot(A[1],A[2], pch = 20, cex = 0.5)
+  xcoordlist = list(A[1])
+  ycoordlist = list(A[2])
   coords <- list(A, B, C)
-  i <- sample(c(1,2,3), 1)
-  selectedcoord <- unlist(coords[i])
-  coorddiff <- selectedcoord - A
-  halfdiff <- coorddiff/2
-  D <- unlist(A + halfcoord)
-  plot(D[1],D[2], pch = 20, cex = 0.5)
-  
-  return("type your written answer here")
+  currentcoordinate <- A
+  for (x in 1:1000){
+    i <- sample(c(1,2,3), 1)
+    selectedcoord <- unlist(coords[i])
+    halfdiff <- (selectedcoord - currentcoordinate)/2
+    newcoord <- unlist(coordinate + halfdiff)
+    xcoordlist = c(xcoordlist, newcoord[1])
+    ycoordlist = c(ycoordlist, newcoord[2])
+    currentcoordinate = newcoord
+  }
+
+  plot(xcoordlist, ycoordlist, pch = 20, cex = 0.5)
+  return("At 100 repeats of the for loop, the result has no obvious pattern. At 1000 loops, a faint pattern emerges and ad 10000 loops, it becomes apparent that the pattern is a fractal.")
 }
+
+
 
 # Question 24
-turtle <- function(start_position, direction, length)  {
-    
-  return() # you should return your endpoint here.
+
+turtle <- function(start_position, direction, line_length)  {
+
+  x1 <- start_position[1] + line_length*cos(direction)
+  y1 <- start_position[2] + line_length*sin(direction)
+  
+  lines(x=c(start_position[1], x1), y=c(start_position[2], y1), xlim = c(0,x1), ylim = c(0,y1), xlab = "x", ylab = "y")
+  return(c(x1, y1)) 
 }
+
 
 # Question 25
+
+plot(x=0, y=0, xlim = c(0, 15), ylim = c(-10, 5), type="n", xlab = "x", ylab = "y")
+
 elbow <- function(start_position, direction, length)  {
-  
+  for (i in 1:2){
+    start_position = turtle(start_position, direction, length)
+    direction = direction-(pi/4)
+    length = length*0.95
+  }
 }
+
+### par can be used to plot on same graph with different axes
+### par(new=TRUE)
+plot(x=0, y=0, xlim = c(0, 15), ylim = c(-10, 5), type="n", xlab = "x", ylab = "y")
+# start_position=c(1,1)
+# direction=0.6
+# length=5
 
 # Question 26
-spiral <- function(start_position, direction, length)  {
+spiral <- function(start_position, direction, line_length, minimum_length=FALSE)  {
+  if (minimum_length==FALSE){
+    minimum_length = line_length*0.005
+  }
   
-  return("type your written answer here")
+  # first line: draws a line
+  start_position = turtle(start_position, direction, line_length)
+  
+  # second line: calls the function again
+  if (line_length >= minimum_length){
+    return(spiral(start_position, direction-(pi/4), line_length*0.95, minimum_length))
+  } else {
+    return("Spiral is a recursive function, meaning it calls itself. Because we are not giving it any iterative limit, or time limit, the function will call itself infinitely. Every time spiral is called, the tutle function is run, which draws a line, and the parameters are reset. So as spiral is repeatedly called and the functions are repeatedly reset, the spiral function starts at the outermost point and continues to spiral inwards infinitely, creating an infinite loop.")
+  }
 }
+
+plot(x=0, y=0, xlim = c(0, 15), ylim = c(-10, 5), type="n", xlab = "x", ylab = "y")
+start_position=c(1,1)
+direction = 0.6
+length = 5
+
 
 # Question 27
-draw_spiral <- function()  {
-  # clear any existing graphs and plot your graph within the R window
-  
+draw_spiral <- function(start_position=c(1,1), direction=0.6, line_length=5)  {
+  plot(x=0, y=0, xlim = c(0, 15), ylim = c(-10, 5), type="n", xlab = "x", ylab = "y")
+  return(spiral(c(1,1), 0.6, 5))
 }
+
+## my method of having spiral and draw spiral as one function
+
+draw_spiral2 <- function(start_position=c(1,1), direction=0.6, line_length=5, minimum_length=FALSE)  {
+  # clear any existing graphs and plot your graph within the R window
+  # 
+  if (minimum_length==FALSE){
+    minimum_length = line_length*0.005
+  }
+  
+  if (length(dev.list())==0){
+    plot(x=0, y=0, xlim = c(0, 15), ylim = c(-10, 5), type="n", xlab = "x", ylab = "y")
+  }
+  
+  if (line_length > minimum_length){
+    
+    start_position = turtle(start_position, direction, line_length)
+    
+    draw_spiral(start_position, direction-(pi/4), line_length*0.95, minimum_length)
+  }
+}
+
+plot(x=0, y=0, xlim = c(0, 15), ylim = c(-10, 5), type="n", xlab = "x", ylab = "y")
 
 # Question 28
-tree <- function(start_position, direction, length)  {
+tree <- function(start_position, direction, line_length, minimum_length=FALSE)  {
+  if (minimum_length==FALSE){
+    minimum_length = line_length*0.03
+  }
+    # draws a line and returns end point of line, refines this as new start point for next line
+    start_position = turtle(start_position, direction, line_length)
   
+    # calls the function again
+    if (line_length >= minimum_length){
+      # tree(start_position, direction-(pi/4), line_length*0.95, minimum_length)
+      tree(start_position, direction+(pi/4), line_length*0.65, minimum_length)
+      tree(start_position, direction-(pi/4), line_length*0.65, minimum_length)
+    }
 }
 
-draw_tree <- function()  {
-  # clear any existing graphs and plot your graph within the R window
 
+draw_tree <- function()  {
+  plot(x=0, y=0, xlim = c(-6, 6), ylim = c(0, 10), type="n", xlab = "x", ylab = "y")
+  tree(c(0, 0), 1.5708, 4)
 }
 
 # Question 29
-fern <- function(start_position, direction, length)  {
+fern <- function(start_position, direction, length, minimum_length=FALSE)  {
+  if (minimum_length==FALSE){
+    minimum_length = line_length*0.03
+  }
+  # draws a line and returns end point of line, refines this as new start point for next line
+  start_position = turtle(start_position, direction, line_length)
   
+  # calls the function again
+  if (line_length >= minimum_length){
+    fern(start_position, direction, line_length*0.87, minimum_length)
+    fern(start_position, direction-(pi/4), line_length*0.38, minimum_length)
+  }
 }
 
 draw_fern <- function()  {
-  # clear any existing graphs and plot your graph within the R window
-
+  plot(x=0, y=0, xlim = c(-6, 6), ylim = c(0, 10), type="n", xlab = "x", ylab = "y")
+  fern(c(0, 0), 1.5708, 4)
 }
 
 # Question 30
