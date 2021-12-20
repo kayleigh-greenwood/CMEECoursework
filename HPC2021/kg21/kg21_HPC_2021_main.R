@@ -854,13 +854,13 @@ Challenge_E <- function() {
   C <- c(4,1)
   coords <- list(A, B, C)
   
+  # start at 0,0
+  currentcoordinate <- c(2,4)
+  
   
   # initialise list for points
-  xcoordlist <- list(A[1])
-  ycoordlist <- list(A[2])
-  
-  # start at 0,0
-  currentcoordinate <- c(1,10)
+  xcoordlist <- list(currentcoordinate[1])
+  ycoordlist <- list(currentcoordinate[2])
   
   
   for (x in 1:10000){
@@ -885,12 +885,18 @@ Challenge_E <- function() {
     currentcoordinate <- newcoord
   }
   
-  # When loop is over, will be left with two lists of corresponding x and y coordinates, can be plotted as so
-  plot(xcoordlist, ycoordlist, pch = 20, cex = 0.5)
-  return("At 100 repeats of the for loop, the result has no obvious pattern. At 1000 loops, a faint pattern emerges and at 10000 loops, it becomes apparent that the pattern is a fractal, names the Sierpinski Gasket.")
-}
+  xcoordlist1 <- xcoordlist[1:10]
+  ycoordlist1 <- ycoordlist[1:10]
   
-  return("type your written answer here")
+  xcoordlist2 <- xcoordlist[11:10000]
+  ycoordlist2 <- ycoordlist[11:10000]
+  
+  # When loop is over, will be left with two lists of corresponding x and y coordinates, can be plotted as so
+  plot(xcoordlist2, ycoordlist2,pch = 20, cex = 0.5, col="floralwhite", xlim=c(0, 5), ylim=c(0,5), xlab="", ylab="")
+  points(xcoordlist1, ycoordlist1, pch = 20, cex = 1, col="red")
+  # tilting the screen with these colours shows the distinction between the groups
+  
+  return("Regardless of what the starting point is, the Sierpinski Gasket always be formed within the three triangular coordinates within the function. If the starting point is within the Sierpinski Gasket, so are all other points plotted. However, if the starting point is not within the Sierpinksi Gasket, a few points are plotted outside of the triangle until a coordinate finds itself within the triangle, and from here onwards the fractal is formed. Therefore, the location of the starting point within this function has no effect on where the Sierpinski Gasket is eventually plotted, and only has an effect on how many outliers are plotted outside of the fractal. The chaos game is defined such that the starting point can be anywhere inside or outside of the triangle(defined by A, B and C), and because of the functinos' iterative nature, the shape will eventually form the sierpinksi gasket. ")
 }
 
 # Challenge question F
