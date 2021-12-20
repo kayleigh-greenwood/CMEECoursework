@@ -11,8 +11,8 @@ set.seed(iter)
 # ensures each iteration generates different random numbers
 
 # community sizes : 500,1000,2500,5000
-# personal speciation rate: 0.0066439
-speciation_rate <- 0.0066439
+# personal speciation rate: 0.0032341
+speciation_rate <- 0.0032341
 
 # set size depending on iter
   if (iter %% 4 == 1){
@@ -26,7 +26,7 @@ speciation_rate <- 0.0066439
 }
 
 
-cluster_run(speciation_rate, size, wall_time=1, interval_rich=1, interval_oct = (size/10), burn_in_generations = (8*size), output_file_name = paste("resultiter", iter, ".rda", sep=""))
+cluster_run(speciation_rate, size, wall_time=690, interval_rich=1, interval_oct = (size/10), burn_in_generations = (8*size), output_file_name = paste("resultiter", iter, ".rda", sep=""))
 
 
 

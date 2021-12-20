@@ -205,26 +205,26 @@ species_abundance <- function(community)  {
 
 # Question 14
 octaves <- function(abundance_vector) {
-  
+  num_bins <- floor(log(max(abundance_vector))/log(2))+1
   # determine how many bins there will be for this vector
-  numbins <- ceiling(log(max(abundance_vector))/log(2))
   
-  # create the bin slots (eg 1,2,4,8,16)
   bins <- c(1)
-  for (i in (2:(numbins+1))){
+  for (i in 2:(num_bins+1)){
     bins <- append(bins, bins[i-1]*2)
   }
+  # create the bin slots (eg 1,2,4,8,16)
   
-  # create output vector
-  output <- rep(0, numbins)
-  for (x in 1:length(abundance_vector)){
-    for (y in 1:length(bins)){
-      if ((abundance_vector[x] < bins[y]) && (abundance_vector[x] >= bins[y-1])){
-        output[y-1] = output[y-1]+1
+  output <- rep(0, length(bins)-1)
+  for (x in 1:(length(abundance_vector))){
+    for (y in (1:(length(bins)))){
+      if ((abundance_vector[x] >= bins[y]) && (abundance_vector[x] < bins[y+1])){
+        output[y] = output[y]+1
       }
     }
   }
-  return (output)
+  # create output vector
+  
+  return(output) 
 }
 
 # Question 15
@@ -392,21 +392,6 @@ process_cluster_results <- function()  {
   save(combined_results, file = "cluster_octave_results.rda")
 }
   
-### sumoct results a few times
-
-# OCTAVE RESULTS
-# sumoct500
-# [1] 3.3210530 2.7455943 2.4735527 2.3017003 2.1222470 1.8718514 1.4593860 0.8061967 0.1491802
-
-# sumoct1000
-#  [1] 6.65362911 5.48791312 4.93669950 4.55815569 4.16370404 3.59566578 2.73605005 1.51060336 0.39541773 0.01273489
-
-# sumoct2500
-# [1] 1.097956e+01 9.015459e+00 8.150157e+00 7.495795e+00 6.636754e+00 5.703724e+00 4.278743e+00 2.392159e+00 7.236815e-01 6.095666e-02 6.067417e-05
-
-# sumoct5000
-#  [1] 1.349400e+01 1.130978e+01 9.996325e+00 9.206014e+00 8.409399e+00 7.138242e+00 5.260504e+00 2.900949e+00 9.034062e-01 8.735990e-02 9.103186e-04
-
 plot_cluster_results <- function()  {
   
     # clear any existing graphs and plot your graph within the R window
@@ -507,28 +492,28 @@ chaos_game <- function()  {
   ycoordlist = list(A[2])
   coords <- list(A, B, C)
   currentcoordinate <- A
-  for (x in 1:1000){
+  for (x in 1:10000){
     i <- sample(c(1,2,3), 1)
     selectedcoord <- unlist(coords[i])
     halfdiff <- (selectedcoord - currentcoordinate)/2
-    newcoord <- unlist(coordinate + halfdiff)
+    newcoord <- unlist(currentcoordinate + halfdiff)
     xcoordlist = c(xcoordlist, newcoord[1])
     ycoordlist = c(ycoordlist, newcoord[2])
     currentcoordinate = newcoord
   }
 
   plot(xcoordlist, ycoordlist, pch = 20, cex = 0.5)
-  return("At 100 repeats of the for loop, the result has no obvious pattern. At 1000 loops, a faint pattern emerges and ad 10000 loops, it becomes apparent that the pattern is a fractal.")
+  return("At 100 repeats of the for loop, the result has no obvious pattern. At 1000 loops, a faint pattern emerges and at 10000 loops, it becomes apparent that the pattern is a fractal, names the Sierpinski Gasket.")
 }
 
 
 
 # Question 24
 
-turtle <- function(start_position, direction, line_length)  {
+turtle <- function(start_position, direction, length)  {
 
-  x1 <- start_position[1] + line_length*cos(direction)
-  y1 <- start_position[2] + line_length*sin(direction)
+  x1 <- start_position[1] + length*cos(direction)
+  y1 <- start_position[2] + length*sin(direction)
   
   lines(x=c(start_position[1], x1), y=c(start_position[2], y1), xlim = c(0,x1), ylim = c(0,y1), xlab = "x", ylab = "y")
   return(c(x1, y1)) 
@@ -547,25 +532,18 @@ elbow <- function(start_position, direction, length)  {
   }
 }
 
-### par can be used to plot on same graph with different axes
-### par(new=TRUE)
-plot(x=0, y=0, xlim = c(0, 15), ylim = c(-10, 5), type="n", xlab = "x", ylab = "y")
-# start_position=c(1,1)
-# direction=0.6
-# length=5
-
 # Question 26
-spiral <- function(start_position, direction, line_length, minimum_length=FALSE)  {
+spiral <- function(start_position, direction, length, minimum_length=FALSE)  {
   if (minimum_length==FALSE){
-    minimum_length = line_length*0.005
+    minimum_length = length*0.005
   }
   
   # first line: draws a line
-  start_position = turtle(start_position, direction, line_length)
+  start_position = turtle(start_position, direction, length)
   
   # second line: calls the function again
-  if (line_length >= minimum_length){
-    return(spiral(start_position, direction-(pi/4), line_length*0.95, minimum_length))
+  if (length >= minimum_length){
+    return(spiral(start_position, direction-(pi/4), length*0.95, minimum_length))
   } else {
     return("Spiral is a recursive function, meaning it calls itself. Because we are not giving it any iterative limit, or time limit, the function will call itself infinitely. Every time spiral is called, the tutle function is run, which draws a line, and the parameters are reset. So as spiral is repeatedly called and the functions are repeatedly reset, the spiral function starts at the outermost point and continues to spiral inwards infinitely, creating an infinite loop.")
   }
@@ -578,47 +556,47 @@ length = 5
 
 
 # Question 27
-draw_spiral <- function(start_position=c(1,1), direction=0.6, line_length=5)  {
+draw_spiral <- function(start_position=c(1,1), direction=0.6, length=5)  {
   plot(x=0, y=0, xlim = c(0, 15), ylim = c(-10, 5), type="n", xlab = "x", ylab = "y")
   return(spiral(c(1,1), 0.6, 5))
 }
 
 ## my method of having spiral and draw spiral as one function
 
-draw_spiral2 <- function(start_position=c(1,1), direction=0.6, line_length=5, minimum_length=FALSE)  {
+draw_spiral2 <- function(start_position=c(1,1), direction=0.6, length=5, minimum_length=FALSE)  {
   # clear any existing graphs and plot your graph within the R window
   # 
   if (minimum_length==FALSE){
-    minimum_length = line_length*0.005
+    minimum_length = length*0.005
   }
   
   if (length(dev.list())==0){
     plot(x=0, y=0, xlim = c(0, 15), ylim = c(-10, 5), type="n", xlab = "x", ylab = "y")
   }
   
-  if (line_length > minimum_length){
+  if (length > minimum_length){
     
-    start_position = turtle(start_position, direction, line_length)
+    start_position = turtle(start_position, direction, length)
     
-    draw_spiral(start_position, direction-(pi/4), line_length*0.95, minimum_length)
+    draw_spiral(start_position, direction-(pi/4), length*0.95, minimum_length)
   }
 }
 
 plot(x=0, y=0, xlim = c(0, 15), ylim = c(-10, 5), type="n", xlab = "x", ylab = "y")
 
 # Question 28
-tree <- function(start_position, direction, line_length, minimum_length=FALSE)  {
+tree <- function(start_position, direction, length, minimum_length=FALSE)  {
   if (minimum_length==FALSE){
-    minimum_length = line_length*0.03
+    minimum_length = length*0.03
   }
     # draws a line and returns end point of line, refines this as new start point for next line
-    start_position = turtle(start_position, direction, line_length)
+    start_position = turtle(start_position, direction, length)
   
     # calls the function again
-    if (line_length >= minimum_length){
-      # tree(start_position, direction-(pi/4), line_length*0.95, minimum_length)
-      tree(start_position, direction+(pi/4), line_length*0.65, minimum_length)
-      tree(start_position, direction-(pi/4), line_length*0.65, minimum_length)
+    if (length >= minimum_length){
+      # tree(start_position, direction-(pi/4), length*0.95, minimum_length)
+      tree(start_position, direction+(pi/4), length*0.65, minimum_length)
+      tree(start_position, direction-(pi/4), length*0.65, minimum_length)
     }
 }
 
@@ -629,17 +607,17 @@ draw_tree <- function()  {
 }
 
 # Question 29
-fern <- function(start_position, direction, line_length, minimum_length=FALSE)  {
+fern <- function(start_position, direction, length, minimum_length=FALSE)  {
   if (minimum_length==FALSE){
-    minimum_length = line_length*0.01
+    minimum_length = length*0.01
   }
   # draws a line and returns end point of line, refines this as new start point for next line
-  start_position = turtle(start_position, direction, line_length)
+  start_position = turtle(start_position, direction, length)
   
   # calls the function again
-  if (line_length >= minimum_length){
-    fern(start_position, direction, line_length*0.87, minimum_length)
-    fern(start_position, (direction+(pi/4)), line_length*0.38, minimum_length)
+  if (length >= minimum_length){
+    fern(start_position, direction, length*0.87, minimum_length)
+    fern(start_position, (direction+(pi/4)), length*0.38, minimum_length)
   }
 }
 
@@ -648,37 +626,36 @@ draw_fern <- function()  {
   fern(c(0, 0), 1.5708, 4)
 }
 
+
 # Question 30
-fern2 <- function(start_position, direction, line_length, minimum_length=FALSE, dir)  {
+fern2 <- function(start_position, direction, length, minimum_length=FALSE, dir)  {
     dir = dir*-1
     if (minimum_length==FALSE){
-      minimum_length = line_length*0.005
+      minimum_length = length*0.005
     }
   
     # draws a line and returns end point of line, refines this as new start point for next line
-      start_position = turtle(start_position, direction, line_length)
+      start_position = turtle(start_position, direction, length)
 
     # calls the function again
-    if (line_length >= minimum_length){
+    if (length >= minimum_length){
         # draw straight line
-        fern2(start_position, direction, line_length*0.87, minimum_length, dir)
+        fern2(start_position, direction, length*0.87, minimum_length, dir)
       
       # draw side line (either left or right)
 
         # swap dir 
         if (dir>0){ # right
-          fern2(start_position, direction = (direction+(pi/4)), line_length*0.38, minimum_length, dir)
+          fern2(start_position, direction = (direction+(pi/4)), length*0.38, minimum_length, dir)
         } else { # left
-          fern2(start_position, direction= (direction-(pi/4)), line_length*0.38, minimum_length, dir)
+          fern2(start_position, direction= (direction-(pi/4)), length*0.38, minimum_length, dir)
         }
-      } else {
-      return("done")
       }
 }
 
 draw_fern2 <- function()  {
   plot(x=0, y=0, xlim = c(-15, 15), ylim = c(0, 55), type="n", xlab = "x", ylab = "y")
-  fern2(c(0, 0), direction=1.5708, line_length=7, dir=1)
+  fern2(c(0, 0), direction=1.5708, length=7, dir=1)
 }
 
 # Challenge questions - these are optional, substantially harder, and a maximum of 16% is available for doing them.  
