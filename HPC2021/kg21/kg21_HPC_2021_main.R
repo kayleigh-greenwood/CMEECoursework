@@ -363,8 +363,8 @@ question_16 <- function()  {
   
   
   # overlaying barplots
-  barplot(mymatrix, beside = TRUE, names.arg=binnames, main= "Mean Species Abundance Distribution", xlab = "Species Abundance (Individuals per species)", ylab = "Frequency (number of species)", ylim = c(0,(limit)*1.1), xpd = FALSE, col = c("palegreen", "orchid"), border = c("palegreen4", "orchid4"), width = 2) 
-  legend("topright", legend=c("Initial maximal species richness", "Initial minimal species richness"), fill =c("palegreen", "orchid"))
+  barplot(mymatrix, beside = TRUE, names.arg=binnames, main= "Mean Species Abundance Distribution", xlab = "Species Abundance (Individuals per species)", ylab = "Frequency (number of species)", ylim = c(0,(limit)*1.1), xpd = FALSE, col = c("green", "orange"), border = c("green4", "orange4"), width = 2) 
+  legend("topright", legend=c("Initial maximal species richness", "Initial minimal species richness"), fill =c("green", "orange"))
   
   return ("The initial size of a community does not influence the pattern of frequency within each species abundance octave class, but frequency does increase as community increases. The number of individuals in a community influences the abundance of species with only one individual. An observed pattern is that the number of species with only one individual is usually around 10% of the community size.  A pattern is also seen in species abundance in that the lower species abundance is, the more species there are with that species abundance. 
            The initial speciation rate has a demonstrable effect on species abundance. Species rate seems to determine the distribution of species abundances. The higher the speciation rate, the higher the species diversity and therefore the individuals are distributed amongst more species, meaning species abundances are lower. The higher speciation rate gets, the more right skewed species abundance gets. The speciation rate determines the percentage of species that contain only one individual. For example, if speciation rate is 0.1, 10% of the species abundances will be 1. Therefore 10% of the community will be in their own unique species. Increasing speciation rate eradicates the higher species abundances. So speciation rate also affects the upper limit of species abundance. 
@@ -651,7 +651,7 @@ draw_spiral <- function(start_position=c(1,1), direction=0.6, length=5)  {
   graphics.off()
   
   # plots empty plot
-  plot(x=0, y=0, xlim = c(0, 15), ylim = c(-10, 5), type="n", xlab = "x", ylab = "y")
+  plot(x=0, y=0, xlim = c(0, 15), ylim = c(-10, 5), type="n", xlab = "", ylab = "", axes=FALSE)
   
   # plots spiral
   return(spiral(c(1,1), 0.6, 5))
@@ -702,7 +702,7 @@ draw_tree <- function()  {
   graphics.off()
   
   # initializes empty plot
-  plot(x=0, y=0, xlim = c(-6, 6), ylim = c(0, 10), type="n", xlab = "x", ylab = "y")
+  plot(x=0, y=0, xlim = c(-6, 6), ylim = c(0, 10), type="n", xlab = "", ylab = "", axes=FALSE)
   
   # calls function to plot tree
   tree(c(0, 0), 1.5708, 4)
@@ -733,7 +733,7 @@ draw_fern <- function()  {
   graphics.off()
   
   # initialize plot
-  plot(x=0, y=0, xlim = c(-15, 15), ylim = c(0, 30), type="n", xlab = "x", ylab = "y")
+  plot(x=0, y=0, xlim = c(-15, 15), ylim = c(0, 30), type="n", xlab = "", ylab = "", axes=FALSE)
   
   # draw fern
   fern(c(0, 0), 1.5708, 4)
@@ -772,7 +772,7 @@ draw_fern2 <- function()  {
   graphics.off()
   
   # initialize empty plot
-  plot(x=0, y=0, xlim = c(-15, 15), ylim = c(0, 55), type="n", xlab = "x", ylab = "y")
+  plot(x=0, y=0, xlim = c(-15, 15), ylim = c(0, 55), type="n", xlab = "", ylab = "", axes=FALSE)
   
   # call function to draw fern
   fern2(c(0, 0), direction=1.5708, length=7, dir=1)
@@ -782,14 +782,53 @@ draw_fern2 <- function()  {
 
 # Challenge question A
 Challenge_A <- function() {
-  # clear any existing graphs and plot your graph within the R window
+  graphics.off()
+  
+  # rules
+  # do a large number of repeat simulations
+  
+  
+  
+  # parameters:
+  # speciation_rate=0.1
+  # community = 100
+  # generations = 200
+  # burn in = 200 generations
+  # generations = 2000 after burn in (2200 total)
+  # init community min and max
 
 }
 
 # Challenge question B
 Challenge_B <- function() {
-  # clear any existing graphs and plot your graph within the R window
+  # turn off graphics and initialize new plot
+  graphics.off()
+  plot(x=0, y=0, xlim = c(0, 200), ylim = c(1, 100), type="n", xlab="Generation", ylab="Species Richness", main="Species Richness Time Series")
+  colour_list <- c("chartreuse", "blue", "deeppink", "orangered", "aquamarine", "yellow", "darkgreen", "darkred", "darkgoldenrod4", "darkviolet")
+  line_list <- c("Initial richness: 10", "Initial richness: 20","Initial richness: 30", "Initial richness: 40", "Initial richness: 50","Initial richness: 60","Initial richness: 70","Initial richness: 80","Initial richness: 90","Initial richness: 100")
+  
+  # loop through 10 different initial species richnesses
+  for (i in c(1:10)){
+    
+    # initialize community of size 10
+    community <- append(init_community_max(i*10), init_community_min(100-(i*10)))
 
+    # record time series of species richness
+    species_richness_series <- neutral_time_series_speciation(community, 0.1, 200)
+    
+    # # repeat this 10 more times, adding the results every loop to create a running total
+    for (j in 1:10){
+      species_richness_series <- species_richness_series + neutral_time_series_speciation(community, 0.1, 200)
+    }
+    
+    # divide the total by 11 to get a mean species richness time series
+    species_richness_series <- species_richness_series/11
+    
+    # plot 
+    lines(species_richness_series, col=colour_list[i])
+  }
+  legend("topright", legend=line_list, fill=colour_list)
+  
 }
 
 # Challenge question C
@@ -807,7 +846,49 @@ Challenge_D <- function() {
 
 # Challenge question E
 Challenge_E <- function() {
-  # clear any existing graphs and plot your graph within the R window
+  graphics.off()
+  
+  # store points, separately and in list
+  A <- c(0,0)
+  B <- c(3,4)
+  C <- c(4,1)
+  coords <- list(A, B, C)
+  
+  
+  # initialise list for points
+  xcoordlist <- list(A[1])
+  ycoordlist <- list(A[2])
+  
+  # start at 0,0
+  currentcoordinate <- c(1,10)
+  
+  
+  for (x in 1:10000){
+    
+    # choose one index (and therefore point/coordinate pair) at random
+    i <- sample(c(1,2,3), 1)
+    
+    # store randomly chosen coordinates
+    selectedcoord <- unlist(coords[i])
+    
+    # determines length of half of difference between points
+    halfdiff <- (selectedcoord - currentcoordinate)/2
+    
+    # determines coordinates of halfway point
+    newcoord <- unlist(currentcoordinate + halfdiff)
+    
+    # adds new point to x and y coordinate lists
+    xcoordlist <- c(xcoordlist, newcoord[1])
+    ycoordlist <- c(ycoordlist, newcoord[2])
+    
+    # reset current coordinate for beginning of next loop
+    currentcoordinate <- newcoord
+  }
+  
+  # When loop is over, will be left with two lists of corresponding x and y coordinates, can be plotted as so
+  plot(xcoordlist, ycoordlist, pch = 20, cex = 0.5)
+  return("At 100 repeats of the for loop, the result has no obvious pattern. At 1000 loops, a faint pattern emerges and at 10000 loops, it becomes apparent that the pattern is a fractal, names the Sierpinski Gasket.")
+}
   
   return("type your written answer here")
 }
