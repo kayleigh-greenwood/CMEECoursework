@@ -772,7 +772,7 @@ draw_fern2 <- function()  {
   graphics.off()
   
   # initialize empty plot
-  plot(x=0, y=0, xlim = c(-15, 15), ylim = c(0, 55), type="n", xlab = "", ylab = "", axes=FALSE)
+  plot(x=0, y=0, xlim = c(-30, 30), ylim = c(0, 55), type="n", xlab = "", ylab = "", axes=FALSE)
   
   # call function to draw fern
   fern2(c(0, 0), direction=1.5708, length=7, dir=1)
