@@ -409,8 +409,9 @@ process_cluster_results <- function()  {
   
   
   for (i in 1:100){
+
     # loop once for each result file
-      load(file=paste("results/resultiter", i, ".rda", sep=""))
+      load(file=paste("results/data_output_files/resultiter", i, ".rda", sep=""))
     
       equil_threshold <- burn_in_generations/interval_oct
       # gives the last index of oct that is part of the burn in generation
@@ -451,7 +452,7 @@ process_cluster_results <- function()  {
   # combines all means into one variable in order to save
   
   # save results to a .rda file
-  save(combined_results, file = "cluster_octave_results.rda")
+  save(combined_results, file = "results/cluster_octave_results.rda")
 }
   
 plot_cluster_results <- function()  {
@@ -459,7 +460,7 @@ plot_cluster_results <- function()  {
     graphics.off()
   
     # load combined_results from your rda file
-    load(file = "cluster_octave_results.rda")
+    load(file = "results/cluster_octave_results.rda")
     
     # re-split the data according to communtiy size
     size500data <- combined_results[[1]]

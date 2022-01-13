@@ -10,7 +10,7 @@ username <- "kg21"
 
 # don't worry about comments for this challenge - the number of characters used will be counted starting from here
 
-######### in development 412 characters##########
+######### in development 400 characters##########
 
 f <- function(s=c(0,0), a=1.5708, l=7, m=FALSE, d=1)  {
   d <- d*-1
@@ -32,10 +32,10 @@ f <- function(s=c(0,0), a=1.5708, l=7, m=FALSE, d=1)  {
       x <- -(pi/4)
     }
   
-    f(s, a = a+x, l*0.38, m, d)
+    f(s, a+x, l*0.38, m, d)
   }
 }
-plot(x=-25:25, y=5:55, type="n", xlab = "", ylab = "", axes=FALSE)
+plot(-25:25, 5:55, type="n", xlab="", ylab="", axes=FALSE)
 
 f()
 
