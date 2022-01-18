@@ -13,6 +13,7 @@ import sys
 ### script ###
 
 def assign(data):
+    """assign sequences and lengths of them into variables to be returned"""
     with open(data, 'r') as f: #opens the file to read
         csvread = csv.reader(f) # creates a csvread variable and reads the file
         seq1 = 0
@@ -36,7 +37,7 @@ def assign(data):
     return s1, s2, l1, l2
 
 def calculate_score(s1, s2, l1, l2, startpoint):
-    """compute a score for a specific alignment of two sequences, based on a specific startpoint of the shorter sequence
+    """computes a score for one specific alignment of two sequences, based on a specific startpoint of the shorter sequence
     by returning the number of matches starting from an abitrary startpoint chosen by the user"""
     matched = "" # to hold string displaying alignements
     score = 0
@@ -84,7 +85,7 @@ def main(argv):
 
     my_best_align, my_best_score = calculate_best(s1, s2, l1, l2)
     
-    print("Results saved into ../results/align_seqs_results.txt")
+
     # write results into file
     f = open('../results/align_seqs_results.txt', 'w')
     f.write("Best alignment: \n")
@@ -96,6 +97,8 @@ def main(argv):
     f.write("\n")
 
     f.close()
+
+    print("Results saved into ../results/align_seqs_results.txt")
 
 
 if __name__ == "__main__": 
