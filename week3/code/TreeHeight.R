@@ -1,12 +1,12 @@
 ## INTRO ##
 # This function calculates heights of trees given distance of farthest treetop 
 # from its base and angle to its top, using  the trigonometric formula 
-# height = distance * tan(radians)
+# height = distance * tan(angle in radians)
 # requires tidyverse to be imported
 
 ## ARGUMENTS ##
 # degrees:   The angle of elevation of tree
-# distance:  The distance from base of tree (e.g., meters)
+# distance:  The distance from base of tree to farthest treetop branch(e.g., meters)
 
 ## OUTPUT ##
 # The heights of the tree, same units as "distance"

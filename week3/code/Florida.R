@@ -17,7 +17,7 @@ ls()
 
 require(knitr)
 
-# Compute the appropriate correlation coefficient between years and Temperature and store it (look at the help file for cor()
+# Compute the appropriate correlation coefficient between years and Temperature and store it (look at the help file for cor())
 
 corcoeff <- cor(ats$Year, ats$Temp, method = "kendall")
 
@@ -59,6 +59,7 @@ dev.off()
 # is florida getting warmer? meaning we have specified we are interested in whether there is a positive correlation
 # if hypothesis was is floridas temperature changing, we would be interested in numbers above 0.3 and below -0.3
 # if hypothesis was is florida getting colder, we would be interested in which results were below our number
+# Not 100% sure if this is correct
 
 # Interpret and present the results: Present your results and their interpretation in a pdf document written in latex (include the the document’s source code in the submission) (Keep the writeup, including any figures, to one A4 page).
 

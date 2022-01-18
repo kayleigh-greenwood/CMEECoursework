@@ -8,7 +8,7 @@ rm(list=ls())
 require(tidyverse)
 
 MyData <- as.matrix(read_csv("../data/PoundHillData.csv", col_names = FALSE)) 
-# guarantees data is imported as is. Otherwise, read.csv would convert first row to column headers
+# col_names = FALSE guarantees data is imported as is. Otherwise, read.csv would convert first row to column headers
 
 MyMetaData <- read_csv2("../data/PoundHillMetaData.csv", col_names = TRUE) 
 # header is true because the file does contain headers

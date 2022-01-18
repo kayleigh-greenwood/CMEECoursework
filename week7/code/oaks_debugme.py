@@ -1,4 +1,6 @@
+#!/usr/bin/env python3
 
+"""debugging an oak finder"""
 ## imports
 import csv
 import sys
@@ -37,13 +39,14 @@ def main(argv):
     taxa = csv.reader(f)
     csvwrite = csv.writer(g)
     oaks = set()
+
     for row in taxa:
         print(row)
         print ("The genus is: ") 
         print(row[0] + '\n')
         if is_an_oak(row[0]):
             print('FOUND AN OAK!\n')
-            csvwrite.writerow([row[0], row[1]])    
+            csvwrite.writerow([row[0], row[1]])  
 
     return 0
     
