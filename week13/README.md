@@ -2,7 +2,6 @@
 
 This README file contains details about the scripts from classwork and practicals in CMEE week 13.
 
-
 ## STATS: GLM RECAP
 
     StatsRecap.R
@@ -15,14 +14,14 @@ This README file contains details about the scripts from classwork and practical
 
     Poisson.R
 
-**Summary:** Examples of for and while loops <br />
-**Input:** fisheries.csv, bee_mites.csv <br />
-**Output:** Prints to terminal <br />
+**Summary:** Exercises from day 2 looking at poisson models <br />
+**Input:**  <br />
+**Output:**  <br />
 
 ## STATS: GLM LOGISTIC MODELS
 
     Logistic.R
 
-**Summary:** Examples of for and while loops <br />
-**Input:** workerbees.csv, chytrid.csv, chytrid_binomial.csv <br />
-**Output:** Prints to terminal <br />
+**Summary:** Exercises from day 3 looking at binomial and binary models <br />
+**Input:**  <br />
+**Output:**  <br />

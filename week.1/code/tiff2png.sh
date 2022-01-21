@@ -7,10 +7,6 @@
 # Output: New .png file (maintains old input file)
 # Date: Oct 17th 2021
 
-# problems
-# case sensitive
-# prints end statement even if tif files have been found
-
 count=`ls -1 *.tif 2>/dev/null | wc -l` # sets the variable 'count' equal to the amount of .tif files in the current directory
 if [ $count = 0 ] # if there are no tif files
 then 

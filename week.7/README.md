@@ -1,10 +1,8 @@
-# Week 7: Python 2
+# Computing Week 7
 
 This README file contains details about the scripts from classwork and practicals in CMEE week 7.
 
-## Computing
-***
-### Python
+## Python 2
 
     LV1.py
 
@@ -43,14 +41,14 @@ This README file contains details about the scripts from classwork and practical
 
     LVrun.py
 
-**Summary:** UNFINISHED: Run LV1.py and LV2.py<br />
+**Summary:** Runs LV1.py and LV2.py <br />
 **Input:** <br />
 **Output:**   <br />
 **Imports:** LV1.py, LV2.py <br />
 
     oaks_debugme.py
 
-**Summary:** <br />
+**Summary:** Has been debugged <br />
 **Input:** TestOaksData.csv <br />
 **Output:** JustOaksData.csv <br />
 **Imports:** csv, sys, doctest <br />
@@ -68,6 +66,8 @@ This README file contains details about the scripts from classwork and practical
 **Input:** TestR.R <br />
 **Output:** TestR.Rout, TestR_errFile.Rout <br />
 **Imports:** subprocess <br />
+
+## Jupyter
 
     MyFirstJupyterNB.ipynb
 

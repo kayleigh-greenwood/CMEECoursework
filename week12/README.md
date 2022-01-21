@@ -1,8 +1,8 @@
-# C Week
+# Computing Week 12
 This README file contains details about the scripts from classwork and practicals in CMEE C week.
 
-
-## 1. Anatomy of a C program, the compiler, and other basics
+## C Programming
+### 1. Anatomy of a C program, the compiler, and other basics
 
     hello.c
 
@@ -28,7 +28,7 @@ This README file contains details about the scripts from classwork and practical
 **Input:** n/a
 **Output:** n/a
 
-## 2. Memory, data, variables and types
+### 2. Memory, data, variables and types
 
 
     sizeof.c
@@ -49,7 +49,7 @@ This README file contains details about the scripts from classwork and practical
 **Input:** n/a
 **Output:** n/a
 
-## 3. Operators, expressions and typecasting
+### 3. Operators, expressions and typecasting
 
     Example1.c
 
@@ -57,10 +57,16 @@ This README file contains details about the scripts from classwork and practical
 **Input:** n/a
 **Output:** n/a
 
-## unknown topic
+### Other
 
-    seqlen.c
+    seqcomp.c
 
 **Summary:** Exercise to find genetic differences between species using their dna sequences and bitwise operations
 **Input:** n/a
 **Output:** n/a
+
+    practice.c
+
+**Summary:**  <br />
+**Input:** <br />
+**Output:** <br />

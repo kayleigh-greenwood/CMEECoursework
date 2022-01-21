@@ -1,17 +1,18 @@
 #!/usr/bin/env python3
-
 """align two DNA sequences such that they are as similar as possible
 """
-
+__appname__ = 'align_seqs.py'
 __author__ = 'Kayleigh Greenwood (kayleigh.greenwood21@imperial.ac.uk)'
 __version__ = '0.0.1'
 
-### imports ###
+### IMPORTS ###
 import csv
 import sys
 
-### script ### Note: Script contains altered versions of calculate_score and calculate_best which aren't used, that would include scores of additional alignments if the top sequence were to overhang to the left
+### NOTE: ### Script contains altered versions of calculate_score and calculate_best which aren't used, that would include scores of additional alignments if the top sequence were to overhang to the left
 
+
+### FUNCTIONS ###
 def assign(data):
     """assign sequences and lengths of them into variables to be returned"""
     with open(data, 'r') as f: #opens the file to read
