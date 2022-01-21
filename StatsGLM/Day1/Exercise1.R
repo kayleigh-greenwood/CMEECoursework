@@ -50,7 +50,8 @@ sumz
 test # it doesn't, because rule only works for independent variables
 
 dev.off()
-plot(jitter(d1$Wing), d1$Tarsus, pch=19, cex=0.4) # can see that they are not independent
+plot(jitter(d1$Wing), d1$Tarsus, pch=19, cex=0.4) 
+# can see that they are not independent
 
 ## Checking other version of rule 1 of var(A+B)=var(A)+var(B)+2COV(A,B)
 cov(d1$Tarsus, d1$Wing)
