@@ -67,6 +67,6 @@ This README file contains details about the scripts from classwork and practical
 
     practice.c
 
-**Summary:**  <br />
+**Summary:** Class exercise <br />
 **Input:** <br />
 **Output:** <br />

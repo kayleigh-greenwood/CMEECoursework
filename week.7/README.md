@@ -10,6 +10,7 @@ This README file contains details about the scripts from classwork and practical
 **Input:** Has default parameter values but has option for user to specify R0, C0, tstart, tend, tinterval, r, a, z, e <br />
 **Output:** LV_model_1_pop_dens_vs_time.pdf, LV_model_1_cons_dens_vs_res_dens.pdf  <br />
 **Imports:** sys, matplotlib.pylab, scipy, numpy, scipy.integrate <br />
+**Running Instructions:** python3 LV1.py<br /><br />
 
     profileme.py
 
@@ -17,6 +18,8 @@ This README file contains details about the scripts from classwork and practical
 **Input:** N/A <br />
 **Output:** prints to terminal  <br />
 **Imports:** sys <br />
+**Running Instructions:** python3 profileme.py<br /><br />
+
 
     profileme2.py
 
@@ -24,6 +27,8 @@ This README file contains details about the scripts from classwork and practical
 **Input:** N/A <br />
 **Output:** prints to terminal  <br />
 **Imports:** sys, numpy <br />
+**Running Instructions:** python3 profileme2.py <br /><br />
+
 
     timeitme.py
 
@@ -31,6 +36,8 @@ This README file contains details about the scripts from classwork and practical
 **Input:** N/A <br />
 **Output:** prints to terminal  <br />
 **Imports:** timeit <br />
+**Running Instructions:** python3 timeitme.py<br /><br />
+
 
     LV2.py
 
@@ -38,20 +45,16 @@ This README file contains details about the scripts from classwork and practical
 **Input:**  Has default parameter values but has option for user to specify r, a, z, e <br />
 **Output:** LV_model_2_pop_dens_vs_time.pdf, LV_model_2_cons_dens_vs_res_dens.pdf  <br />
 **Imports:** sys, matplotlib.pylab, scipy, numpy, scipy.integrate <br />
+**Running Instructions:** python3 LV2.py<br /><br />
 
-    LVrun.py
-
-**Summary:** Runs LV1.py and LV2.py <br />
-**Input:** <br />
-**Output:**   <br />
-**Imports:** LV1.py, LV2.py <br />
 
     oaks_debugme.py
 
-**Summary:** Has been debugged <br />
+**Summary:** Has been debugged, accounting for corner cases <br />
 **Input:** TestOaksData.csv <br />
 **Output:** JustOaksData.csv <br />
 **Imports:** csv, sys, doctest <br />
+**Running Instructions:** python3 oaks_debugme.py<br /><br />
 
     TestR.R
 
@@ -59,6 +62,7 @@ This README file contains details about the scripts from classwork and practical
 **Input:** N/A <br />
 **Output:** prints to terminal  <br />
 **Imports:** N/A <br />
+**Running Instructions:** Rscript TestR.R<br /><br />
 
     TestR.py
 
@@ -66,8 +70,19 @@ This README file contains details about the scripts from classwork and practical
 **Input:** TestR.R <br />
 **Output:** TestR.Rout, TestR_errFile.Rout <br />
 **Imports:** subprocess <br />
+**Running Instructions:** python3 Test.py<br /><br />
 
-## Jupyter
+## PYTHON GROUPWORK
+
+    grp_oaks_debugme.py
+
+**Summary:** Has been debugged, accounting for corner cases, and excluding the header row <br />
+**Input:** TestOaksData.csv <br />
+**Output:** JustOaksData.csv <br />
+**Imports:** csv, sys, doctest<br />
+**Running Instructions:** python3 grp_oaks <br /><br />
+
+## JUPYTER
 
     MyFirstJupyterNB.ipynb
 
@@ -75,3 +90,4 @@ This README file contains details about the scripts from classwork and practical
 **Input:** N/A <br />
 **Output:** N/A <br />
 **Imports:**  <br />
+**Running Instructions:** jupyter notebook MyFirstJupyterNb.ipynb <br /><br />

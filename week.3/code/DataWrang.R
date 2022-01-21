@@ -10,17 +10,17 @@ MyData <- as.matrix(read.csv("../data/PoundHillData.csv", header = FALSE)) # gua
 MyMetaData <- read.csv("../data/PoundHillMetaData.csv", header = TRUE, sep = ";") # header is true because the file does contain headers
 
 ############# Inspect the dataset ###############
-head(MyData)
-dim(MyData) # dimensions
-str(MyData) # compactly display the structure
-fix(MyData) #you can also do this
-fix(MyMetaData)
+# head(MyData)
+# dim(MyData) # dimensions
+# str(MyData) # compactly display the structure
+# fix(MyData) #you can also do this
+# fix(MyMetaData)
 
 ############# Transpose ###############
 # To get those species into columns and treatments into rows 
 MyData <- t(MyData) #Swaps rows and columns around
-head(MyData) # output can be seen in Text2 in sandbox
-dim(MyData)
+# head(MyData) # output can be seen in Text2 in sandbox
+# dim(MyData)
 
 ############# Replace species absences with zeros ###############
 MyData[MyData == ""] = 0 # puts a zero in every empty box
@@ -35,7 +35,7 @@ colnames(TempData) <- MyData[1,] # assign column names as actual column names fr
 ############# Convert from wide to long format  ###############
 require(reshape2) # load the reshape2 package
 
-?melt #check out the melt function: convert an object into a molten data frame
+# ?melt #check out the melt function: convert an object into a molten data frame
 
 MyWrangledData <- melt(TempData, id=c("Cultivation", "Block", "Plot", "Quadrat"), variable.name = "Species", value.name = "Count")
 
@@ -63,9 +63,9 @@ MyWrangledData[, "Plot"] <- as.factor(MyWrangledData[, "Plot"])
 MyWrangledData[, "Quadrat"] <- as.factor(MyWrangledData[, "Quadrat"])
 MyWrangledData[, "Count"] <- as.integer(MyWrangledData[, "Count"])
 
-str(MyWrangledData)
-head(MyWrangledData)
-dim(MyWrangledData)
+# str(MyWrangledData)
+# head(MyWrangledData)
+# dim(MyWrangledData)
 
 ############# Exploring the data (extend the script below)  ###############
 
@@ -80,7 +80,7 @@ MyWrangledData <- tibble::as_tibble(MyWrangledData)
 
 
 
-MyWrangledData
+# MyWrangledData
 
 dplyr::glimpse(MyWrangledData) #like str(), but nicer!
 # dbl means double precision floating point number

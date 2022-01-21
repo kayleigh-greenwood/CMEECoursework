@@ -1,6 +1,7 @@
 # Weeks 8 & 9: Miniproject
 
 This README file contains details about the contents of the miniproject, and relevant scripts, in CMEE weeks 8 & 9.
+
 INSTRUCTIONS: "python3 run_MiniProject.py" to collate
 
 ## Languages
