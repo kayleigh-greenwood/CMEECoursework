@@ -31,6 +31,8 @@ def dCR_dt(pops, t, r, a, z, e):
     return np.array([dRdt, dCdt])
 
 def visfunc(t, pops, r, a, z, e):
+    """Creates plots from population parameters"""
+
     ## figure 1
         f1 = p.figure()
             # opens empty figure object as f1
@@ -59,6 +61,8 @@ def visfunc(t, pops, r, a, z, e):
 
 
 def intfunc(r=1., a=0.1, z=1.5, e=0.75):
+    """ Carries out integration """
+
     ## states what will be run
         print(f"Running LV2.py with r={r}, a={a}, z={z}, e={e}")
     ## defines parameters

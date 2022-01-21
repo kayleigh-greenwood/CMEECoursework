@@ -33,7 +33,8 @@ def is_an_oak(name):
         return False
     # the purpose of .lower() here is to test the lowercase version of 'name' to check if it is quercus
 
-def main(argv): 
+def main(argv):
+    """ Main entry point of programme """ 
     f = open('../data/TestOaksData.csv','r')
     g = open('../data/JustOaksData.csv','w')
     taxa = csv.reader(f)

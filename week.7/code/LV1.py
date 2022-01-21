@@ -30,6 +30,7 @@ def dCR_dt(pops, t, r, a, z, e,):
     return np.array([dRdt, dCdt])
 
 def visfunc(t, pops):
+    """Creates plots from population parameters"""
     ## figure 1
         f1 = p.figure()
             # opens empty figure object as f1
@@ -57,6 +58,7 @@ def visfunc(t, pops):
 
 
 def intfunc(Rpop=10, Cpop=5, tstart=0, tend=15, tinterval=1000, r=1., a=0.1, z=1.5, e=0.75):
+    """ Carries out integration """
     ## define time vector
         t = np.linspace(tstart, tend, tinterval)
             # linspace returns 'tinterval' evenly spaced numbers over interval of 'tstart' to 'tend'

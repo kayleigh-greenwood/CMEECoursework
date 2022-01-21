@@ -11,17 +11,20 @@ import numpy as np
 
 ## functions 
 def my_squares(iters):
+    """ Computes square """
     ## list comprehension method - removes 1 second ##
     out = [i ** 2 for i in range(iters)]
     return out
 
 def my_squares_array(iters):
+    """ Creates array of squares """
     ## preallocation method - preallocate a numpy array instead of a list for mysquares - removes even more time ##
     out = np.array(range(iters))
     out =  out ** 2
     return out
 
 def my_join(iters, string):
+    """ joins strings together"""
     out = ''
     for i in range(iters):
         out += ", " + string
@@ -29,6 +32,7 @@ def my_join(iters, string):
 
 ## main entry point
 def run_my_funcs(x,y):
+    """ Runs the above functions together """
     print(x,y)
     my_squares(x)
     my_join(x,y)
