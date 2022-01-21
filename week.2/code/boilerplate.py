@@ -36,22 +36,22 @@ if __name__ == "__main__":
     sys.exit(status) #exits the program explicitly, returning an appropriate status code  (in this code, main states above that it will return 0, so 0 is returned)
 
 # if __name__ = "__main__"
-# adding this code at the end of your module sets __name__ to "__main__"
-# this makes the file usable as a script as well as an importable module.
-# this is important for packaging and reusability
-# if this file is being run by itself, the code beneath the if statement will run
-# if this file has been imported by another module, __name__ will be set to something else (boilerplate), so the code beneath the if statement will not run
+    # adding this code at the end of your module sets __name__ to "__main__"
+    # this makes the file usable as a script as well as an importable module.
+    # this is important for packaging and reusability
+    # if this file is being run by itself, the code beneath the if statement will run
+    # if this file has been imported by another module, __name__ will be set to something else (boilerplate), so the code beneath the if statement will not run
 
 # status
-# sets the command being run as a variable
-# this allows sys.exit() to be used on the command
+    # sets the command being run as a variable
+    # this allows sys.exit() to be used on the command
 
 # why 'sys.argv' and not 'argv'
-# argv is a variable that holds the ARGUMENTS passed to the script
-# sys.argv is an object containing the names of the ARGUMENTS in the script
-# in this situation, if there are no arguments, the argv function will pass the name of the script, as index [0] of argv is the name of the script
+    # argv is a variable that holds the ARGUMENTS passed to the script
+    # sys.argv is an object containing the names of the ARGUMENTS in the script
+    # in this situation, if there are no arguments, the argv function will pass the name of the script, as index [0] of argv is the name of the script
 
 
 # sys.argv
-# argv is the argument variable which holds the arguments you pass to the python script whrn you run it
-# argv is an object (created by python using the sys module imported at the beginning) which contains the names of the argument variables in the current script
+    # argv is the argument variable which holds the arguments you pass to the python script whrn you run it
+    # argv is an object (created by python using the sys module imported at the beginning) which contains the names of the argument variables in the current script

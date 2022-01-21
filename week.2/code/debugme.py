@@ -5,11 +5,13 @@
 __author__ = 'Kayleigh Greenwood (kayleigh.greenwood21@imperial.ac.uk)'
 __version__ = '0.0.1'
 
+## functions
+
 def buggyfunc(x):
     """Function with zero division error"""
     y = x
     for i in range(x):
-        try:
+        try: # avoid an error with zero division
             y = y-1
             z = x/y
         except ZeroDivisionError:
@@ -20,4 +22,7 @@ def buggyfunc(x):
             print(f"OK; x = {x}; y = {y}, z = {z};")
     return z
 
+## script
 buggyfunc(20)
+
+# exit
