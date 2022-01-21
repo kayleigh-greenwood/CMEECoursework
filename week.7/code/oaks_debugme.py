@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 
 """debugging an oak finder"""
+
+__author__ = 'Kayleigh Greenwood (kayleigh.greenwood21@imperial.ac.uk)'
+__version__ = '0.0.1'
+
 ## imports
 import csv
 import sys
@@ -37,8 +41,10 @@ def main(argv):
     """ Main entry point of programme """ 
     f = open('../data/TestOaksData.csv','r')
     g = open('../data/JustOaksData.csv','w')
-    taxa = csv.reader(f)
+    taxa = csv.reader(f) 
+    # reads in the oaks data
     csvwrite = csv.writer(g)
+    # prepares area to store oak findings
     oaks = set()
 
     for row in taxa:

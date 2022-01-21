@@ -25,7 +25,7 @@ This README file contains details about the scripts from classwork and practical
 **Summary:** Intro to conditionals and functions <br />
 **Input:** n/a <br />
 **Output:** Prints to terminal <br />
-**Imports:** sys <br />
+**Dependencies:** sys <br />
 **Running Instructions:** python3 cfexercises1.py <br /><br />
 
 
@@ -74,7 +74,7 @@ This README file contains details about the scripts from classwork and practical
 **Summary:** How to store/save an object for later use <br />
 **Input:** n/a <br />
 **Output:** testp.p in sandbox <br />
-**Imports:** pickle <br />
+**Dependencies:** pickle <br />
 **Running Instructions:** python3 basic_io3.py <br /><br />
 
 
@@ -84,7 +84,7 @@ This README file contains details about the scripts from classwork and practical
 **Summary:** Using the csv package <br />
 **Input:** n/a <br />
 **Output:** Prints to terminal <br />
-**Imports:** csv <br />
+**Dependencies:** csv <br />
 **Running Instructions:** python3 basic_csv.py <br /><br />
 
 
@@ -94,7 +94,7 @@ This README file contains details about the scripts from classwork and practical
 **Summary:** Template for python programs <br />
 **Input:** n/a <br />
 **Output:** Prints to terminal <br />
-**Imports:** sys <br />
+**Dependencies:** sys <br />
 **Running Instructions:** python3 boilerplate.py<br /><br />
 
 
@@ -111,7 +111,7 @@ This README file contains details about the scripts from classwork and practical
 **Summary:** Explains sys.argv in a practical way <br />
 **Input:** Various arguments <br />
 **Output:** Prints to termial <br />
-**Imports:** sys <br />
+**Dependencies:** sys <br />
 **Running Instructions:** python3 sysargv.py <br /><br />
 
 
@@ -121,7 +121,7 @@ This README file contains details about the scripts from classwork and practical
 **Summary:** Create various functions which analyse numbers using control flow tools <br />
 **Input:** n/a <br />
 **Output:** Prints to terminal <br />
-**Imports:** sys <br />
+**Dependencies:** sys <br />
 **Running Instructions:** python3 control_flow.py<br /><br />
 
 
@@ -180,7 +180,7 @@ This README file contains details about the scripts from classwork and practical
 **Summary:** Find best alignment for two specific DNA sequences such that they have as many bases matching as possible. <br />
 **Input:** n/a <br />
 **Output:** Saves to align_seqs_results.txt file in results <br />
-**Imports:** sys, csv <br />
+**Dependencies:** sys, csv <br />
 **Running Instructions:** python3 align_seqs.py<br /><br />
 
 ## PYTHON GROUPWORK
@@ -190,7 +190,7 @@ This README file contains details about the scripts from classwork and practical
 **Summary:** Find best alignment (singular) for any two DNA sequences such that they have as many bases matching as possible. <br />
 **Input:** Takes 2 fasta sequences as arguments (OPTIONAL - runs with default)  <br />
 **Output:** Saves to align_seqs_fasta_results.txt file in results <br />
-**Imports:** sys, csv <br />
+**Dependencies:** sys, csv <br />
 **Running Instructions:** python3 align_seqs_fasta.py ../data/407228412.fasta ../data/407228326.fasta OR python3 align_seqs_fasta.py <br /><br />
 
     align_seqs_better.py
@@ -198,7 +198,7 @@ This README file contains details about the scripts from classwork and practical
 **Summary:** Find best alignments (multiple if there are more than one with the highest score) for any two DNA sequences such that they have as many bases matching as possible. <br />
 **Input:** Takes 2 fasta sequences as arguments (OPTIONAL - runs with default)  <br />
 **Output:** Saves to align_seqs_better_results.txt file in results <br />
-**Imports:** sys, csv <br />
+**Dependencies:** sys, csv <br />
 **Running Instructions:** python3 align_seqs_better.py ../data/407228412.fasta ../data/407228326.fasta OR python3 align_seqs_better.py <br /><br />
 
 

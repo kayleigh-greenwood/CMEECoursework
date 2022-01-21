@@ -9,7 +9,7 @@ __version__ = '0.0.1'
 import csv
 import sys
 
-### NOTE: ### Script contains altered versions of calculate_score and calculate_best which aren't used, that would include scores of additional alignments if the top sequence were to overhang to the left
+### Note: Script contains altered versions of calculate_score and calculate_best which aren't used, that would include scores of additional alignments if the top sequence were to overhang to the left
 
 
 ### FUNCTIONS ###
