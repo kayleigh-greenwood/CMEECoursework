@@ -47,7 +47,7 @@ for (i in 1:nlevels(MyData$ID)){
       ######### FIT MODELS ###########
 
       # open pdf
-      pdf(paste("../Plots/PlotID", i, ".pdf", sep=""))
+      pdf(paste("../plots/PlotID", i, ".pdf", sep=""))
 
       # plot data points
       # par(fig=c(0,1,0.1,1))
