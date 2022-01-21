@@ -130,7 +130,7 @@ This README file contains details about the scripts from classwork and practical
 **Summary:** Intro to unit testing, contains simple tests for each function embedded in the docstring. functions which exemplify the use of control statements <br />
 **Input:** n/a <br />
 **Output:** Prints to terminal <br />
-**Import:** sys, doctest <br />
+**Dependencies:** sys, doctest <br />
 **Running Instructions:** python3 test_control_flow.py -v <br /><br />
 
 
@@ -164,6 +164,7 @@ This README file contains details about the scripts from classwork and practical
 **Summary:** Populate a dictionary derived from taxa so that it maps order names to sets of taxa <br />
 **Input:** n/a <br />
 **Output:** Prints to terminal <br />
+**Dependencies:** pprint
 **Running Instructions:** python3 dictionary.py<br /><br />
 
 

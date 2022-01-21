@@ -138,6 +138,7 @@ This README file contains details about the scripts from classwork and practical
 **Summary:** Calculates correlation coefficient between temperature and time for the 20th century in Key West, Florida and uses a permutation analysis to calculate the P-value <br />
 **Input:** KeyWestAnnualMeanTemperature.RData in data <br />
 **Output:** Prints to terminal and saves figures in results <br />
+**Dependencies:** knitr <br />
 **Running Instructions:** Rscript Florida.R <br /><br />
 
 
@@ -148,6 +149,7 @@ This README file contains details about the scripts from classwork and practical
 **Output:** Can be compiled into LaTeX file <br />
 ***
 **Running Instructions:** To be compiled with LaTeX<br /><br />
+
 ## R GROUPWORK
 
 
@@ -202,6 +204,7 @@ This README file contains details about the scripts from classwork and practical
 **Summary:** Wrangling the pound hill dataset using tidyverse <br />
 **Input:** PoundHillData.csv, PoundHillMetaData.csv from data <br />
 **Output:** Prints to terminal <br />
+**Dependencies:** Tidyverse
 **Running Instructions:** Rscript DataWrangTidy.R<br /><br />
 
 
@@ -209,6 +212,7 @@ This README file contains details about the scripts from classwork and practical
 **Summary:** Annotates a linear regression plot <br />
 **Input:** N/A <br />
 **Output:** Figure 'MyLinReg.pdf' in results <br />
+**Dependencies:** ggplot2 <br />
 **Running Instructions:** Rscript plotLin.R<br /><br />
 
 
@@ -216,6 +220,7 @@ This README file contains details about the scripts from classwork and practical
 **Summary:** Data exploration - creating sub-plots <br />
 **Input:** EcolArchives from data <br />
 **Output:** Pdf figures (Pred_Subplots.pdf, Prey_Subplots.pdf, SizeRatio_Subplots.R) and regression results (PP_Results.csv) in results <br />
+**Dependencies:** ggplot2 <br />
 **Running Instructions:** Rscript PP_Dists.R <br /><br />
 
 
@@ -223,6 +228,7 @@ This README file contains details about the scripts from classwork and practical
 **Summary:** Generating and accessing regression results <br />
 **Input:** EcolArchives from data <br />
 **Output:** PP_Regress_Results.csv and PP_Regress.pdf in results <br />
+**Dependencies:** ggplot2, plyr  <br />
 **Running Instructions:** Rscript PP_Regress<br /><br />
 
 
@@ -230,6 +236,7 @@ This README file contains details about the scripts from classwork and practical
 **Summary:** Plotting two dataframes together <br />
 **Input:**  <br />
 **Output:** Girko.pdf figure in results <br />
+**Dependencies:** ggplot2 <br />
 **Running Instructions:** Rscript Girko.R<br /><br />
 
 
@@ -237,6 +244,7 @@ This README file contains details about the scripts from classwork and practical
 **Summary:** Annotating a plot <br />
 **Input:** Results.txt in data <br />
 **Output:** MyBars.pdf figure in results <br />
+**Dependencies:** ggplot2 <br />
 **Running Instructions:** Rscript MyBars.R<br /><br />
 
 
@@ -244,6 +252,7 @@ This README file contains details about the scripts from classwork and practical
 **Summary:** Mapping intro - creates a world map with points <br />
 **Input:** GPDDFiltered.RData in data <br />
 **Output:** worldmap.pdf in results <br />
+**Dependencies:** maps, ggplot2, mapdata
 **Running Instructions:** Rscript GPDD_Data.R<br /><br />
 
 
