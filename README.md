@@ -60,6 +60,10 @@ Many of the task requirements can be found at https://mhasoba.github.io/TheMulQu
 **Summary:** Introduces various forms of GLMs and explores the statistics from term 1 more in depth. <br />
 **Languages:** R <br />
 
+### Week 16: Ecological Modelling
+---
+
+### Week 17: Evolutionary Modelling
 ---
 ### Feedback
 **Summary:** Contains assessor's feedback of scripts <br />
