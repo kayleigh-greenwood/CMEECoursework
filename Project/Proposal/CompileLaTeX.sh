@@ -1,8 +1,7 @@
 #!/bin/bash
 # Author: Kayleigh Greenwood kg21@imperial.ac.uk
 # Script: CompileLaTeX.sh
-# Description: Compiles latex with bibtex
-#
+# Description: Compiles latex with bibtex for project proposal
 # Outputs: pdf latex file
 # Arguments: 1 (.tex latex code)
 

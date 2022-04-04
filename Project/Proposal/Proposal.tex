@@ -10,6 +10,7 @@
 \usepackage[margin=2cm]{geometry}
 \linenumbers
 \onehalfspacing
+\usepackage{pgfgantt}
 
 
 \begin{document}
@@ -21,16 +22,24 @@
     \vspace*{\fill}
     
     \begin{center}
-        {\Huge How well do different mathematical models based upon population growth (mechanistic) theory vs. phenomenological ones, fit to microbial growth data?}
-    
+        {\Huge Modelling the impact of geography on a sector's biodiversity impact}
+        \\[2in]
+        Author: Kayleigh Greenwood, MSc CMEE (kg21@ic.ac.uk)
         \bigskip
-        Author: Kayleigh Greenwood 
         \newline
-        Internal Supervisor: Dr James Rosindell, Imperial College London (j.rosindell@imperial.ac.uk)
-        \newline
+       Internal Supervisor: Dr James Rosindell, Imperial College London (j.rosindell@imperial.ac.uk)
+       \bigskip
+       \newline
         External Supervisor: Dr Joss Wright, University of Oxford (joss.wright@oii.ox.ac.uk)
+        \bigskip
         \newline
+
         04/04/2022
+        \\[2in]
+        
+        {\bfseries Keywords: Biodiversity, Mathematical Modelling, Geography, Sustainable Investment, News Article Data }
+
+        
 
     \end{center}
     
@@ -40,60 +49,52 @@
 
     \section*{Introduction}
     
+   	Benchmark for Nature is a project at the University of Oxford's Internet Institute, emerging from the global movement towards sustainable business. The project aims to use data science to develop a framework for assessing investment impacts on biodiversity \cite{iccs_2020}, similar to the ESG framework currently in place. The ESG information currently available only assesses an investments' impact on the environment, but not on living nature and biodiversity. The purpose of the project is to better inform investors so that more biodiversity-conscious decisions can be made, in an effort to aid the biodiversity loss crisis \cite{gasu2021review}, and also indirectly, the climate \cite{shin2022actions}.
+   	\newline
+   	\newline
+   	Many indicators have been determined within the project as definitions of how biodiversity impact will be assessed. One question that has been raised is whether these indicators have equal impacts on biodiversity regardless of geography, as is a current assumption. Studies show impacts of socioeconomic status and cultural impacts on biodiversity \cite{kinzig2005effects}. This gives reason to believe that contributors towards biodiversity loss could have varying impacts based on their location. For example, this research question would aim to provide answers for whether investing in a specific sector in one country could have a different impact on biodiversity than investing in the same sector in another country. I will aim to address this question and determine any association between geography and the level of biodiversity impact of a company.
 
-    Microbial growth rates are important to understand in the context of food safety, as there are significant financial and health burdens of foodborne illnesses \cite{daniel2020burden}, \cite{world2015estimates}. It is important to be able to predict microbial growth as accurately as possible in order to reduce these impacts via precise estimates of shelf life and other characteristics of growth \cite{mcmeekin1996shelf}. The standard method for growth prediction used to be null hypothesis testing, however an increasingly popular alternative is mathematical modelling \cite{foegeding1997driving}. Growth models typically contain four phases; lag, exponential, stationary and death. The death phase is typically excluded in the context of food microbiology, as becuase food is almost certainly spoiled or unit by the time this phase begins, it is irrelevant \cite{ross2003modeling}, and therefore will not be considered throughout this paper. This approach consists of fitting various models to data, each representing a separate hypothesis, and using model selection to determine which model its the best. Model fitting is benefcial as it allows multiple hypothesis to be assessed and compared at once, as opposed to only being able to accept or reject a null hypothesis. Levins (1966) highlighted that the ideal model will never be feasbile, forming the basis of the complexity of modelling, and why there is no one uniform population model which spans population biology. Literature on microbial growth rates contains various models with countless combinations of assumptions and techniques. Commonly used empirical models prioritise realism and precision but sacrifce generality. On the other hand, popular general models which prioritise generality and make a trade off with precision.
-    
-    Both empirical and mechanistic models have been used throughout the literature for modelling microbial growth. Initially, empirical models were used which were derived from models outside of the microbial growth sector, such as the Gompertz and Logistic models. However, mechanistic models have since been developed, such as the Baryani model \cite{grijspeerdt1999estimating}. The benefits of recently developed mechanistic models are that the model's parameters have a theoretical basis, however, there will always be doubt around whether the underlying mechanisms that the results rely on are accurate \cite{lopez2004statistical}. This gives empirical models an advantage in that they don't have any risk associated with mechanistic assumptions, and although they have no theoretical basis, it is argued that explanation of a relationship/behaviour isn't necessary in order to predict it, and sometimes getting a prediction as precise as possible is the most important thing.
-    
-    The contrast described above is why neither empirical nor mechanistic models have prevailed over the other. In fitting both types of models to many samples within this dataset, I plan on using various model comparison/selection techniques to identify the strengths and weaknesses of the two modelling approaches in the context of microbial growth rates. By identifying the unique statistical aspects of each model I have aimed to discover if empirical or mechanistic models are best suited to microbial growth hypotheses.
 
     \section*{Methods}
 
-    \subsection*{Data}
-    I used an existing database to model microbial growth rate data in this study. The logistic growth data allowed me to draw conclusions about the studied models' compatibility with microbial growth rates by modelling bacterial abundance as the response variable, against time as the explanatory variable. This explanatory/response dynamic in microbial biology allows conclusions and theories to focus on the extent to which time affects microbial growth, and how big of an effect this is. The data contains measures of bacterial abundance over time, across various combinations of other variables. The dataset comprises 4387 observations across 10 variables, however any entries with negative time or abundance values were excluded, leaving 4294 observations for further analysis. Sample groups were sub-divided according to species, temperature, medium and experiment, resulting in 277 subsets. 
+	Benchmark for nature is working on open-source data from news articles that have been scraped over the past few years. Therefore my project involves no data collection, and I will be working with data that is already available.
+	\newline
+	\newline
+	My project will involve pulling out geographical elements from this data and devising a method that can assess how impacts change based on country. It is important to note that the research question is not about the impact of country on biodiversity, but rather if country can affect the scale of a sector's impact on biodiversity. I will use a generalised linear model, with country as an explanatory variable. The response variable will be specified upon further inspection of the data but will roughly be associated with how often a sector in that country is associated with indicators of biodiversity loss. 
+	
 
+	\clearpage
+	\section*{Outcomes}
+	
+	The main stakeholder in my project is the Benchmark for Nature team, who are interested in the answer to the question I am raising. There has been no work done as of yet within the project to determine geographical differences, therefore the outcome of my project will aid the researchers on the project in their research into geographical effects of investments on biodiversity.
+	
+	Figure 1 shows a timeline of the projects' progress
+	\\[0.5in]
+	\begin{ganttchart}{1}{21}
+		\gantttitle{Figure 1. Project Timeline}{21} \\
+		\gantttitlelist{1,...,21}{1} \\
+		\ganttbar{Decide hypothesis}{1}{1} \\
+		\ganttbar{Read literature}{2}{4} \\
+		\ganttbar{Introduction}{4}{5} \\
+		\ganttbar{Modelling}{6}{15} \\
+		\ganttbar{Methods}{6}{15} \\
+		\ganttbar{Results}{16}{16} \\
+		\ganttbar{Discussion}{17}{19} \\
+		\ganttbar{Finalising Writeup}{19}{21}
+	\end{ganttchart}
+	
 
-    \subsection*{Models}
-    To test the suitability of empirical, linear models for microbial growth rate studies, I used a cubic polynomial. The exponential nature of growth means that the log is normally plotted in order to normalize variance, causing the data to behave in a sigmoidal fashion \cite{zwietering1990modeling}. A cubic polynomial has two peaks, and therefore three separate areas, which is the same amount of distinct areas as a growth curve has when studied in microbial growth, suggesting fitting this model would work well as the shape of a cubic curve resembles the shape of a sigmoidal behaviour of the growth rates. For the representative mechanistic model, i chose to fit the Logistic model. The Logistic model is a non-linear model, which I chose to plot because of it's competitive advantage in the estimation of when the death phase has been reached(the maximum value/carrying capacity). Although the death phase itself is not explicitly relevant to microbial growth, a parameter estimate of carrying capacity as accurate as what this model produces has importance in further analysis abilities. Being able to predict carrying capacity as well as the Logistic Model does means that estimates of other values and parameters beyond this analysis are improved. 
+	\section*{Feasibility}
+	
 
-    \subsection*{Model fitting}
-    I fitted the linear model with ordinary least squares, and used NLLS for the non-linear model. I used the nlsLM function in R to fit the non-linear model, within the minpack.l package. 
+	This project is very feasible, given that the data has already been collected and the question has many gradations of success.
+	\newline
+	There is no data collection involved, therefore no funding is needed for field or lab work. There may be small costs involved for software access, given that this is a desk based project. 
 
-
-    \subsection*{Model selection}
-    For each plotted subset which fit on it both the linear and non-linear modelI used AIC values as a method of comparing the fit of the two models. Given that a lower AIC is better, I will use this and a general rule of an AIC value difference of 2 to signify significant difference, on each plotted subset as an indicator of model fit. Additionally, I used residual sums of squares to determine which model explained the most error for each plotted subset, with lower RSS values indicating that the model accounts for more error in the data than the other model.
-    
-    \subsection*{Computing tools}
-	Due to R being initially formatted as a statistical language, i used R scripts for the majority of my computing, with specialist shell and python scripts for specific tasks. R's syntax made using it for data preparation, model fitting, plotting and analysis more seamless than trying to do similar tasks in Python, and R has especially superior abilities in terms of data visualisation. Despite this, Python's subprocess module made it the perfect vessel through which to run the workflow. Finally, I used bash as a script to aid in the compilation of the LaTeX code by using texcount. 
-    
-
-    % \begin{figure}[H]
-    % \centering
-    % \includegraphics[scale=0.75]{../plots/PlotID146.pdf}
-    % %TC:ignore
-    % \caption{Plot of a cubic polynomial and the logistic model fitted to one of the subsets within the dataset.}
-    % %TC:endignore
-    % \end{figure}
-
-    % \begin{figure}[H]
-    % \centering
-    % \includegraphics[scale=0.5]{../results/AIC.pdf}
-    % %TC:ignore
-    % \caption{AIC values of subsets}
-    % %TC:endignore
-    % \end{figure}
-
-    %    \begin{figure}[H]
-    % \centering
-    % \includegraphics[scale=0.5]{../results/RSS.pdf}
-    % %TC:ignore
-    % \caption{RSS values for subsets}
-    % %TC:endignore
-    % \end{figure}
 
 
     \clearpage
     \bibliographystyle{apalike}
 
-    \bibliography{ReportBiblio}
+    \bibliography{Proposal}
 \end{document}
