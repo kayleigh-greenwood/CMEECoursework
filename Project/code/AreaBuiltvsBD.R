@@ -1,27 +1,27 @@
-# comparing change in climate and BD over time by country
+# Comparing biodiversity trends with trends of land use change ( built up areas)
+
 setwd("~/CMEECoursework/Project/code")
 rm(list=ls())
 
 #read in BD and climate data
-countryBD<- readRDS("../data/RawDataFiles/NHMBiodiversityData/countryBD.RDS")
-countryClimate<- readRDS("../data/RawDataFiles/WorldBankClimateData/countryclimate.RDS")
+countryBD <- readRDS("../data/RawDataFiles/NHMBiodiversityData/countryBD.RDS")
+countryBuilt <- readRDS("../data/RawDataFiles/LandUseBuiltUp/countrybuilt.RDS")
 
-# countryBD only has 18 years of data, countryClimate has 120
-# create subset of countryClimate that has same 18 years as countryBD
-countryClimate <- countryClimate[(c(colnames(countryBD)))]
+#match years of data
+countryBD <- countryBD[(c(intersect(colnames(countryBD), colnames(countryBuilt))))]
+countryBuilt <- countryBuilt[(c(intersect(colnames(countryBD), colnames(countryBuilt))))]
 
 # remove rows with NAs
 countryBD <- na.omit(countryBD)
-countryClimate<- na.omit(countryClimate)
+countryBuilt <- na.omit(countryBuilt)
 
 # make sure a country is only included in either table if it is present in both
-matchingcountrys <- intersect(row.names(countryBD),row.names(countryClimate))
+matchingcountrys <- intersect(row.names(countryBD),row.names(countryBuilt))
 
 countryBD <- countryBD[rownames(countryBD) %in% matchingcountrys, ]
-countryClimate <- countryClimate[rownames(countryClimate) %in% matchingcountrys, ]
+countryBuilt <- countryBuilt[rownames(countryBuilt) %in% matchingcountrys, ]
 
-#this leaves 158 countries
-################
+#leaves 175 countries
 
 #create results data frame
 resultsDF <- data.frame(matchingcountrys)
@@ -36,45 +36,56 @@ resultsDF$corr <- NA
 for (country in seq_along(matchingcountrys)){
   
   BDvalues <- as.numeric(as.vector(countryBD[country,]))
-  Climatevalues <- as.numeric(as.vector(countryClimate[country,]))
+  Builtvalues <- as.numeric(as.vector(countryBuilt[country,]))
   
   #myDF <- data.frame(colnames(countryBD), BD, Climate)
   
   # fit model
-  model <- (lm(BDvalues~Climatevalues))
+  model <- (lm(BDvalues~Builtvalues))
+  
+  #plot models
+  #plot(x=Builtvalues, y=BDvalues)
+  #abline(model)
   
   #check if p value is below 0.05 (make sure )
   if (as.numeric(summary(model)$coefficients[,4][2]) < 0.05){
-    
+    # REMEMBER TO ADD THIS P VALUE SIGNIFICANCE BACK IN
     #add correlation result to results data frame
     resultsDF$corr[country] <- as.numeric(model[[1]][2])
   }
   
-  #remove unnecessary variables
 }
 
+########  I DON'T THINK IT WORKS BECAUSE THERE ARE ONLY THREE DATA POINTS FOR EACH COUNTRY AND THEREFORE NOT ENOUGH DEGREES OF FREEDOM
+
 #remove unnecessary variables from loop
-rm(list=c("BDvalues", "Climatevalues","model", "country"))
+rm(list=c("BDvalues", "Builtvalues","model", "country"))
 
 #remove NAs where p value wasn't significant
 resultsDF <- na.omit(resultsDF)
 
-#leaves 88 countries from 158 (50%)
 
-# get number of continents and regions in this sample, this will be k
+#leaves us with 1 country
 
+
+
+#visualize
+
+resultsDF$ID <- 1:175
+plot(x=resultsDF$ID,y=resultsDF$corr)
+
+
+#add in continents and regions
 library(countrycode)
 resultsDF$continent <- countrycode(sourcevar = row.names(resultsDF),
-                          origin = "country.name",
-                          destination = "continent")
+                                   origin = "country.name",
+                                   destination = "continent")
 resultsDF$region <- countrycode(sourcevar = row.names(resultsDF),
-                          origin = "country.name",
-                          destination = "region")
-
+                                origin = "country.name",
+                                destination = "region")
 
 ####### try clustering by continent
 
-#library(ClusterR) ? do i need this?
 library(cluster)
 numcontinents <- length(unique(resultsDF$continent))
 kvals <- kmeans(resultsDF$corr, numcontinents)
@@ -90,7 +101,7 @@ rm(cluster)
 
 #visualize
 
-resultsDF$ID <- 1:88
+resultsDF$ID <- 1:175
 plot(x=resultsDF$ID,y=resultsDF$corr, col=factor(resultsDF$continent))
 
 require(ggplot2)
@@ -98,30 +109,6 @@ qplot(resultsDF$continent, resultsDF$corr)
 qplot(resultsDF$continent, resultsDF$corr, 
       geom=c("boxplot"))
 
-
-####### try clustering by region
-
-numregions <- length(unique(resultsDF$region))
-kvals <- kmeans(resultsDF$corr, numregions)
-rm(numregions)
-resultsDF$regioncluster <- as.numeric(kvals$cluster)
-
-#print regions in clusters
-
-for (cluster in 1:6){
-  print(table(resultsDF[resultsDF$regioncluster == cluster, "region"]))
-}
-rm(cluster)
-
-#visualize
-
-plot(x=resultsDF$ID,y=resultsDF$corr, col=factor(resultsDF$region))
-
-
-require(ggplot2)
-qplot(resultsDF$region, resultsDF$corr)
-qplot(resultsDF$region, resultsDF$corr, 
-      geom=c("boxplot"))
 
 
 ##############################
