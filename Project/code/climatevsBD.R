@@ -1,5 +1,7 @@
 # comparing change in climate and BD over time by country
 setwd("~/CMEECoursework/Project/code")
+
+
 rm(list=ls())
 
 #read in BD and climate data
@@ -23,6 +25,158 @@ countryClimate <- countryClimate[rownames(countryClimate) %in% matchingcountrys,
 #this leaves 158 countries
 ################
 
+
+##### method that makes one model of all countries ####
+
+# first put all data in the same  table such that the data points could be plotted where continent is a different colour
+
+# make row names into a column
+library(tibble)
+countryBD2 <- tibble::rownames_to_column(countryBD, "country")
+countryClimate2 <- tibble::rownames_to_column(countryClimate, "country")
+
+# pivot both longer
+library(tidyr)
+countryClimate2 <- pivot_longer(countryClimate2, -c(country), values_to = "Climate", names_to = "Year")
+countryBD2 <- pivot_longer(countryBD2, -c(country), values_to = "Biodiversity", names_to = "Year")
+
+
+# create data frame that contains all data points
+alldata <- merge(countryClimate2, countryBD2, by=c("country", "Year"))
+
+#add continent
+
+library(countrycode)
+alldata$Continent <- countrycode(sourcevar = alldata$country,
+                                   origin = "country.name",
+                                   destination = "continent")
+alldata$Region <- countrycode(sourcevar = alldata$country,
+                              origin = "country.name",
+                              destination = "region")
+# this adds north and south america as 'the americas' so i must separate:
+
+for (row in 1:nrow(alldata)){
+    if (alldata[row, 6]=='Latin America & Caribbean'){
+      alldata[row, 5] <- 'South America'
+    }
+}
+
+alldata$Continent <- replace(alldata$Continent, alldata$Continent=='Americas', 'North America')
+
+for (row in 1:nrow(alldata)){
+  if (alldata[row, 5]=='North America'){
+    alldata[row, 6] <- 'North America'
+  }
+}
+
+#change continent  and region to factor so i can plot it as colours
+alldata$Continent <-  as.factor(alldata$Continent)
+alldata$Region <-  as.factor(alldata$Region)
+
+
+# plot continents
+cols = c('deeppink', 'deepskyblue', 'darkorange', 'darkorchid','chartreuse', 'darkgreen')
+plot(alldata$Climate, alldata$Biodiversity, col=cols[alldata$Continent])
+
+legend(-15,0.6, sort(unique(alldata$Continent)),col=cols,pch=1)
+
+# plot continents separately to visualise
+
+print(levels(as.factor(alldata$Continent)))
+
+ggplot(alldata, aes(x = Climate, y = Biodiversity, Continent)) +
+  geom_point(size = 4, shape = 4) +
+  geom_point(data = ~filter(.x, Continent == "Africa"), colour = "red") +
+  labs(title = "Africa")
+
+ggplot(alldata, aes(x = Climate, y = Biodiversity, Continent)) +
+  geom_point(size = 4, shape = 4) +
+  geom_point(data = ~filter(.x, Continent == "Asia"), colour = "red") +
+  labs(title = "Asia")
+
+ggplot(alldata, aes(x = Climate, y = Biodiversity, Continent)) +
+  geom_point(size = 4, shape = 4) +
+  geom_point(data = ~filter(.x, Continent == "Europe"), colour = "red") +
+  labs(title = "Europe")
+
+ggplot(alldata, aes(x = Climate, y = Biodiversity, Continent)) +
+  geom_point(size = 4, shape = 4) +
+  geom_point(data = ~filter(.x, Continent == "North America"), colour = "red") +
+  labs(title = "North America")
+
+ggplot(alldata, aes(x = Climate, y = Biodiversity, Continent)) +
+  geom_point(size = 4, shape = 4) +
+  geom_point(data = ~filter(.x, Continent == "Oceania"), colour = "red") +
+  labs(title = "Oceania")
+
+ggplot(alldata, aes(x = Climate, y = Biodiversity, Continent)) +
+  geom_point(size = 4, shape = 4) +
+  geom_point(data = ~filter(.x, Continent == "South America"), colour = "red") +
+  labs(title = "South America")
+
+
+
+# plot regions
+cols = c('deepskyblue', 'darkorange', 'darkgreen','chartreuse', 'darkorchid', 'darkgoldenrod1', 'deeppink')
+plot(alldata$Climate, alldata$Biodiversity, col=cols[alldata$Region])
+
+legend(-18,0.6, sort(unique(alldata$Region)),col=cols,pch=1)
+
+# plot regions separately (to visualise)
+library(ggplot2)
+library(dplyr)
+
+print(levels(as.factor(alldata$Region)))
+
+
+ggplot(alldata, aes(x = Climate, y = Biodiversity, Region)) +
+  geom_point(size = 4, shape = 4) +
+  geom_point(data = ~filter(.x, Region == "East Asia & Pacific"), colour = "red") +
+  labs(title = "East asia & Pacific")
+
+ggplot(alldata, aes(x = Climate, y = Biodiversity, Region)) +
+  geom_point(size = 4, shape = 4) +
+  geom_point(data = ~filter(.x, Region == "Europe & Central Asia"), colour = "red") +
+  labs(title = "Europe & Central Asia")
+
+ggplot(alldata, aes(x = Climate, y = Biodiversity, Region)) +
+  geom_point(size = 4, shape = 4) +
+  geom_point(data = ~filter(.x, Region == "Latin America & Caribbean"), colour = "red") +
+  labs(title = "Latin America & Caribbean")
+
+ggplot(alldata, aes(x = Climate, y = Biodiversity, Region)) +
+  geom_point(size = 4, shape = 4) +
+  geom_point(data = ~filter(.x, Region == "Middle East & North Africa"), colour = "red") +
+  labs(title = "Middle East & North Africa")
+
+ggplot(alldata, aes(x = Climate, y = Biodiversity, Region)) +
+  geom_point(size = 4, shape = 4) +
+  geom_point(data = ~filter(.x, Region == "North America"), colour = "red") +
+  labs(title = "North America")
+
+ggplot(alldata, aes(x = Climate, y = Biodiversity, Region)) +
+  geom_point(size = 4, shape = 4) +
+  geom_point(data = ~filter(.x, Region == "South Asia"), colour = "red") +
+  labs(title = "South Asia")
+
+ggplot(alldata, aes(x = Climate, y = Biodiversity, Region)) +
+  geom_point(size = 4, shape = 4) +
+  geom_point(data = ~filter(.x, Region == "Sub-Saharan Africa"), colour = "red") +
+  labs(title = "Sub-Saharan Africa")
+
+
+
+
+
+# time to create a model !!
+singlemodel <- lm(Biodiversity~Climate, data = alldata)
+
+
+
+
+
+
+###### method of assessing each country as its own linear model ######
 #create results data frame
 resultsDF <- data.frame(matchingcountrys)
 
