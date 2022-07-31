@@ -169,7 +169,19 @@ ggplot(alldata, aes(x = Climate, y = Biodiversity, Region)) +
 
 
 # time to create a model !!
-singlemodel <- lm(Biodiversity~Climate, data = alldata)
+
+# create new dataset for dummy variables
+dummydata <- data.frame(alldata$Climate, alldata$Biodiversity, alldata$Continent)
+colnames(dummydata) <- c('Climate', 'Biodiversity', 'Continent')
+
+# install.packages('fastDummies')
+library(fastDummies)
+dummydata <- dummy_cols(dummydata, select_columns = 'Continent')
+
+
+
+# create model
+model <- lm(Biodiversity~Climate, data = alldata)
 
 
 

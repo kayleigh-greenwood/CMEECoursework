@@ -115,9 +115,15 @@
 	
 	Each data set has data from a different combination of years, and countries. For each pressure being investigated, only data from years and countries that are shared between that particular dataset and the biodiversity dataset is included. \newline
 	
-	For each pressure, the datasets were wrangled and refined to obtain two time series (at an annual level) for each country; biodiversity and the magnitude of the particular pressure. For each country, a linear model was fit with biodiversity as the response variable, and the biodiversity pressure (e.g. pollution) as the explanatory variable. For those countries where the gradient was found to be statistically significant (p<0.05), the gradient was recorded as a 'sensitivity score'. This sensitivity score is representative of the sensitivity of that country's biodiversity, to the particular biodiversity pressure (e.g., sensitivity of Spain's biodiversity to one unit of pollution) \newline
+	For each pressure, the datasets were wrangled and refined to obtain two time series (at an annual level) for each country; biodiversity and the magnitude of the particular pressure. 
 	
-	Sensitivity scores were then used to visualise the differences between countries. (I could insert a map with a colour scale representing the sensitivity score values from different countries) \newline
+	# old method For each country, a linear model was fit with biodiversity as the response variable, and the biodiversity pressure (e.g. pollution) as the explanatory variable. For those countries where the gradient was found to be statistically significant (p<0.05), the gradient was recorded as a 'sensitivity score'. This sensitivity score is representative of the sensitivity of that country's biodiversity, to the particular biodiversity pressure (e.g., sensitivity of Spain's biodiversity to one unit of pollution) \newline
+	
+	# old method Sensitivity scores were then used to visualise the differences between countries. (I could insert a map with a colour scale representing the sensitivity score values from different countries) \newline
+	
+	# new method. The data for all countries was pooled into one dataset, and a column added for continent. Because assessing differences in each country would remove too many degrees of freedom, differences between the sensitivities of continents were assessed. 
+	
+	
 	
 	\subsection*{Multi-Pressure Model}
 	
