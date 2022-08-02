@@ -1,33 +1,48 @@
 # comparing change in climate and BD over time by country
+
+#################################################################################################################################################
+## SET UP WORKSPACE ##
+#################################################################################################################################################
+
 setwd("~/CMEECoursework/Project/code")
-
-
 rm(list=ls())
 
-#read in BD and climate data
+#################################################################################################################################################
+## IMPORT DATA ##
+#################################################################################################################################################
 countryBD<- readRDS("../data/RawDataFiles/NHMBiodiversityData/countryBD.RDS")
 countryClimate<- readRDS("../data/RawDataFiles/WorldBankClimateData/countryclimate.RDS")
 
-# countryBD only has 18 years of data, countryClimate has 120
-# create subset of countryClimate that has same 18 years as countryBD
+#################################################################################################################################################
+## WRANGLE DATASETS  ##
+#################################################################################################################################################
+
+# match up timeframes in datasets
 countryClimate <- countryClimate[(c(colnames(countryBD)))]
+# countryBD only has 18 years of data, countryClimate has 120
+# create subset of countryClimate that has same 18 years as countryBD (consider using another biodiversity dataset)
 
 # remove rows with NAs
 countryBD <- na.omit(countryBD)
 countryClimate<- na.omit(countryClimate)
 
-# make sure a country is only included in either table if it is present in both
+# Match up countrys in datasets
 matchingcountrys <- intersect(row.names(countryBD),row.names(countryClimate))
+# make sure a country is only included in either table if it is present in both
 
 countryBD <- countryBD[rownames(countryBD) %in% matchingcountrys, ]
 countryClimate <- countryClimate[rownames(countryClimate) %in% matchingcountrys, ]
 
 #this leaves 158 countries
-################
 
+#################################################################################################################################################
+## METHOD 1 ##
+#################################################################################################################################################
+# method that makes one model of all countries
 
-##### method that makes one model of all countries ####
-
+#######################
+## MERGE DATAFRAMES ##
+#######################
 # first put all data in the same  table such that the data points could be plotted where continent is a different colour
 
 # make row names into a column
@@ -35,17 +50,15 @@ library(tibble)
 countryBD2 <- tibble::rownames_to_column(countryBD, "country")
 countryClimate2 <- tibble::rownames_to_column(countryClimate, "country")
 
-# pivot both longer
+# pivot both dataframes longer
 library(tidyr)
 countryClimate2 <- pivot_longer(countryClimate2, -c(country), values_to = "Climate", names_to = "Year")
 countryBD2 <- pivot_longer(countryBD2, -c(country), values_to = "Biodiversity", names_to = "Year")
 
-
-# create data frame that contains all data points
+# merge data frames into one
 alldata <- merge(countryClimate2, countryBD2, by=c("country", "Year"))
 
-#add continent
-
+#add continent and region
 library(countrycode)
 alldata$Continent <- countrycode(sourcevar = alldata$country,
                                    origin = "country.name",
@@ -53,8 +66,8 @@ alldata$Continent <- countrycode(sourcevar = alldata$country,
 alldata$Region <- countrycode(sourcevar = alldata$country,
                               origin = "country.name",
                               destination = "region")
-# this adds north and south america as 'the americas' so i must separate:
 
+# this adds north and south america as 'the americas' so i must separate:
 for (row in 1:nrow(alldata)){
     if (alldata[row, 6]=='Latin America & Caribbean'){
       alldata[row, 5] <- 'South America'
@@ -69,10 +82,13 @@ for (row in 1:nrow(alldata)){
   }
 }
 
-#change continent  and region to factor so i can plot it as colours
+####################
+## VISUALISE DATA ##
+####################
+
+#change continent  and region to factor so i can plot them as colors
 alldata$Continent <-  as.factor(alldata$Continent)
 alldata$Region <-  as.factor(alldata$Region)
-
 
 # plot continents
 cols = c('deeppink', 'deepskyblue', 'darkorange', 'darkorchid','chartreuse', 'darkgreen')
@@ -80,8 +96,7 @@ plot(alldata$Climate, alldata$Biodiversity, col=cols[alldata$Continent])
 
 legend(-15,0.6, sort(unique(alldata$Continent)),col=cols,pch=1)
 
-# plot continents separately to visualise
-
+# plot continents separately 
 print(levels(as.factor(alldata$Continent)))
 
 ggplot(alldata, aes(x = Climate, y = Biodiversity, Continent)) +
@@ -170,18 +185,75 @@ ggplot(alldata, aes(x = Climate, y = Biodiversity, Region)) +
 
 # time to create a model !!
 
-# create new dataset for dummy variables
-dummydata <- data.frame(alldata$Climate, alldata$Biodiversity, alldata$Continent)
-colnames(dummydata) <- c('Climate', 'Biodiversity', 'Continent')
-
-# install.packages('fastDummies')
-library(fastDummies)
-dummydata <- dummy_cols(dummydata, select_columns = 'Continent')
+# # create new dataset for dummy variables
+# dummydata <- data.frame(alldata$Climate, alldata$Biodiversity, alldata$Continent)
+# colnames(dummydata) <- c('Climate', 'Biodiversity', 'Continent')
+# 
+# # install.packages('fastDummies')
+# library(fastDummies)
+# dummydata <- dummy_cols(dummydata, select_columns = 'Continent', remove_first_dummy = TRUE)
 
 
 
 # create model
-model <- lm(Biodiversity~Climate, data = alldata)
+# Africa is reference category 
+model <- lm(Biodiversity~Climate*Continent, data = alldata)
+
+# plot continents
+cols = c('deeppink', 'deepskyblue', 'darkorange', 'darkorchid','chartreuse', 'darkgreen')
+plot(alldata$Climate, alldata$Biodiversity, col=cols[alldata$Continent])
+
+legend(-15,0.6, sort(unique(alldata$Continent)),col=cols,pch=1)
+
+#install.packages('car')
+library(car)
+avPlots(model)
+
+# install.packages('lsmeans')
+library(lsmeans)
+
+# get gradients
+slopes <- lstrends(model, "Continent", var = "Climate")
+
+# make plot with a level for each continent
+library('plotly')
+library('viridis')
+library('broom')
+
+
+plotly_interaction <- function(data, x, y, category, colors = col2rgb(viridis(nlevels(as.factor(data[[category]])))), ...) {
+  # Create Plotly scatter plot of x vs y, with separate lines for each level of the categorical variable. 
+  # In other words, create an interaction scatter plot.
+  # The "colors" must be supplied in a RGB triplet, as produced by col2rgb().
+  
+  require(plotly)
+  require(viridis)
+  require(broom)
+  
+  groups <- unique(data[[category]])
+  
+  p <- plot_ly(...)
+  
+  for (i in 1:length(groups)) {
+    print(i)
+    groupData = data[which(data[[category]]==groups[[i]]), ]
+    p <- add_lines(p, data = groupData,
+                   y = fitted(lm(data = groupData, groupData[[y]] ~ groupData[[x]])),
+                   x = groupData[[x]],
+                   line = list(color = paste('rgb', '(', paste(colors[, i], collapse = ", "), ')')),
+                   name = groups[[i]],
+                   showlegend = FALSE)
+    p <- add_markers(p, data = groupData,
+                     x = groupData[[x]],
+                     y = groupData[[y]],
+                     # symbol = groupData[[category]],
+                     marker = list(color=paste('rgb','(', paste(colors[, i], collapse = ", "))))
+  }
+  p <- layout(p, xaxis = list(title = x), yaxis = list(title = y))
+  return(p)
+}
+
+plotly_interaction(alldata, "Climate", "Biodiversity", "Continent")
 
 
 

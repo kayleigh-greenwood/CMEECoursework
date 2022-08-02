@@ -121,7 +121,7 @@
 	
 	# old method Sensitivity scores were then used to visualise the differences between countries. (I could insert a map with a colour scale representing the sensitivity score values from different countries) \newline
 	
-	# new method. The data for all countries was pooled into one dataset, and a column added for continent. Because assessing differences in each country would remove too many degrees of freedom, differences between the sensitivities of continents were assessed. 
+	# new method. The data for all countries was pooled into one dataset, and a column added for continent. Because assessing differences in each country would remove too many degrees of freedom, differences between the sensitivities of continents were assessed. A multiple linear model was created for each pressure. Continent was coded as a factor, in order for R to treat it as a dummy variable. The alphabetically first continent acting as the reference variable (usually Africa), in order to avoid multicollinearity. So that the slopes of each continent could be compared, interactions were also added between continent and the climate
 	
 	
 	
