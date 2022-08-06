@@ -1,11 +1,23 @@
 # Comparing biodiversity trends with trends of land use change ( built up areas)
 
+#################################################################################################################################################
+## SET UP WORKSPACE ##
+#################################################################################################################################################
+
 setwd("~/CMEECoursework/Project/code")
 rm(list=ls())
+
+#################################################################################################################################################
+## IMPORT DATA ##
+#################################################################################################################################################
 
 #read in BD and climate data
 countryBD <- readRDS("../data/RawDataFiles/NHMBiodiversityData/countryBD.RDS")
 countryBuilt <- readRDS("../data/RawDataFiles/LandUseBuiltUp/countrybuilt.RDS")
+
+#################################################################################################################################################
+## WRANGLE DATASETS  ##
+#################################################################################################################################################
 
 #match years of data
 countryBD <- countryBD[(c(intersect(colnames(countryBD), colnames(countryBuilt))))]
@@ -22,6 +34,132 @@ countryBD <- countryBD[rownames(countryBD) %in% matchingcountrys, ]
 countryBuilt <- countryBuilt[rownames(countryBuilt) %in% matchingcountrys, ]
 
 #leaves 175 countries
+
+#################################################################################################################################################
+## METHOD 1 ##
+#################################################################################################################################################
+# method that makes one model of all countries
+
+#######################
+## PREPARE AND MERGE DATAFRAMES ##
+#######################
+# first put all data in the same  table such that the data points could be plotted where continent is a different colour
+
+# make row names into a column
+library(tibble)
+countryBD2 <- tibble::rownames_to_column(countryBD, "country")
+countryBuilt2 <- tibble::rownames_to_column(countryBuilt, "country")
+
+# pivot both dataframes longer
+library(tidyr)
+countryBuilt2 <- pivot_longer(countryBuilt2, -c(country), values_to = "built", names_to = "Year")
+countryBD2 <- pivot_longer(countryBD2, -c(country), values_to = "Biodiversity", names_to = "Year")
+
+# merge data frames into one
+alldata <- merge(countryBuilt2, countryBD2, by=c("country", "Year"))
+
+#add continent and region
+library(countrycode)
+alldata$Continent <- countrycode(sourcevar = alldata$country,
+                                 origin = "country.name",
+                                 destination = "continent")
+alldata$Region <- countrycode(sourcevar = alldata$country,
+                              origin = "country.name",
+                              destination = "region")
+
+# this adds north and south america as 'the americas' so i must separate:
+for (row in 1:nrow(alldata)){
+  if (alldata[row, 6]=='Latin America & Caribbean'){
+    alldata[row, 5] <- 'South America'
+  }
+}
+
+alldata$Continent <- replace(alldata$Continent, alldata$Continent=='Americas', 'North America')
+
+for (row in 1:nrow(alldata)){
+  if (alldata[row, 5]=='North America'){
+    alldata[row, 6] <- 'North America'
+  }
+}
+
+
+#change continent  and region to factor so i can plot them as colors
+alldata$Continent <-  as.factor(alldata$Continent)
+alldata$Region <-  as.factor(alldata$Region)
+
+# plot continents
+cols = c('deeppink', 'deepskyblue', 'darkorange', 'darkorchid','chartreuse', 'darkgreen')
+plot(alldata$built, alldata$Biodiversity, col=cols[alldata$Continent])
+
+legend(25000,0.55, sort(unique(alldata$Continent)),col=cols,pch=1)
+
+
+##################
+## CREATE MODEL ##
+##################
+
+model <- lm(Biodiversity~built*Continent, data = alldata)
+
+################
+## PLOT MODEL ##
+################
+
+plotly_interaction <- function(data, x, y, category, colors = col2rgb(viridis(nlevels(as.factor(data[[category]])))), ...) {
+  # Create Plotly scatter plot of x vs y, with separate lines for each level of the categorical variable. 
+  # In other words, create an interaction scatter plot.
+  # The "colors" must be supplied in a RGB triplet, as produced by col2rgb().
+  
+  require(plotly)
+  require(viridis)
+  require(broom)
+  
+  groups <- unique(data[[category]])
+  
+  p <- plot_ly(...)
+  
+  for (i in 1:length(groups)) {
+    groupData = data[which(data[[category]]==groups[[i]]), ]
+    p <- add_lines(p, data = groupData,
+                   y = fitted(lm(data = groupData, groupData[[y]] ~ groupData[[x]])),
+                   x = groupData[[x]],
+                   line = list(color = paste('rgb', '(', paste(colors[, i], collapse = ", "), ')')),
+                   name = groups[[i]],
+                   showlegend = TRUE)
+    p <- add_markers(p, data = groupData,
+                     x = groupData[[x]],
+                     y = groupData[[y]],
+                     marker = list(color=paste('rgb','(', paste(colors[, i], collapse = ", "))),
+                     showlegend = FALSE)
+  }
+  p <- layout(p, xaxis = list(title = x), yaxis = list(title = y))
+  return(p)
+}
+
+plotly_interaction(alldata, "built", "Biodiversity", "Continent")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+################################################################################################################################################
+## METHOD 2 ##
+################################################################################################################################################
+# method of assessing each country as its own linear model
 
 #create results data frame
 resultsDF <- data.frame(matchingcountrys)

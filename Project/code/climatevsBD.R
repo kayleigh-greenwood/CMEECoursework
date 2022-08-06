@@ -10,6 +10,7 @@ rm(list=ls())
 #################################################################################################################################################
 ## IMPORT DATA ##
 #################################################################################################################################################
+
 countryBD<- readRDS("../data/RawDataFiles/NHMBiodiversityData/countryBD.RDS")
 countryClimate<- readRDS("../data/RawDataFiles/WorldBankClimateData/countryclimate.RDS")
 
@@ -41,7 +42,7 @@ countryClimate <- countryClimate[rownames(countryClimate) %in% matchingcountrys,
 # method that makes one model of all countries
 
 #######################
-## MERGE DATAFRAMES ##
+## PREPARE AND MERGE DATAFRAMES ##
 #######################
 # first put all data in the same  table such that the data points could be plotted where continent is a different colour
 
@@ -82,13 +83,15 @@ for (row in 1:nrow(alldata)){
   }
 }
 
-####################
-## VISUALISE DATA ##
-####################
 
 #change continent  and region to factor so i can plot them as colors
 alldata$Continent <-  as.factor(alldata$Continent)
 alldata$Region <-  as.factor(alldata$Region)
+
+####################
+## VISUALISE DATA ##
+####################
+
 
 # plot continents
 cols = c('deeppink', 'deepskyblue', 'darkorange', 'darkorchid','chartreuse', 'darkgreen')
@@ -180,10 +183,9 @@ ggplot(alldata, aes(x = Climate, y = Biodiversity, Region)) +
   labs(title = "Sub-Saharan Africa")
 
 
-
-
-
-# time to create a model !!
+##################
+## CREATE MODEL ##
+##################
 
 # # create new dataset for dummy variables
 # dummydata <- data.frame(alldata$Climate, alldata$Biodiversity, alldata$Continent)
@@ -192,12 +194,14 @@ ggplot(alldata, aes(x = Climate, y = Biodiversity, Region)) +
 # # install.packages('fastDummies')
 # library(fastDummies)
 # dummydata <- dummy_cols(dummydata, select_columns = 'Continent', remove_first_dummy = TRUE)
+# realised I didn't need to do this as R treatse factors as dummy variables
 
-
-
-# create model
 # Africa is reference category 
 model <- lm(Biodiversity~Climate*Continent, data = alldata)
+
+################
+## PLOT MODEL ##
+################
 
 # plot continents
 cols = c('deeppink', 'deepskyblue', 'darkorange', 'darkorchid','chartreuse', 'darkgreen')
@@ -235,19 +239,18 @@ plotly_interaction <- function(data, x, y, category, colors = col2rgb(viridis(nl
   p <- plot_ly(...)
   
   for (i in 1:length(groups)) {
-    print(i)
     groupData = data[which(data[[category]]==groups[[i]]), ]
     p <- add_lines(p, data = groupData,
                    y = fitted(lm(data = groupData, groupData[[y]] ~ groupData[[x]])),
                    x = groupData[[x]],
                    line = list(color = paste('rgb', '(', paste(colors[, i], collapse = ", "), ')')),
                    name = groups[[i]],
-                   showlegend = FALSE)
+                   showlegend = TRUE)
     p <- add_markers(p, data = groupData,
                      x = groupData[[x]],
                      y = groupData[[y]],
-                     # symbol = groupData[[category]],
-                     marker = list(color=paste('rgb','(', paste(colors[, i], collapse = ", "))))
+                     marker = list(color=paste('rgb','(', paste(colors[, i], collapse = ", "))),
+                     showlegend = FALSE)
   }
   p <- layout(p, xaxis = list(title = x), yaxis = list(title = y))
   return(p)
@@ -255,12 +258,14 @@ plotly_interaction <- function(data, x, y, category, colors = col2rgb(viridis(nl
 
 plotly_interaction(alldata, "Climate", "Biodiversity", "Continent")
 
+################################################################################################################################################
+## METHOD 2 ##
+################################################################################################################################################
+# method of assessing each country as its own linear model
 
-
-
-
-
-###### method of assessing each country as its own linear model ######
+##################################
+## PREPARE AND MERGE DATAFRAMES ##
+##################################
 #create results data frame
 resultsDF <- data.frame(matchingcountrys)
 
@@ -269,8 +274,11 @@ row.names(resultsDF) <- matchingcountrys
 resultsDF <- resultsDF[-1]
 resultsDF$corr <- NA
 
-# loop through countrys and find significant correlation coefficients
+###############################
+## OBTAIN SENSITIVITY SCORES ##
+###############################
 
+# loop through countrys and find significant correlation coefficients
 for (country in seq_along(matchingcountrys)){
   
   BDvalues <- as.numeric(as.vector(countryBD[country,]))
@@ -288,8 +296,6 @@ for (country in seq_along(matchingcountrys)){
     #add correlation result to results data frame
     resultsDF$corr[country] <- as.numeric(model[[1]][2])
   }
-  
-  #remove unnecessary variables
 }
 
 #remove unnecessary variables from loop
@@ -297,11 +303,9 @@ rm(list=c("BDvalues", "Climatevalues","model", "country"))
 
 #remove NAs where p value wasn't significant
 resultsDF <- na.omit(resultsDF)
-
 #leaves 88 countries from 158 (50%)
 
-# get number of continents and regions in this sample, this will be k
-
+# get continents and region
 library(countrycode)
 resultsDF$continent <- countrycode(sourcevar = row.names(resultsDF),
                           origin = "country.name",
@@ -310,10 +314,12 @@ resultsDF$region <- countrycode(sourcevar = row.names(resultsDF),
                           origin = "country.name",
                           destination = "region")
 
-########### visualise results
-install.packages(c("cowplot", "googleway", "ggplot2", "ggrepel", "ggspatial", "libwgeom", "sf", "rnaturalearth", "rnaturalearthdata"))
-install.packages("classInt")
-install.packages('sf') #if this isn't working, try 'sudo apt install libudunits2-dev' in terminal
+##################################
+## VISUALISE SENSITIVITY SCORES ##
+##################################
+# install.packages(c("cowplot", "googleway", "ggplot2", "ggrepel", "ggspatial", "libwgeom", "sf", "rnaturalearth", "rnaturalearthdata"))
+# install.packages("classInt")
+# install.packages('sf') #if this isn't working, try 'sudo apt install libudunits2-dev' in terminal
 library("ggplot2")
 theme_set(theme_bw())
 library("sf") 
@@ -344,7 +350,9 @@ map <- ggplot(mapdata, aes(x = long, y = lat, group = group)) +
 map <- map + scale_fill_gradient(name = "Sensitivity Score", low = "red", high = "green", na.value = "grey50")
 map
 
-
+################
+## CLUSTERING ##
+################
 ####### try clustering by continent
 
 #library(ClusterR) ? do i need this?
@@ -397,9 +405,9 @@ qplot(resultsDF$region, resultsDF$corr,
       geom=c("boxplot"))
 
 
-##############################
-# check if latitude correlates
-##############################
+##########################################################
+## CHECK IF LATITUDE CORRELATES WITH SENSITIVITY SCORES ##
+##########################################################
 
 # import latitude data
 countrylatitude <- readRDS("../data/RawDataFiles/latitudeData/countrylatitude.RDS")
