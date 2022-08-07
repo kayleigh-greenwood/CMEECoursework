@@ -20,20 +20,24 @@ countryInvasive <- readRDS("../data/RawDataFiles/invasivespecies/countryinvasive
 #################################################################################################################################################
 
 #match years of data
-countryBD <- countryBD[(c(intersect(colnames(countryBD), countryInvasive$FirstRecord)))]
-countryInvasive <- countryInvasive[(c(intersect(colnames(countryBD), colnames(countryInvasive))))]
+matchedyears <- c(intersect(colnames(countryBD), countryInvasive$FirstRecord))
+countryInvasive <- subset(countryInvasive, FirstRecord %in% matchedyears)
 
-# remove rows with NAs
+# remove rows with NAs (might be pointless because i changed the way i match years in this script)
 countryBD <- na.omit(countryBD)
 countryInvasive <- na.omit(countryInvasive)
 
 # make sure a country is only included in either table if it is present in both
-matchingcountrys <- intersect(row.names(countryBD),row.names(countryInvasive))
+matchingcountrys <- intersect(row.names(countryBD), countryInvasive$country)
 
 countryBD <- countryBD[rownames(countryBD) %in% matchingcountrys, ]
-countryInvasive <- countryInvasive[rownames(countryInvasive) %in% matchingcountrys, ]
+countryInvasive <- subset(countryInvasive, country %in% matchingcountrys) 
 
-#leaves 43 countries
+# check countrys matched and above method worked
+levels(as.factor(countryInvasive$country))==row.names(countryBD)
+nrow(countryBD)
+
+#leaves 147 countries
 
 #################################################################################################################################################
 ## METHOD 1 ##
@@ -48,15 +52,14 @@ countryInvasive <- countryInvasive[rownames(countryInvasive) %in% matchingcountr
 # make row names into a column
 library(tibble)
 countryBD2 <- tibble::rownames_to_column(countryBD, "country")
-countryInvasive2 <- tibble::rownames_to_column(countryInvasive, "country")
 
-# pivot both dataframes longer
+# pivot BD dataframe longer
 library(tidyr)
-countryInvasive2 <- pivot_longer(countryInvasive2, -c(country), values_to = "Invasive", names_to = "Year")
 countryBD2 <- pivot_longer(countryBD2, -c(country), values_to = "Biodiversity", names_to = "Year")
 
 # merge data frames into one
-alldata <- merge(countryInvasive2, countryBD2, by=c("country", "Year"))
+colnames(countryInvasive)[2] <- "Year"
+alldata <- merge(countryInvasive, countryBD2, by=c("country", "Year"))
 
 #add continent and region
 library(countrycode)
@@ -72,7 +75,7 @@ for (row in 1:nrow(alldata)){
   if (alldata[row, 6]=='Latin America & Caribbean'){
     alldata[row, 5] <- 'South America'
   }
-}
+} # error message here i need to look at
 
 alldata$Continent <- replace(alldata$Continent, alldata$Continent=='Americas', 'North America')
 
@@ -89,16 +92,16 @@ alldata$Region <-  as.factor(alldata$Region)
 
 # plot continents
 cols = c('deeppink', 'deepskyblue', 'darkorange', 'darkorchid','chartreuse', 'darkgreen')
-plot(alldata$Invasive, alldata$Biodiversity, col=cols[alldata$Continent])
+plot(alldata$TaxonCount, alldata$Biodiversity, col=cols[alldata$Continent])
 
-legend(1200000,0.6, sort(unique(alldata$Continent)),col=cols,pch=1)
-
+legend(50,0.6, sort(unique(alldata$Continent)),col=cols,pch=1)
+# serious zero inflation to look at
 
 ##################
 ## CREATE MODEL ##
 ##################
 
-model <- lm(Biodiversity~Invasive*Continent, data = alldata)
+model <- lm(Biodiversity~TaxonCount*Continent, data = alldata)
 
 ################
 ## PLOT MODEL ##
@@ -135,5 +138,5 @@ plotly_interaction <- function(data, x, y, category, colors = col2rgb(viridis(nl
   return(p)
 }
 
-plotly_interaction(alldata, "Invasive", "Biodiversity", "Continent")
+plotly_interaction(alldata, "TaxonCount", "Biodiversity", "Continent")
 

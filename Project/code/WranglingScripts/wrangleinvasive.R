@@ -18,17 +18,21 @@ countryinvasive <- read_excel("GlobalAlienSpeciesFirstRecordDatabase_v2(1).xlsx"
 # exclude irrelevant columns
 countryinvasive <- countryinvasive[c("TaxonName", "Region", "FirstRecord")]
 
+# change region to country
+colnames(countryinvasive)[2] <- "country"
+
 # turn taxon column into a count
 library(dplyr)
-countryinvasive <- countryinvasive %>% group_by(Region, FirstRecord) %>% summarise(TaxonCount = n())
+countryinvasive <- countryinvasive %>% group_by(country, FirstRecord) %>% summarise(TaxonCount = n())
 
-#make country the row name
-names <- countryinvasive$Country
-row.names(countryinvasive) <- names
-countryinvasive = countryinvasive[-c(1)]
+# #make country the row name
+# names <- countryinvasive$country
+# row.names(countryinvasive) <- names
+# countryinvasive = countryinvasive[-c(1)]
 
 #################
 ## EXPORT DATA ##
 #################
 
 saveRDS(countryinvasive, file = "countryinvasive.RDS")
+
