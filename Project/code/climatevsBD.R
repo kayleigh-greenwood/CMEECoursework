@@ -342,13 +342,46 @@ resultsDFmapping <- tibble::rownames_to_column(resultsDF, "country") # create ne
 names(mapdata)[names(mapdata) == 'region'] <- 'country' # change the name of the countries column to match the other DF
 
 mapdata <- left_join(mapdata, resultsDFmapping, by='country') # join the data frames
-mapdata <- mapdata %>%  filter(!is.na(mapdata$corr))   # remove NAs
+# mapdata <- mapdata %>%  filter(!is.na(mapdata$corr))   # remove NAs
 
 map <- ggplot(mapdata, aes(x = long, y = lat, group = group)) +
   geom_polygon(aes(fill= corr), colour = "black")
 
-map <- map + scale_fill_gradient(name = "Sensitivity Score", low = "red", high = "green", na.value = "grey50")
+map <- map + scale_fill_gradient(name = "Sensitivity Score", low = "red", high = "green", na.value = "grey50") # maybe would be better to make all countries below zero on a different colour gradient
 map
+
+###########
+## ANOVA ##
+###########
+
+library(ggplot2)
+boxplot(corr ~ continent, data=resultsDF)
+plot(resultsDF$continent, resultsDF$corr)
+ggplot(data = resultsDF) +
+  aes(y=corr, x=continent)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ################
 ## CLUSTERING ##

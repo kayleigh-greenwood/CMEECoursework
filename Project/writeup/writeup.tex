@@ -93,11 +93,10 @@
 
     \section*{Methods}
 
-	The focus of this study is on anthropogenic biodiversity pressures only. Anthropogenic pressures on biodiversity are typically grouped, in the current literature, into 5 main pressures; climate change, land use change, pollution, invasive species and overexploitation. In order to assess whether sensitivity to each pressure varies by country, data was needed in the form of time series (how each of these pressures had been changing in each country over time, as well as how each country's biodiversity had been changing over time). The time series of biodiversity in a country was compared to the time series of a pressure on biodiversity in that country, in order to extract a 'sensitivity score' for each country to assess any effect of geography. \newline
-	
-	For each biodiversity pressure, a linear model was created for each country using time series of biodiversity data and the corresponding pressure's time series. For each country in which the pressure was found to have a significant effect on biodiversity (p<0.05), the sensitivity score was noted, representing such country's 'sensitivity' to this particular biodiversity pressure. \newline
-	
+
 	\subsection*{Data}
+	
+	The focus of this study is on anthropogenic biodiversity pressures only. Anthropogenic pressures on biodiversity are typically grouped, in the current literature, into 5 main pressures; climate change, land use change, pollution, invasive species and overexploitation. In order to assess whether sensitivity to each pressure varies by country, data was needed in the form of time series (how each of these pressures had been changing in each country over time, as well as how each country's biodiversity had been changing over time). The time series of biodiversity in a country was compared to the time series of a pressure on biodiversity in that country, in order to extract a 'sensitivity score' for each country to assess any effect of geography. \newline
 	
 	The variable chosen to represent biodiversity was biodiversity intactness. The National History Museum's (NHM) Biodiversity Intactness Index (BII) was chosen as it presents biodiversity in the context of how many original species remain (relative to reference populations). The NHM's Index is the best for this project as the database used is that of the PREDICTS project, which more geographically representative than other datasets \cite{purvis2018modelling}. This allows for direct comparison of these changes, with the changes in anthropogenic pressures. Historical BII data spanned 1970 - 2014. \newline
 	
@@ -108,8 +107,13 @@
 	With the focus being on terrestrial biodiversity, greenhouse gases (GHG) were used as the representative variable for 'pollution' as a biodiversity pressure. The dataset used to access GHG emissions for each country over time was the 'National Inventory Submissions' section of the United Nations - Climate Change website \cite{united nations}. GHG emissions are presented both including and excluding 'Land Use, Land-Use Change and Forestry (LULUCF)' related emissions data. When assessing pollution and biodiversity links in isolation, LULUCF was included. However, when modelling all biodiversity pressures together, LULUCF was tested for collinearity with the land use change variable, and consequently included/excluded. \newline
 	
 	The OECD.stat website was used to download the land use change and pollution data. \newline
+
+	
+
 	
 	\subsection*{Individual Pressures}
+	
+	For each biodiversity pressure, a linear model was created for each country using time series of biodiversity data and the corresponding pressure's time series. For each country in which the pressure was found to have a significant effect on biodiversity (p<0.05), the sensitivity score was noted, representing such country's 'sensitivity' to this particular biodiversity pressure. \newline
 	
 	First, each pressure's geographic relationship with biodiversity was assessed in isolation. It is important to look at individual biodiversity pressures, as opposed to an aggregated pressure on biodiversity, because the pressures have spatial differences \cite{steffen2015planetary}, meaning the geographical magnitude of each pressure varies. Therefore in order to understand how countrys differ in their responses to biodiversity pressures, it must be taken into account the magnitude of each pressure that each country experiences. \newline
 	

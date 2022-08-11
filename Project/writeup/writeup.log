@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.10.7)  21 JUL 2022 17:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.10.7)  8 AUG 2022 13:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -567,12 +567,33 @@ e
 ABD: EveryShipout initializing macros [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [1]
+
+LaTeX Warning: Citation `duffy2017biodiversity' on page 2 undefined on input li
+ne 61.
+
+
+LaTeX Warning: Citation `diaz2006biodiversity' on page 2 undefined on input lin
+e 61.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 61--62
 
  []
 
 
+LaTeX Warning: Citation `nobel2020anthropogenic' on page 2 undefined on input l
+ine 63.
+
+
+LaTeX Warning: Citation `ogar2020science' on page 2 undefined on input line 63.
+
+
+
 LaTeX Warning: Citation `pri2020' on page 2 undefined on input line 63.
+
+
+LaTeX Warning: Citation `worldeconomicforum2020' on page 2 undefined on input l
+ine 63.
 
 
 LaTeX Warning: Citation `wwf2020' on page 2 undefined on input line 63.
@@ -588,95 +609,196 @@ Underfull \hbox (badness 10000) in paragraph at lines 65--66
  []
 
 
+LaTeX Warning: Citation `plumptre2021might' on page 2 undefined on input line 6
+7.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 67--68
-
- []
-
-
-LaTeX Warning: Citation `sunday2015species' on page 2 undefined on input line 7
-0.
-
-
-LaTeX Warning: Citation `ament2019compatibility' on page 2 undefined on input l
-ine 70.
-
-
-LaTeX Warning: Citation `sala2000global' on page 2 undefined on input line 71.
-
-
-LaTeX Warning: Citation `sala2000global' on page 2 undefined on input line 71.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 70--72
 
  []
 
 [2]
 
+LaTeX Warning: Citation `sunday2015species' on page 3 undefined on input line 7
+1.
+
+
+LaTeX Warning: Citation `ament2019compatibility' on page 3 undefined on input l
+ine 71.
+
+
+LaTeX Warning: Citation `millennium2005ecosystems' on page 3 undefined on input
+ line 72.
+
+
+LaTeX Warning: Citation `sala2000global' on page 3 undefined on input line 72.
+
+
+LaTeX Warning: Citation `bowler2020mapping' on page 3 undefined on input line 7
+2.
+
+
+LaTeX Warning: Citation `sala2000global' on page 3 undefined on input line 72.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 71--73
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 74--75
+
+ []
+
+
 LaTeX Warning: Citation `louette2010bioscore' on page 3 undefined on input line
- 75.
+ 76.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 76--77
+
+ []
 
 
 LaTeX Warning: Citation `sunday2015species' on page 3 undefined on input line 7
-7.
+8.
 
 
-Overfull \hbox (6.23303pt too wide) in paragraph at lines 89--91
-\OT1/phv/m/n/10.95 Studies show im-pacts of so-cioe-co-nomic sta-tus and cul-tu
-ral im-pacts on bio-di-ver-sity [[]].
+Underfull \hbox (badness 10000) in paragraph at lines 78--79
+
  []
 
-[3] [4] [5
 
-] [6
+LaTeX Warning: Citation `kinzig2005effects' on page 3 undefined on input line 9
+1.
 
-] [7
+[3]
+Underfull \hbox (badness 10000) in paragraph at lines 99--100
+
+ []
+
+
+LaTeX Warning: Citation `purvis2018modelling' on page 4 undefined on input line
+ 101.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 101--102
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 103--104
+
+ []
+
+
+LaTeX Warning: Citation `JRC117104' on page 4 undefined on input line 105.
+
+
+LaTeX Warning: Citation `de2013land' on page 4 undefined on input line 105.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 105--106
+
+ []
+
+
+LaTeX Warning: Citation `united nations' on page 4 undefined on input line 107.
+
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 107--108
+
+ []
+
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 109--110
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 116--117
+
+ []
+
+
+LaTeX Warning: Citation `steffen2015planetary' on page 5 undefined on input lin
+e 118.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 118--119
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 120--121
+
+ []
+
+! You can't use `macro parameter character #' in vertical mode.
+l.124 	#
+         old method For each country, a linear model was fit with biodiversi...
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 124--125
+
+ []
+
+! You can't use `macro parameter character #' in vertical mode.
+l.126 	#
+         old method Sensitivity scores were then used to visualise the diffe...
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 126--127
+
+ []
+
+! You can't use `macro parameter character #' in vertical mode.
+l.128 	#
+         new method. The data for all countries was pooled into one dataset,...
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+[5] [6] [7
 
 ] [8
 
-] (./writeup.bbl
-LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <10.95> not available
-(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 9.
+] [9
 
+] [10
 
-! Package inputenc Error: Unicode character ȩ (U+0229)
-(inputenc)                not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.55   Faurby, S., Jȩ
-                      drzejewski, W., Kiara, H., K{\"u}hl, H.,
-You may provide a definition with
-\DeclareUnicodeCharacter 
-
-) [9
-
-] (./writeup.aux)
+]
+No file writeup.bbl.
+(./writeup.aux)
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
  ) 
 Here is how much of TeX's memory you used:
- 14511 strings out of 481239
- 303584 string characters out of 5920377
- 536825 words of memory out of 5000000
- 29518 multiletter control sequences out of 15000+600000
- 545436 words of font info for 40 fonts, out of 8000000 for 9000
+ 14489 strings out of 481239
+ 303257 string characters out of 5920377
+ 535611 words of memory out of 5000000
+ 29499 multiletter control sequences out of 15000+600000
+ 545183 words of font info for 40 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 68i,5n,69p,1297b,199s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 68i,5n,69p,1306b,224s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/urw/helvetic/uhvro8a.pfb>
-Output written on writeup.pdf (10 pages, 42595 bytes).
+/fonts/type1/urw/helvetic/uhvr8a.pfb>
+Output written on writeup.pdf (11 pages, 35965 bytes).
 PDF statistics:
- 53 PDF objects out of 1000 (max. 8388607)
- 37 compressed objects within 1 object stream
+ 52 PDF objects out of 1000 (max. 8388607)
+ 36 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
