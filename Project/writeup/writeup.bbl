@@ -1,5 +1,18 @@
 \begin{thebibliography}{}
 
+\bibitem[A et~al., 2019]{JRC117104}
+A, F., C, C., D, E., SM, C.~F., T, K., L, M., M, M., M, P., P, P., M, S., F,
+  S., and L, Z. (2019).
+\newblock Ghsl data package 2019.
+\newblock (KJ-1A-29788-EN-N (online),KJ-1A-29788-EN-C (print)).
+
+\bibitem[Ament et~al., 2019]{ament2019compatibility}
+Ament, J.~M., Collen, B., Carbone, C., Mace, G.~M., and Freeman, R. (2019).
+\newblock Compatibility between agendas for improving human development and
+  wildlife conservation outside protected areas: Insights from 20 years of
+  data.
+\newblock {\em People and Nature}, 1(3):305--316.
+
 \bibitem[Bowler et~al., 2020]{bowler2020mapping}
 Bowler, D.~E., Bjorkman, A.~D., Dornelas, M., Myers-Smith, I.~H., Navarro,
   L.~M., Niamir, A., Supp, S.~R., Waldock, C., Winter, M., Vellend, M., et~al.
@@ -7,6 +20,12 @@ Bowler, D.~E., Bjorkman, A.~D., Dornelas, M., Myers-Smith, I.~H., Navarro,
 \newblock Mapping human pressures on biodiversity across the planet uncovers
   anthropogenic threat complexes.
 \newblock {\em People and Nature}, 2(2):380--394.
+
+\bibitem[De~Baan et~al., 2013]{de2013land}
+De~Baan, L., Alkemade, R., and Koellner, T. (2013).
+\newblock Land use impacts on biodiversity in lca: a global approach.
+\newblock {\em The International Journal of Life Cycle Assessment},
+  18(6):1216--1230.
 
 \bibitem[D{\'\i}az et~al., 2006]{diaz2006biodiversity}
 D{\'\i}az, S., Fargione, J., Chapin~III, F.~S., and Tilman, D. (2006).
@@ -29,6 +48,14 @@ Kinzig, A.~P., Warren, P., Martin, C., Hope, D., and Katti, M. (2005).
 \newblock The effects of human socioeconomic status and cultural
   characteristics on urban patterns of biodiversity.
 \newblock {\em Ecology and Society}, 10(1).
+
+\bibitem[Louette et~al., 2010]{louette2010bioscore}
+Louette, G., Maes, D., Alkemade, J. R.~M., Boitani, L., de~Knegt, B., Eggers,
+  J., Falcucci, A., Framstad, E., Hagemeijer, W., Hennekens, S.~M., et~al.
+  (2010).
+\newblock Bioscore--cost-effective assessment of policy impact on biodiversity
+  using species sensitivity scores.
+\newblock {\em Journal for Nature Conservation}, 18(2):142--148.
 
 \bibitem[Millennium~ecosystem assessment, 2005]{millennium2005ecosystems}
 Millennium~ecosystem assessment, M. (2005).
@@ -61,12 +88,37 @@ Plumptre, A.~J., Baisero, D., Belote, R.~T., V{\'a}zquez-Dom{\'\i}nguez, E.,
 PRI (2020).
 \newblock Investor action on biodiversity.
 
+\bibitem[Purvis et~al., 2018]{purvis2018modelling}
+Purvis, A., Newbold, T., De~Palma, A., Contu, S., Hill, S.~L., Sanchez-Ortiz,
+  K., Phillips, H.~R., Hudson, L.~N., Lysenko, I., B{\"o}rger, L., et~al.
+  (2018).
+\newblock Modelling and projecting the response of local terrestrial
+  biodiversity worldwide to land use and related pressures: the predicts
+  project.
+\newblock In {\em Advances in ecological research}, volume~58, pages 201--241.
+  Elsevier.
+
 \bibitem[Sala et~al., 2000]{sala2000global}
 Sala, O.~E., Stuart~Chapin, F., Armesto, J.~J., Berlow, E., Bloomfield, J.,
   Dirzo, R., Huber-Sanwald, E., Huenneke, L.~F., Jackson, R.~B., Kinzig, A.,
   et~al. (2000).
 \newblock Global biodiversity scenarios for the year 2100.
 \newblock {\em science}, 287(5459):1770--1774.
+
+\bibitem[Steffen et~al., 2015]{steffen2015planetary}
+Steffen, W., Richardson, K., Rockstr{\"o}m, J., Cornell, S.~E., Fetzer, I.,
+  Bennett, E.~M., Biggs, R., Carpenter, S.~R., De~Vries, W., De~Wit, C.~A.,
+  et~al. (2015).
+\newblock Planetary boundaries: Guiding human development on a changing planet.
+\newblock {\em science}, 347(6223):1259855.
+
+\bibitem[Sunday et~al., 2015]{sunday2015species}
+Sunday, J.~M., Pecl, G.~T., Frusher, S., Hobday, A.~J., Hill, N., Holbrook,
+  N.~J., Edgar, G.~J., Stuart-Smith, R., Barrett, N., Wernberg, T., et~al.
+  (2015).
+\newblock Species traits and climate velocity explain geographic range shifts
+  in an ocean-warming hotspot.
+\newblock {\em Ecology letters}, 18(9):944--953.
 
 \bibitem[WWF, 2020]{wwf2020}
 WWF (2020).

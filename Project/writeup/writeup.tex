@@ -4,6 +4,7 @@
 \usepackage{helvet}
 \renewcommand{\familydefault}{\sfdefault}
 \usepackage{graphicx}
+\graphicspath{./images/}
 \usepackage{float} % needed for [H]
 \usepackage{titlesec}
 \usepackage{lineno}
@@ -49,8 +50,7 @@
     \end{titlepage}
 	\section*{Declaration}
 	\begin{center}
-	Was the data provided to you or did you collect or assemble it? \newline
-	Were you responsible for data processing or cleaning, if required? \newline
+	Data was obtained from existing online databases, and therefore I was not responsible for data processing or cleaning. \newline
 	Were any mathematical models developed by you or by your supervisor? \newline
 	What role, if any, did your supervisor play in developing the analyses presented?
 	\end{center}
@@ -58,11 +58,28 @@
 	\newpage
     \section*{Introduction}
     
-   	 Biodiversity is important because it supports life on earth via the ecosystem services provided. When ecosystems have their biodiversity intact, they can provide services such as clean air and pollination, which makes the earth habitable for humans. Biodiversity loss leads to unstable environments, as ecosystems with low biodiversity are less resistant to change. Biodiversity loss diminishes ecosystem productivity \cite{duffy2017biodiversity} and threatens human well-being \cite{diaz2006biodiversity}. \newline
+   	 Biodiversity is important because it supports life on earth via the ecosystem services provided. When ecosystems have their biodiversity intact, they can provide services such as clean air and pollination, which makes the earth habitable for humans. Biodiversity loss leads to unstable environments, as ecosystems with low biodiversity are less resistant to change. Biodiversity loss diminishes ecosystem productivity \cite{duffy2017biodiversity} and threatens all life on earth, including human well-being \cite{diaz2006biodiversity}. \newline
    	 
-   	 Biodiversity is impacted by both natural and anthropogenic pressures \cite{nobel2020anthropogenic}, however any mention of 'biodiversity pressures' in this study refers only to the latter. Understanding the impacts of anthropogenic pressures on biodiversity is important for creating accurate policies and conservation strategies. Accurate information about biodiversity pressures can produce more effective conservation strategies, and better informed decisions can be made, including biodiversity-conscious investments. One of many responses to the biodiversity crisis \cite{ogar2020science} is the beginning of a global movement towards sustainable business and biodiversity-conscious investment \cite{pri2020}\cite{worldeconomicforum2020}\cite{wwf2020}. \newline
+   	 Biodiversity is impacted by both natural and anthropogenic pressures \cite{nobel2020anthropogenic}, however any mention of 'biodiversity pressures' in this study refers only to the latter. Understanding the impacts of anthropogenic pressures on biodiversity is important for creating accurate environmental policies and conservation strategies, and therefore more effective ones. Aside from traditional efforts for protecting biodiversity, another response to the biodiversity crisis \cite{ogar2020science} is the beginning of a global movement towards sustainable business and biodiversity-conscious investment \cite{pri2020}\cite{worldeconomicforum2020}\cite{wwf2020}. \newline
    	 
-   	 Assessing the impact that investments have on biodiversity involves calculating the magnitude of association they have with each biodiversity pressure. Information is often available on the geography of a company's activities, such as where they base their factories or where they source their materials from. In the interest of making estimates about each company's biodiversity impact more accurate, the location of each company's biodiversity-related activities could be considered. If the location and magnitude of a biodiversity pressure is provided (by the company), then information about current local biodiversity and sensitivity of the biome to the pressure, accurate predictions could be made about how biodiversity-friendly such an investment would be.  \newline
+   	 Assessing the impact that investments/companies have on biodiversity involves calculating their contributions towards the main pressures (e.g. deforestation, pollution etc.). It is also useful to know where in the world these effects are taking place, so that we know how much biodiversity is at risk (as the worlds' biodiversity is not equally distributed). Creating a tool which assesses the overall biodiversity impact of a company can help guide investors. This is something that various parties are currently developing {reference benchmark and the other one}. xyz is using an approach centred around researching published materials from top companies. Dissimilarly, 'Benchmark for Nature' is a project which is using open-source data from news articles that have been web-scraped, in an effort to gain the maximum amount of data possible about the links that companies/sectors have with each biodiversity pressure.  \newline
+   	 
+   	 Benchmark for Nature is a project at the University of Oxford's Internet Institute, emerging from the global movement towards sustainable business. The project aims to use data science to develop a framework for assessing investment impacts on biodiversity \cite{iccs_2020}, similar to the ESG framework currently in place. The ESG information currently available only assesses an investments' impact on the environment, but not on living nature and biodiversity. The purpose of the project is to better inform investors so that more biodiversity-conscious decisions can be made, in an effort to aid the biodiversity loss crisis \cite{gasu2021review}, and also indirectly, the climate \cite{shin2022actions}.
+   	 \newline
+   	 \newline
+   	  One question that has been raised within the project is whether biodiversity pressures have equal impacts on biodiversity regardless of geography. Studies show impacts of socioeconomic status and cultural impacts on biodiversity vary geographically \cite{kinzig2005effects}. This gives reason to believe that other contributors towards biodiversity loss could have varying impacts based on their location. For example, this research question would aim to provide answers for whether the sensitivity of biodiversity to pressures acting on it, differs geographically. \newline
+   	 
+   	 
+   	 Although there is no available data about how biodiversity sensitivity differs geographically, it is well known that there is variation in how each species responds. It would be useful to include this sensitivity variation when analysing how biodiversity responds to pressures around the world. Though useful, just knowing sensitivity at the species level is impractical when it comes to creating tools like in Benchmark for Nature. For this reason, if countries/regions on the whole differ in their sensitivity to biodiversity pressures, this information could make models / predictions about the impact of pressures more accurate. Relative values for the sensitivity of each country, or continent's biodiversity to each pressure could allow tools to better predict impacts. Rather than just including how biodiversity in general is likely to respond, it would be more useful to know how local biodiversity in that specific region is likely to respond. \newline
+   	 
+   	 In the context of Benchmark for Nature's tool, web articles are unlikely to mention the exact species that a company is having an impact on, and is more likely to mention the general region the impact is taking place (e.g. deforestation in Brazil). 
+   	 
+   	 
+   	  \newline
+   	 
+   	 Is this enough to accurately understand the impacts of the pressures on biodiversity? Deforesting one unit of land in various forests around the world would have different impacts on biodiversity depending on how many species there were in that area, but the question should be asked about whether the biodiversity in these forests differ in their sensitivity to the pressures.  \newline
+   	 
+   	 In the interest of making estimates about biodiversity impact more accurate, taking geographic variations in sensitivity to the pressure could increase accuracy of predictions about how biodiversity-friendly certain actions, and therefore investments, would be.  \newline
    	 
    	 Given that anthropogenic impact on the environment is worldwide \cite{plumptre2021might}, the question should be raised of whether the geographic location of biodiversity pressures affects their impact on global biodiversity. In other words, are some parts of the world more sensitive to biodiversity pressures than others? For example, does the location that a biodiversity pressure takes place change its impact on global biodiversity (regardless of magnitude)? If such geographic differences exist, they should be taken into account when attributing biodiversity-related merit to investments. Better understanding of biodiversity pressures will aid a better understanding of the implications of investments on natural ecosystems . \newline
    	
@@ -93,43 +110,55 @@
 
     \section*{Methods}
 
+	\subsection*{Overview}
 
-	\subsection*{Data}
-	
 	The focus of this study is on anthropogenic biodiversity pressures only. Anthropogenic pressures on biodiversity are typically grouped, in the current literature, into 5 main pressures; climate change, land use change, pollution, invasive species and overexploitation. In order to assess whether sensitivity to each pressure varies by country, data was needed in the form of time series (how each of these pressures had been changing in each country over time, as well as how each country's biodiversity had been changing over time). The time series of biodiversity in a country was compared to the time series of a pressure on biodiversity in that country, in order to extract a 'sensitivity score' for each country to assess any effect of geography. \newline
 	
+	First, each pressure's geographic relationship with biodiversity was assessed in isolation. It is important to look at individual biodiversity pressures, as opposed to an aggregated pressure on biodiversity, because the pressures have spatial differences \cite{steffen2015planetary}, meaning the geographical magnitude of each pressure varies. Therefore in order to understand how countrys differ in their responses to biodiversity pressures, it must be taken into account the magnitude of each pressure that each country experiences. \newline
+	\subsection*{Data}
+	
+	BD data = 18 years, 240 countries
 	The variable chosen to represent biodiversity was biodiversity intactness. The National History Museum's (NHM) Biodiversity Intactness Index (BII) was chosen as it presents biodiversity in the context of how many original species remain (relative to reference populations). The NHM's Index is the best for this project as the database used is that of the PREDICTS project, which more geographically representative than other datasets \cite{purvis2018modelling}. This allows for direct comparison of these changes, with the changes in anthropogenic pressures. Historical BII data spanned 1970 - 2014. \newline
 	
+	Climate data = 120 years, 230 countries
 	Time series data for climate change was obtained in the form of annual average temperature for each country. The temperature dataset chosen was from the World Bank's Climate Change Knowledge Portal. This dataset was chosen because it contains comprehensive historical data, providing an annual average temperature for every year from 1900 until 2020. \newline
 	
+	Built Land data = 4 years, 249 countries (years is big problem!)
 	To represent land use change, the dataset used was The Global Human Settlement Layer data package \cite{JRC117104}. The data contains information on built-up area change over time, which is the variable chosen to represent land use change. Collective land use change is difficult to quantify from land use statistics. Although satellite data is available to categorise land cover type over time, calculating annual land use change from the proportion of each land cover type is not necessarily accurate, as land use change can be multi-directional. Current studies assessing the impact of land use change on biodiversity are often meta-analyses or use a natural regional situation as the reference land type \cite{de2013land} as opposed to observing direct impacts of land use change. Statistics \newline
 	
+	GHG data = 31 years, 63 countries (countries is problem!)
 	With the focus being on terrestrial biodiversity, greenhouse gases (GHG) were used as the representative variable for 'pollution' as a biodiversity pressure. The dataset used to access GHG emissions for each country over time was the 'National Inventory Submissions' section of the United Nations - Climate Change website \cite{united nations}. GHG emissions are presented both including and excluding 'Land Use, Land-Use Change and Forestry (LULUCF)' related emissions data. When assessing pollution and biodiversity links in isolation, LULUCF was included. However, when modelling all biodiversity pressures together, LULUCF was tested for collinearity with the land use change variable, and consequently included/excluded. \newline
 	
 	The OECD.stat website was used to download the land use change and pollution data. \newline
 
-	
+	\subsection*{Method 1: model for each country}
 
-	
 	\subsection*{Individual Pressures}
 	
-	For each biodiversity pressure, a linear model was created for each country using time series of biodiversity data and the corresponding pressure's time series. For each country in which the pressure was found to have a significant effect on biodiversity (p<0.05), the sensitivity score was noted, representing such country's 'sensitivity' to this particular biodiversity pressure. \newline
+	For each country, a linear model was fit with biodiversity as the response variable, and the biodiversity pressure (e.g. pollution) as the explanatory variable. For those countries where the gradient was found to be statistically significant (p<0.05), the gradient was recorded as a 'sensitivity score'. This sensitivity score is representative of the sensitivity of that country's biodiversity, to the particular biodiversity pressure (e.g., sensitivity of Spain's biodiversity to one unit of pollution) \newline
 	
-	First, each pressure's geographic relationship with biodiversity was assessed in isolation. It is important to look at individual biodiversity pressures, as opposed to an aggregated pressure on biodiversity, because the pressures have spatial differences \cite{steffen2015planetary}, meaning the geographical magnitude of each pressure varies. Therefore in order to understand how countrys differ in their responses to biodiversity pressures, it must be taken into account the magnitude of each pressure that each country experiences. \newline
+	Sensitivity scores were then used to visualise the differences between countries. (I could insert a map with a colour scale representing the sensitivity score values from different countries) \newline
 	
-	Each data set has data from a different combination of years, and countries. For each pressure being investigated, only data from years and countries that are shared between that particular dataset and the biodiversity dataset is included. \newline
-	
-	For each pressure, the datasets were wrangled and refined to obtain two time series (at an annual level) for each country; biodiversity and the magnitude of the particular pressure. 
-	
-	# old method For each country, a linear model was fit with biodiversity as the response variable, and the biodiversity pressure (e.g. pollution) as the explanatory variable. For those countries where the gradient was found to be statistically significant (p<0.05), the gradient was recorded as a 'sensitivity score'. This sensitivity score is representative of the sensitivity of that country's biodiversity, to the particular biodiversity pressure (e.g., sensitivity of Spain's biodiversity to one unit of pollution) \newline
-	
-	# old method Sensitivity scores were then used to visualise the differences between countries. (I could insert a map with a colour scale representing the sensitivity score values from different countries) \newline
-	
-	# new method. The data for all countries was pooled into one dataset, and a column added for continent. Because assessing differences in each country would remove too many degrees of freedom, differences between the sensitivities of continents were assessed. A multiple linear model was created for each pressure. Continent was coded as a factor, in order for R to treat it as a dummy variable. The alphabetically first continent acting as the reference variable (usually Africa), in order to avoid multicollinearity. So that the slopes of each continent could be compared, interactions were also added between continent and the climate
-	
+	Sensitivity scores were then compared between continents using a linear model. Important to note that this method only tests for differences between each category, and the reference category, and therefore does not test differences between all groups. To see the differences between all groups, a Tukey test was ran.  \newline
 	
 	
 	\subsection*{Multi-Pressure Model}
+	
+	\subsection*{Method 2: dummy variables}
+	
+	\subsection*{Individual Pressures}
+	
+	For each biodiversity pressure, a linear model was created for each country using time series of biodiversity data and the corresponding pressure's time series. For each country in which the pressure was found to have a significant effect on biodiversity (p<0.05), the coefficient of the gradient was recorded as that country's 'sensitivity score', representing such country's 'sensitivity' to this particular biodiversity pressure. \newline
+
+Each data set has data from a different combination of years, and countries. For each pressure being investigated, only data from years and countries that are shared between that particular dataset and the biodiversity dataset is included. \newline
+
+For each pressure, the datasets were wrangled and refined to obtain two time series (at an annual level) for each country; biodiversity and the magnitude of the particular pressure. 
+
+The data for all countries was pooled into one dataset, and a column added for continent. Because assessing differences between each country would remove too many degrees of freedom, differences between the sensitivities of continents were assessed. A multiple linear model was created for each pressure. Continent was coded as a factor, in order for R to treat it as a dummy variable. The alphabetically first continent acting as the reference variable (usually Africa), in order to avoid multicollinearity. So that the slopes of each continent could be compared, interactions were also added between continent and the climate \newline
+
+
+	
+
 	
 	
 	
@@ -143,10 +172,60 @@
 
 	 \section*{Results}
 	 
-	 \subsection*{Individual Pressures}
+	\subsection*{Method 1: ANOVAs of gradients}
+	
+	Climate \newline
+	
+	158 countries and 18 years matched between these datasets and 88 gave significant gradient results \newline
+	Africa was significantly different from zero, and Asia and Oceania did not differ from Africa. The Americas were statistically different, being 0.03 higher, and Europe's sensitivity scores were also significant, being 0.07 higher. 
+	
+	\includegraphics[scale=0.75]{images/SensitivityScoresClimate.png}
+	
+	Built Land \newline
+	
+	175 countries and 3 years matched between datasets. only 1 country gave significant result.
+	
+	Didn't work with built land data because there were only 3 years that matched in the dataset and only 1 country came back as having a significant relationship. \newline
+	
+	Pollution \newline
+	
+	There were only 43 countries and 16 years that matched between the datasets, and only 7 of these had significant results \newline
+	
+	Invasive \newline
+	
+	147 countries matched between datasets but the whole things a shitshow so lets ignore this one
+	
+	
+	
+	
 	 
+	\subsection*{Method 2: dummy variables}
 	 
-	 \subsection*{Multi-Pressure Model}
+	 Africa is reference level for all models. \newline
+
+Invasive species \newline
+
+Intercept for Africa was statistically significantly different from zero (0.78), and no other continents had a significantly different intercept apart from Europe's which was 0.68. 
+
+There was no significant relationship found between number of invasive species and biodiversity in Africa. Slope was not statistically significant from zero. Slopes from all other continents were not significantly different from Africa's. \newline
+
+Pollution \newline
+
+Intercept was statistically significant for Africa, but slope was not. Europe, Oceania and South America all had statistically significantly different intercepts from Africa but the other continents did not.
+
+Europe and oceania's slopes were significantly different from Africa's but the other continents were not. \newline
+
+Built Land \newline
+
+Africa's intercept was significant but slope was not. Europe, north america and oceania all had significantly different intercepts to Africa's.
+
+No slopes were significantly different from Africa's and therefore none were different from zero. \newline
+
+Climate \newline
+
+All intercepts and slopes were significantly different from each other. But I still need to correct for average temperature.
+ 
+	 
 	 
 	 
 
