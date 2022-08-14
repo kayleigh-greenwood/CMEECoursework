@@ -1,7 +1,7 @@
 This is BibTeX, Version 0.99d (TeX Live 2019/Debian)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: writeup.aux
-White space in argument---line 23 of file writeup.aux
+White space in argument---line 35 of file writeup.aux
  : \citation{united
  :                  nations}
 I'm skipping whatever remains of this command
@@ -11,48 +11,74 @@ I was expecting a `,' or a `}'---line 206 of file writeup.bib
  :  @misc{united 
  :               nations,
 I'm skipping whatever remains of this entry
+Repeated entry---line 223 of file writeup.bib
+ : @misc{iccs_2020
+ :                ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 230 of file writeup.bib
+ :  @article{kinzig2005effects
+ :                            ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 240 of file writeup.bib
+ : @article{shin2022actions
+ :                         ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 248 of file writeup.bib
+ : @article{gasu2021review
+ :                        ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 267 of file writeup.bib
+ : @misc{iccs_2020
+ :                ,
+I'm skipping whatever remains of this entry
+Too many commas in name 1 of "Heather Phillips, Adriana De Palma, Ricardo E Gonzalez, Sara Contu et al." for entry Heather2021
+while executing---line 1023 of file apalike.bst
+Too many commas in name 1 of "Heather Phillips, Adriana De Palma, Ricardo E Gonzalez, Sara Contu et al." for entry Heather2021
+while executing---line 1023 of file apalike.bst
 Warning--empty journal in JRC117104
 Warning--there's a number but no volume in JRC117104
+Too many commas in name 1 of "Heather Phillips, Adriana De Palma, Ricardo E Gonzalez, Sara Contu et al." for entry Heather2021
+while executing---line 1098 of file apalike.bst
 Warning--there's a number but no series in nobel2020anthropogenic
-You've used 19 entries,
+You've used 25 entries,
             1935 wiz_defined-function locations,
-            593 strings with 8727 characters,
-and the built_in function-call counts, 9580 in all, are:
-= -- 865
-> -- 668
-< -- 8
-+ -- 248
-- -- 246
-* -- 933
-:= -- 1733
-add.period$ -- 56
-call.type$ -- 19
-change.case$ -- 209
-chr.to.int$ -- 19
-cite$ -- 22
-duplicate$ -- 269
-empty$ -- 509
-format.name$ -- 265
-if$ -- 1776
+            624 strings with 9895 characters,
+and the built_in function-call counts, 11629 in all, are:
+= -- 1061
+> -- 777
+< -- 12
++ -- 290
+- -- 284
+* -- 1097
+:= -- 2127
+add.period$ -- 73
+call.type$ -- 25
+change.case$ -- 257
+chr.to.int$ -- 25
+cite$ -- 28
+duplicate$ -- 338
+empty$ -- 624
+format.name$ -- 309
+if$ -- 2150
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 17
-newline$ -- 95
-num.names$ -- 57
-pop$ -- 186
+missing$ -- 19
+newline$ -- 124
+num.names$ -- 75
+pop$ -- 222
 preamble$ -- 1
-purify$ -- 210
+purify$ -- 257
 quote$ -- 0
-skip$ -- 207
+skip$ -- 266
 stack$ -- 0
-substring$ -- 513
-swap$ -- 27
+substring$ -- 614
+swap$ -- 29
 text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 112
+type$ -- 148
 warning$ -- 3
-while$ -- 60
+while$ -- 74
 width$ -- 0
-write$ -- 242
-(There were 2 error messages)
+write$ -- 315
+(There were 10 error messages)
