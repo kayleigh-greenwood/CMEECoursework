@@ -25,6 +25,13 @@ Bowler, D.~E., Bjorkman, A.~D., Dornelas, M., Myers-Smith, I.~H., Navarro,
   anthropogenic threat complexes.
 \newblock {\em People and Nature}, 2(2):380--394.
 
+\bibitem[Ceballos et~al., 2015]{ceballos2015accelerated}
+Ceballos, G., Ehrlich, P.~R., Barnosky, A.~D., Garc{\'\i}a, A., Pringle, R.~M.,
+  and Palmer, T.~M. (2015).
+\newblock Accelerated modern human--induced species losses: Entering the sixth
+  mass extinction.
+\newblock {\em Science advances}, 1(5):e1400253.
+
 \bibitem[De~Baan et~al., 2013]{de2013land}
 De~Baan, L., Alkemade, R., and Koellner, T. (2013).
 \newblock Land use impacts on biodiversity in lca: a global approach.
@@ -42,10 +49,23 @@ Duffy, J.~E., Godwin, C.~M., and Cardinale, B.~J. (2017).
   drivers of productivity.
 \newblock {\em Nature}, 549(7671):261--264.
 
+\bibitem[Foden et~al., 2013]{foden2013identifying}
+Foden, W.~B., Butchart, S.~H., Stuart, S.~N., Vi{\'e}, J.-C., Ak{\c{c}}akaya,
+  H.~R., Angulo, A., DeVantier, L.~M., Gutsche, A., Turak, E., Cao, L., et~al.
+  (2013).
+\newblock Identifying the world's most climate change vulnerable species: a
+  systematic trait-based assessment of all birds, amphibians and corals.
+\newblock {\em PloS one}, 8(6):e65427.
+
 \bibitem[Forum, 2020]{worldeconomicforum2020}
 Forum, W.~E. (2020).
 \newblock New nature economy series nature risk rising ... - world economic
   forum.
+
+\bibitem[Gaston, 2000]{gaston2000global}
+Gaston, K.~J. (2000).
+\newblock Global patterns in biodiversity.
+\newblock {\em Nature}, 405(6783):220--227.
 
 \bibitem[Gasu et~al., 2021]{gasu2021review}
 Gasu, M., Gasu, G., Ntemuse, U., et~al. (2021).
@@ -78,6 +98,12 @@ Louette, G., Maes, D., Alkemade, J. R.~M., Boitani, L., de~Knegt, B., Eggers,
   using species sensitivity scores.
 \newblock {\em Journal for Nature Conservation}, 18(2):142--148.
 
+\bibitem[McRae et~al., 2017]{mcrae2017diversity}
+McRae, L., Deinet, S., and Freeman, R. (2017).
+\newblock The diversity-weighted living planet index: controlling for taxonomic
+  bias in a global biodiversity indicator.
+\newblock {\em PloS one}, 12(1):e0169156.
+
 \bibitem[Millennium~ecosystem assessment, 2005]{millennium2005ecosystems}
 Millennium~ecosystem assessment, M. (2005).
 \newblock {\em Ecosystems and human well-being}, volume~5.
@@ -97,6 +123,11 @@ Ogar, E., Pecl, G., and Mustonen, T. (2020).
 \newblock Science must embrace traditional and indigenous knowledge to solve
   our biodiversity crisis.
 \newblock {\em One Earth}, 3(2):162--165.
+
+\bibitem[Pereira et~al., 2012]{pereira2012global}
+Pereira, H.~M., Navarro, L.~M., and Martins, I.~S. (2012).
+\newblock Global biodiversity change: the bad, the good, and the unknown.
+\newblock {\em Annual Review of Environment and Resources}, 37:25--50.
 
 \bibitem[Plumptre et~al., 2021]{plumptre2021might}
 Plumptre, A.~J., Baisero, D., Belote, R.~T., V{\'a}zquez-Dom{\'\i}nguez, E.,
@@ -118,6 +149,11 @@ Purvis, A., Newbold, T., De~Palma, A., Contu, S., Hill, S.~L., Sanchez-Ortiz,
   project.
 \newblock In {\em Advances in ecological research}, volume~58, pages 201--241.
   Elsevier.
+
+\bibitem[Ricklefs, 2004]{ricklefs2004comprehensive}
+Ricklefs, R.~E. (2004).
+\newblock A comprehensive framework for global patterns in biodiversity.
+\newblock {\em Ecology letters}, 7(1):1--15.
 
 \bibitem[Sala et~al., 2000]{sala2000global}
 Sala, O.~E., Stuart~Chapin, F., Armesto, J.~J., Berlow, E., Bloomfield, J.,
@@ -147,6 +183,10 @@ Sunday, J.~M., Pecl, G.~T., Frusher, S., Hobday, A.~J., Hill, N., Holbrook,
 \newblock Species traits and climate velocity explain geographic range shifts
   in an ocean-warming hotspot.
 \newblock {\em Ecology letters}, 18(9):944--953.
+
+\bibitem[van Goethem and van Zanden, 2021]{van2021biodiversity}
+van Goethem, T. and van Zanden, J.~L. (2021).
+\newblock Biodiversity trends in a historical perspective.
 
 \bibitem[Velde, 2022]{Velde2022}
 Velde, M. (2022).
