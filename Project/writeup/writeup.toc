@@ -1,13 +1,12 @@
 \contentsline {section}{Introduction}{4}{Doc-Start}%
-\contentsline {section}{Literature Review}{6}{Doc-Start}%
 \contentsline {section}{Methods}{7}{Doc-Start}%
 \contentsline {subsection}{Overview}{7}{section*.1}%
-\contentsline {subsection}{Data}{8}{section*.1}%
-\contentsline {subsection}{Method 1: model for each country}{9}{section*.1}%
-\contentsline {subsection}{Individual Pressures}{9}{section*.1}%
-\contentsline {subsection}{Multi-pressure model}{9}{section*.1}%
-\contentsline {subsection}{Method 2: dummy variables}{9}{section*.1}%
-\contentsline {subsection}{Individual Pressures}{9}{section*.1}%
+\contentsline {subsection}{Data}{7}{section*.1}%
+\contentsline {subsection}{Method 1: model for each country}{8}{section*.1}%
+\contentsline {subsection}{Individual Pressures}{8}{section*.1}%
+\contentsline {subsection}{Multi-pressure model}{8}{section*.1}%
+\contentsline {subsection}{Method 2: dummy variables}{8}{section*.1}%
+\contentsline {subsection}{Individual Pressures}{8}{section*.1}%
 \contentsline {section}{Results}{10}{section*.1}%
 \contentsline {subsection}{Method 1: ANOVAs of gradients}{10}{section*.2}%
 \contentsline {subsection}{Method 2: dummy variables}{11}{section*.2}%

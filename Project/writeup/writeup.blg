@@ -1,7 +1,7 @@
 This is BibTeX, Version 0.99d (TeX Live 2019/Debian)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: writeup.aux
-White space in argument---line 64 of file writeup.aux
+White space in argument---line 65 of file writeup.aux
  : \citation{united
  :                  nations}
 I'm skipping whatever remains of this command
@@ -31,11 +31,7 @@ Repeated entry---line 267 of file writeup.bib
  : @misc{iccs_2020
  :                ,
 I'm skipping whatever remains of this entry
-Warning--I didn't find a database entry for "iucn2001iucn"
-Warning--I didn't find a database entry for "buckley2012functional"
-Warning--I didn't find a database entry for "mclean2018high"
-Warning--I didn't find a database entry for "both2004large"
-Warning--I didn't find a database entry for "mayor2016assessing"
+Warning--I didn't find a database entry for "goethem2021biodiversity"
 Too many commas in name 1 of "Heather Phillips, Adriana De Palma, Ricardo E Gonzalez, Sara Contu et al." for entry Heather2021
 while executing---line 1023 of file apalike.bst
 Too many commas in name 1 of "Heather Phillips, Adriana De Palma, Ricardo E Gonzalez, Sara Contu et al." for entry Heather2021
@@ -45,46 +41,45 @@ Warning--there's a number but no volume in JRC117104
 Too many commas in name 1 of "Heather Phillips, Adriana De Palma, Ricardo E Gonzalez, Sara Contu et al." for entry Heather2021
 while executing---line 1098 of file apalike.bst
 Warning--there's a number but no series in nobel2020anthropogenic
-Warning--empty journal in van2021biodiversity
-You've used 32 entries,
+You've used 36 entries,
             1935 wiz_defined-function locations,
-            669 strings with 11398 characters,
-and the built_in function-call counts, 14642 in all, are:
-= -- 1343
-> -- 931
-< -- 15
-+ -- 348
-- -- 338
-* -- 1380
-:= -- 2662
-add.period$ -- 93
-call.type$ -- 32
-change.case$ -- 318
-chr.to.int$ -- 32
-cite$ -- 36
-duplicate$ -- 435
-empty$ -- 819
-format.name$ -- 372
-if$ -- 2717
+            692 strings with 12458 characters,
+and the built_in function-call counts, 16379 in all, are:
+= -- 1507
+> -- 1026
+< -- 16
++ -- 382
+- -- 372
+* -- 1540
+:= -- 2981
+add.period$ -- 107
+call.type$ -- 36
+change.case$ -- 353
+chr.to.int$ -- 36
+cite$ -- 39
+duplicate$ -- 488
+empty$ -- 926
+format.name$ -- 408
+if$ -- 3043
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 26
-newline$ -- 158
-num.names$ -- 96
-pop$ -- 270
+missing$ -- 29
+newline$ -- 180
+num.names$ -- 108
+pop$ -- 294
 preamble$ -- 1
-purify$ -- 318
+purify$ -- 353
 quote$ -- 0
-skip$ -- 340
+skip$ -- 382
 stack$ -- 0
-substring$ -- 828
-swap$ -- 35
+substring$ -- 943
+swap$ -- 39
 text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 190
-warning$ -- 4
-while$ -- 97
+type$ -- 214
+warning$ -- 3
+while$ -- 109
 width$ -- 0
-write$ -- 403
+write$ -- 459
 (There were 10 error messages)
