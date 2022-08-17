@@ -1,16 +1,20 @@
 \contentsline {section}{Introduction}{4}{Doc-Start}%
-\contentsline {section}{Methods}{8}{Doc-Start}%
-\contentsline {subsection}{Overview}{8}{section*.1}%
-\contentsline {subsection}{Data}{8}{section*.1}%
-\contentsline {subsection}{Method 1: model for each country}{9}{section*.1}%
-\contentsline {subsection}{Individual Pressures}{9}{section*.1}%
-\contentsline {subsection}{Multi-pressure model}{9}{section*.1}%
-\contentsline {subsection}{Method 2: dummy variables}{9}{section*.1}%
-\contentsline {subsection}{Individual Pressures}{9}{section*.1}%
-\contentsline {section}{Results}{11}{section*.1}%
-\contentsline {subsection}{Method 1: ANOVAs of gradients}{11}{section*.2}%
-\contentsline {subsection}{Method 2: dummy variables}{12}{section*.2}%
-\contentsline {section}{Discussion}{13}{section*.2}%
-\contentsline {section}{Conclusion}{14}{section*.2}%
-\contentsline {section}{Data and Code Availability}{15}{section*.2}%
-\contentsline {section}{Acknowledgements}{16}{section*.2}%
+\contentsline {subsection}{Overview}{4}{section*.1}%
+\contentsline {subsection}{Interspecific and intertaxon sensitivity}{5}{section*.1}%
+\contentsline {subsection}{Geographical differences in sensitivity}{6}{section*.1}%
+\contentsline {subsection}{Research aims}{6}{section*.1}%
+\contentsline {section}{Methods}{7}{section*.1}%
+\contentsline {subsection}{Overview}{7}{section*.2}%
+\contentsline {subsection}{Data}{7}{section*.2}%
+\contentsline {subsection}{Method 1: model for each country}{8}{section*.2}%
+\contentsline {subsection}{Individual Pressures}{8}{section*.2}%
+\contentsline {subsection}{Multi-pressure model}{8}{section*.2}%
+\contentsline {subsection}{Method 2: dummy variables}{8}{section*.2}%
+\contentsline {subsection}{Individual Pressures}{8}{section*.2}%
+\contentsline {section}{Results}{10}{section*.2}%
+\contentsline {subsection}{Method 1: ANOVAs of gradients}{10}{section*.3}%
+\contentsline {subsection}{Method 2: dummy variables}{11}{section*.3}%
+\contentsline {section}{Discussion}{12}{section*.3}%
+\contentsline {section}{Conclusion}{13}{section*.3}%
+\contentsline {section}{Data and Code Availability}{14}{section*.3}%
+\contentsline {section}{Acknowledgements}{15}{section*.3}%
