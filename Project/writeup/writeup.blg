@@ -1,7 +1,7 @@
 This is BibTeX, Version 0.99d (TeX Live 2019/Debian)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: writeup.aux
-White space in argument---line 65 of file writeup.aux
+White space in argument---line 74 of file writeup.aux
  : \citation{united
  :                  nations}
 I'm skipping whatever remains of this command
@@ -31,55 +31,55 @@ Repeated entry---line 267 of file writeup.bib
  : @misc{iccs_2020
  :                ,
 I'm skipping whatever remains of this entry
-Warning--I didn't find a database entry for "goethem2021biodiversity"
-Too many commas in name 1 of "Heather Phillips, Adriana De Palma, Ricardo E Gonzalez, Sara Contu et al." for entry Heather2021
+Too many commas in name 1 of "Heather Phillips, Adriana De Palma, Ricardo E Gonzalez, Sara Contu et al." for entry phillips2021
 while executing---line 1023 of file apalike.bst
-Too many commas in name 1 of "Heather Phillips, Adriana De Palma, Ricardo E Gonzalez, Sara Contu et al." for entry Heather2021
+Too many commas in name 1 of "Heather Phillips, Adriana De Palma, Ricardo E Gonzalez, Sara Contu et al." for entry phillips2021
 while executing---line 1023 of file apalike.bst
 Warning--empty journal in JRC117104
 Warning--there's a number but no volume in JRC117104
-Too many commas in name 1 of "Heather Phillips, Adriana De Palma, Ricardo E Gonzalez, Sara Contu et al." for entry Heather2021
+Too many commas in name 1 of "Heather Phillips, Adriana De Palma, Ricardo E Gonzalez, Sara Contu et al." for entry phillips2021
 while executing---line 1098 of file apalike.bst
 Warning--there's a number but no series in nobel2020anthropogenic
-You've used 36 entries,
+Warning--empty journal in goethem2021biodiversity
+You've used 45 entries,
             1935 wiz_defined-function locations,
-            692 strings with 12458 characters,
-and the built_in function-call counts, 16379 in all, are:
-= -- 1507
-> -- 1026
-< -- 16
-+ -- 382
-- -- 372
-* -- 1540
-:= -- 2981
-add.period$ -- 107
-call.type$ -- 36
-change.case$ -- 353
-chr.to.int$ -- 36
-cite$ -- 39
-duplicate$ -- 488
-empty$ -- 926
-format.name$ -- 408
-if$ -- 3043
+            739 strings with 14618 characters,
+and the built_in function-call counts, 20903 in all, are:
+= -- 1922
+> -- 1332
+< -- 18
++ -- 494
+- -- 484
+* -- 1990
+:= -- 3797
+add.period$ -- 133
+call.type$ -- 45
+change.case$ -- 450
+chr.to.int$ -- 45
+cite$ -- 49
+duplicate$ -- 610
+empty$ -- 1170
+format.name$ -- 531
+if$ -- 3876
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 29
-newline$ -- 180
-num.names$ -- 108
-pop$ -- 294
+missing$ -- 37
+newline$ -- 224
+num.names$ -- 135
+pop$ -- 377
 preamble$ -- 1
-purify$ -- 353
+purify$ -- 451
 quote$ -- 0
-skip$ -- 382
+skip$ -- 477
 stack$ -- 0
-substring$ -- 943
-swap$ -- 39
+substring$ -- 1219
+swap$ -- 47
 text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 214
-warning$ -- 3
-while$ -- 109
+type$ -- 268
+warning$ -- 4
+while$ -- 139
 width$ -- 0
-write$ -- 459
+write$ -- 573
 (There were 10 error messages)

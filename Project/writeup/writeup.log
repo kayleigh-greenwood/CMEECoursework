@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.10.7)  15 AUG 2022 20:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.10.7)  17 AUG 2022 15:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -737,6 +737,11 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 \openout5 = `writeup.toc'.
 
  [3]
+
+Package natbib Warning: Citation `leemans2003millennium' on page 4 undefined on
+ input line 79.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 79--80
 
  []
@@ -756,15 +761,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 88--89
 
  []
 
-
+[4]
 Underfull \hbox (badness 10000) in paragraph at lines 91--92
 
  []
-
-[4]
-
-Package natbib Warning: Citation `goethem2021biodiversity' on page 5 undefined 
-on input line 94.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 94--95
@@ -781,33 +781,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 100--101
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 103--104
-
- []
-
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 107--108
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 111--112
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 114--115
-
- []
-
-[6]
-
-Package hyperref Warning: The anchor of a bookmark and its parent's must not
-(hyperref)                be the same. Added a new anchor on input line 124.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 126--127
+Underfull \hbox (badness 10000) in paragraph at lines 125--126
 
  []
 
@@ -817,27 +792,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 128--129
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 132--134
+Underfull \hbox (badness 10000) in paragraph at lines 131--132
 
  []
 
+[6] [7]
 
-Underfull \hbox (badness 10000) in paragraph at lines 135--137
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 138--140
-
- []
-
-[7]
-
-Package natbib Warning: Citation `united nations' on page 8 undefined on input 
-line 142.
+Package hyperref Warning: The anchor of a bookmark and its parent's must not
+(hyperref)                be the same. Added a new anchor on input line 140.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 141--143
+Underfull \hbox (badness 10000) in paragraph at lines 142--143
 
  []
 
@@ -847,110 +812,115 @@ Underfull \hbox (badness 10000) in paragraph at lines 144--145
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 154--155
+Underfull \hbox (badness 10000) in paragraph at lines 148--150
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 156--157
+Underfull \hbox (badness 10000) in paragraph at lines 151--153
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 158--159
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 169--170
+Underfull \hbox (badness 10000) in paragraph at lines 154--156
 
  []
 
 [8]
-Underfull \hbox (badness 10000) in paragraph at lines 171--172
+
+Package natbib Warning: Citation `united nations' on page 9 undefined on input 
+line 158.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 157--159
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 175--176
+Underfull \hbox (badness 10000) in paragraph at lines 160--161
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 170--171
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 172--173
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 174--175
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 185--186
 
  []
 
 [9]
-
-Package hyperref Warning: The anchor of a bookmark and its parent's must not
-(hyperref)                be the same. Added a new anchor on input line 195.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 197--198
+Underfull \hbox (badness 10000) in paragraph at lines 187--188
 
  []
 
-<images/SensitivityScoresClimate.png, id=241, 685.8122pt x 447.17062pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 191--192
+
+ []
+
+[10]
+
+Package hyperref Warning: The anchor of a bookmark and its parent's must not
+(hyperref)                be the same. Added a new anchor on input line 211.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 213--214
+
+ []
+
+<images/SensitivityScoresClimate.png, id=272, 685.8122pt x 447.17062pt>
 File: images/SensitivityScoresClimate.png Graphic file (type png)
 <use images/SensitivityScoresClimate.png>
 Package pdftex.def Info: images/SensitivityScoresClimate.png  used on input lin
-e 202.
+e 218.
 (pdftex.def)             Requested size: 514.3579pt x 335.37714pt.
 
-Overfull \hbox (47.66103pt too wide) in paragraph at lines 202--203
+Overfull \hbox (47.66103pt too wide) in paragraph at lines 218--219
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 204--205
+Underfull \hbox (badness 10000) in paragraph at lines 220--221
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 208--209
+Underfull \hbox (badness 10000) in paragraph at lines 224--225
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 210--211
+Underfull \hbox (badness 10000) in paragraph at lines 226--227
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 212--213
+Underfull \hbox (badness 10000) in paragraph at lines 228--229
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 214--215
+Underfull \hbox (badness 10000) in paragraph at lines 230--231
 
  []
 
-[10
+[11
 
  <./images/SensitivityScoresClimate.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 225--226
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 227--228
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 231--232
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 233--234
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 237--238
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 239--240
+Underfull \hbox (badness 10000) in paragraph at lines 241--242
 
  []
 
@@ -960,22 +930,47 @@ Underfull \hbox (badness 10000) in paragraph at lines 243--244
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 245--246
+Underfull \hbox (badness 10000) in paragraph at lines 247--248
 
  []
 
-[11] [12
 
-] [13
+Underfull \hbox (badness 10000) in paragraph at lines 249--250
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 253--254
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 255--256
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 259--260
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 261--262
+
+ []
+
+[12] [13
 
 ] [14
 
+] [15
+
 ] (./writeup.bbl
 LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <10.95> not available
-(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 18.
- [15
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 14.
+ [16
 
-]
+] [17]
 
 ! Package inputenc Error: Unicode character ȩ (U+0229)
 (inputenc)                not set up for use with LaTeX.
@@ -984,41 +979,41 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.168   Faurby, S., Jȩ
+l.218   Faurby, S., Jȩ
                        drzejewski, W., Kiara, H., K{\"u}hl, H.,
 You may provide a definition with
 \DeclareUnicodeCharacter 
 
-[16])
+[18])
 
 Package natbib Warning: There were undefined citations.
 
-[17]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 276.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 276.
+[19]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 292.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 292.
  (./writeup.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 276.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 276.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 292.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 292.
 Package rerunfilecheck Info: File `writeup.out' has not changed.
 (rerunfilecheck)             Checksum: 46216CC039B069E261DBA9E67A03E4CF;935.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 276.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 292.
  ) 
 Here is how much of TeX's memory you used:
- 18936 strings out of 481239
- 373212 string characters out of 5920377
- 631089 words of memory out of 5000000
- 33769 multiletter control sequences out of 15000+600000
+ 18975 strings out of 481239
+ 374203 string characters out of 5920377
+ 631397 words of memory out of 5000000
+ 33797 multiletter control sequences out of 15000+600000
  549508 words of font info for 50 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 68i,5n,69p,1533b,492s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 68i,5n,69p,1533b,520s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist
 /fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1
 /urw/helvetic/uhvro8a.pfb>
-Output written on writeup.pdf (18 pages, 77173 bytes).
+Output written on writeup.pdf (20 pages, 83364 bytes).
 PDF statistics:
- 306 PDF objects out of 1000 (max. 8388607)
- 278 compressed objects within 3 object streams
- 56 named destinations out of 1000 (max. 500000)
+ 345 PDF objects out of 1000 (max. 8388607)
+ 314 compressed objects within 4 object streams
+ 67 named destinations out of 1000 (max. 500000)
  146 words of extra memory for PDF output out of 10000 (max. 10000000)
 

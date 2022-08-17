@@ -6,6 +6,13 @@ A, F., C, C., D, E., SM, C.~F., T, K., L, M., M, M., M, P., P, P., M, S., F,
 \newblock Ghsl data package 2019.
 \newblock (KJ-1A-29788-EN-N (online),KJ-1A-29788-EN-C (print)).
 
+\bibitem[Alkemade et~al., 2009]{alkemade2009globio3}
+Alkemade, R., Van~Oorschot, M., Miles, L., Nellemann, C., Bakkenes, M., and
+  Ten~Brink, B. (2009).
+\newblock Globio3: a framework to investigate options for reducing global
+  terrestrial biodiversity loss.
+\newblock {\em Ecosystems}, 12(3):374--390.
+
 \bibitem[Alliance, 2022]{worldbenchmarkingalliance_2022}
 Alliance, W.~B. (2022).
 \newblock Nature and biodiversity benchmark - world benchmarking alliance.
@@ -16,6 +23,14 @@ Ament, J.~M., Collen, B., Carbone, C., Mace, G.~M., and Freeman, R. (2019).
   wildlife conservation outside protected areas: Insights from 20 years of
   data.
 \newblock {\em People and Nature}, 1(3):305--316.
+
+\bibitem[Barlow et~al., 2016]{barlow2016anthropogenic}
+Barlow, J., Lennox, G.~D., Ferreira, J., Berenguer, E., Lees, A.~C., Nally,
+  R.~M., Thomson, J.~R., Ferraz, S. F. d.~B., Louzada, J., Oliveira, V. H.~F.,
+  et~al. (2016).
+\newblock Anthropogenic disturbance in tropical forests can double biodiversity
+  loss from deforestation.
+\newblock {\em Nature}, 535(7610):144--147.
 
 \bibitem[Both et~al., 2004]{both2004large}
 Both, C., Artemyev, A.~V., Blaauw, B., Cowie, R.~J., Dekhuijzen, A.~J., Eeva,
@@ -40,6 +55,13 @@ Buckley, L.~B., Kingsolver, J.~G., et~al. (2012).
   responses to climate change.
 \newblock {\em Annual Review of Ecology, Evolution and Systematics},
   43(205):2012.
+
+\bibitem[Cazalis et~al., 2021]{cazalis2021mismatch}
+Cazalis, V., Barnes, M.~D., Johnston, A., Watson, J.~E.,
+  {\c{S}}ekercio{\u{g}}lu, C.~H., and Rodrigues, A.~S. (2021).
+\newblock Mismatch between bird species sensitivity and the protection of
+  intact habitats across the americas.
+\newblock {\em Ecology Letters}, 24(11):2394--2405.
 
 \bibitem[Ceballos et~al., 2015]{ceballos2015accelerated}
 Ceballos, G., Ehrlich, P.~R., Barnosky, A.~D., Garc{\'\i}a, A., Pringle, R.~M.,
@@ -90,7 +112,15 @@ Gasu, M., Gasu, G., Ntemuse, U., et~al. (2021).
 \newblock {\em Malaysian Journal of Tropical Geography (MJTG)}, 47(1 and
   2):100--122.
 
-\bibitem[Heather~Phillips, 2021]{Heather2021}
+\bibitem[Gibson et~al., 2011]{gibson2011primary}
+Gibson, L., Lee, T.~M., Koh, L.~P., Brook, B.~W., Gardner, T.~A., Barlow, J.,
+  Peres, C.~A., Bradshaw, C.~J., Laurance, W.~F., Lovejoy, T.~E., et~al.
+  (2011).
+\newblock Primary forests are irreplaceable for sustaining tropical
+  biodiversity.
+\newblock {\em Nature}, 478(7369):378--381.
+
+\bibitem[Heather~Phillips, 2021]{phillips2021}
 Heather~Phillips, Adriana De~Palma, R. E. G. S. C. e.~a. (2021).
 \newblock The biodiversity intactness index - country, region and global-level
   summaries for the year 1970 to 2050 under various scenarios.
@@ -143,6 +173,20 @@ Millennium~ecosystem assessment, M. (2005).
 \newblock {\em Ecosystems and human well-being}, volume~5.
 \newblock Island press Washington, DC.
 
+\bibitem[Newbold et~al., 2016]{newbold2016global}
+Newbold, T., Hudson, L.~N., Hill, S.~L., Contu, S., Gray, C.~L., Scharlemann,
+  J.~P., B{\"o}rger, L., Phillips, H.~R., Sheil, D., Lysenko, I., et~al.
+  (2016).
+\newblock Global patterns of terrestrial assemblage turnover within and among
+  land uses.
+\newblock {\em Ecography}, 39(12):1151--1163.
+
+\bibitem[Newbold et~al., 2020]{newbold2020tropical}
+Newbold, T., Oppenheimer, P., Etard, A., and Williams, J.~J. (2020).
+\newblock Tropical and mediterranean biodiversity is disproportionately
+  sensitive to land-use and climate change.
+\newblock {\em Nature Ecology \& Evolution}, 4(12):1630--1638.
+
 \bibitem[Nobel et~al., 2020]{nobel2020anthropogenic}
 Nobel, A., Lizin, S., Brouwer, R., Stern, D., B~Bruns, S., Malina, R., et~al.
   (2020).
@@ -162,6 +206,12 @@ Ogar, E., Pecl, G., and Mustonen, T. (2020).
 Pereira, H.~M., Navarro, L.~M., and Martins, I.~S. (2012).
 \newblock Global biodiversity change: the bad, the good, and the unknown.
 \newblock {\em Annual Review of Environment and Resources}, 37:25--50.
+
+\bibitem[Phillips, 2016]{phillips2016effects}
+Phillips, H. R.~P. (2016).
+\newblock {\em Effects of land use and habitat fragmentation on local
+  biodiversity}.
+\newblock PhD thesis, Imperial College London.
 
 \bibitem[Plumptre et~al., 2021]{plumptre2021might}
 Plumptre, A.~J., Baisero, D., Belote, R.~T., V{\'a}zquez-Dom{\'\i}nguez, E.,
@@ -218,12 +268,21 @@ Sunday, J.~M., Pecl, G.~T., Frusher, S., Hobday, A.~J., Hill, N., Holbrook,
   in an ocean-warming hotspot.
 \newblock {\em Ecology letters}, 18(9):944--953.
 
+\bibitem[van Goethem and van Zanden, 2021]{goethem2021biodiversity}
+van Goethem, T. and van Zanden, J.~L. (2021).
+\newblock Biodiversity trends in a historical perspective.
+
 \bibitem[Velde, 2022]{Velde2022}
 Velde, M. (2022).
 \newblock How wildlife trends correlate with economic wealth and human
   population density.
 \newblock Master's thesis, Imperial College London.
 \newblock unpublished thesis.
+
+\bibitem[Wade et~al., 2003]{wade2003distribution}
+Wade, T.~G., Riitters, K.~H., Wickham, J.~D., and Jones, K.~B. (2003).
+\newblock Distribution and causes of global forest fragmentation.
+\newblock {\em Conservation Ecology}, 7(2).
 
 \bibitem[WWF, 2020]{wwf2020}
 WWF (2020).
