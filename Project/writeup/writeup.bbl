@@ -32,15 +32,6 @@ Barlow, J., Lennox, G.~D., Ferreira, J., Berenguer, E., Lees, A.~C., Nally,
   loss from deforestation.
 \newblock {\em Nature}, 535(7610):144--147.
 
-\bibitem[Both et~al., 2004]{both2004large}
-Both, C., Artemyev, A.~V., Blaauw, B., Cowie, R.~J., Dekhuijzen, A.~J., Eeva,
-  T., Enemar, A., Gustafsson, L., Ivankina, E.~V., J{\"a}rvinen, A., et~al.
-  (2004).
-\newblock Large--scale geographical variation confirms that climate change
-  causes birds to lay earlier.
-\newblock {\em Proceedings of the Royal Society of London. Series B: Biological
-  Sciences}, 271(1549):1657--1662.
-
 \bibitem[Bowler et~al., 2020]{bowler2020mapping}
 Bowler, D.~E., Bjorkman, A.~D., Dornelas, M., Myers-Smith, I.~H., Navarro,
   L.~M., Niamir, A., Supp, S.~R., Waldock, C., Winter, M., Vellend, M., et~al.
@@ -48,13 +39,6 @@ Bowler, D.~E., Bjorkman, A.~D., Dornelas, M., Myers-Smith, I.~H., Navarro,
 \newblock Mapping human pressures on biodiversity across the planet uncovers
   anthropogenic threat complexes.
 \newblock {\em People and Nature}, 2(2):380--394.
-
-\bibitem[Buckley et~al., 2012]{buckley2012functional}
-Buckley, L.~B., Kingsolver, J.~G., et~al. (2012).
-\newblock Functional and phylogenetic approaches to forecasting species'
-  responses to climate change.
-\newblock {\em Annual Review of Ecology, Evolution and Systematics},
-  43(205):2012.
 
 \bibitem[Cazalis et~al., 2021]{cazalis2021mismatch}
 Cazalis, V., Barnes, M.~D., Johnston, A., Watson, J.~E.,
@@ -69,6 +53,12 @@ Ceballos, G., Ehrlich, P.~R., Barnosky, A.~D., Garc{\'\i}a, A., Pringle, R.~M.,
 \newblock Accelerated modern human--induced species losses: Entering the sixth
   mass extinction.
 \newblock {\em Science advances}, 1(5):e1400253.
+
+\bibitem[Collen et~al., 2008]{collen2008tropical}
+Collen, B., Ram, M., Zamin, T., and McRae, L. (2008).
+\newblock The tropical biodiversity data gap: addressing disparity in global
+  monitoring.
+\newblock {\em Tropical Conservation Science}, 1(2):75--88.
 
 \bibitem[De~Baan et~al., 2013]{de2013land}
 De~Baan, L., Alkemade, R., and Koellner, T. (2013).
@@ -86,6 +76,13 @@ Duffy, J.~E., Godwin, C.~M., and Cardinale, B.~J. (2017).
 \newblock Biodiversity effects in the wild are common and as strong as key
   drivers of productivity.
 \newblock {\em Nature}, 549(7671):261--264.
+
+\bibitem[Ferrier et~al., 2016]{ferrier2016summary}
+Ferrier, S., Ninan, K., Leadley, P., Alkemade, R., Acosta-Michlik, L.,
+  Ak{\c{c}}akaya, H., and Kabubo-Mariara, J. (2016).
+\newblock Summary for policymakers of the assessment report of the
+  methodological assessment of scenarios and models of biodiversity and
+  ecosystem services.
 
 \bibitem[Foden et~al., 2013]{foden2013identifying}
 Foden, W.~B., Butchart, S.~H., Stuart, S.~N., Vi{\'e}, J.-C., Ak{\c{c}}akaya,
@@ -130,16 +127,10 @@ Heather~Phillips, Adriana De~Palma, R. E. G. S. C. e.~a. (2021).
 ICCS (2020).
 \newblock Benchmark for nature.
 
-\bibitem[IUCN, 2001]{iucn2001iucn}
-IUCN, S. S.~C. (2001).
-\newblock Iucn red list categories and criteria: version 3.1.
-\newblock {\em Prepared by the IUCN Species Survival Commission}.
-
-\bibitem[Kinzig et~al., 2005]{kinzig2005effects}
-Kinzig, A.~P., Warren, P., Martin, C., Hope, D., and Katti, M. (2005).
-\newblock The effects of human socioeconomic status and cultural
-  characteristics on urban patterns of biodiversity.
-\newblock {\em Ecology and Society}, 10(1).
+\bibitem[Leemans and De~Groot, 2003]{leemans2003millennium}
+Leemans, R. and De~Groot, R. (2003).
+\newblock Millennium ecosystem assessment: Ecosystems and human well-being: a
+  framework for assessment.
 
 \bibitem[Louette et~al., 2010]{louette2010bioscore}
 Louette, G., Maes, D., Alkemade, J. R.~M., Boitani, L., de~Knegt, B., Eggers,
@@ -148,19 +139,6 @@ Louette, G., Maes, D., Alkemade, J. R.~M., Boitani, L., de~Knegt, B., Eggers,
 \newblock Bioscore--cost-effective assessment of policy impact on biodiversity
   using species sensitivity scores.
 \newblock {\em Journal for Nature Conservation}, 18(2):142--148.
-
-\bibitem[Mayor, 2016]{mayor2016assessing}
-Mayor, S. (2016).
-\newblock Assessing bird interspecific and intraspecific variation in
-  sensitivity to habitat fragmentation.
-\newblock Master's thesis, Imperial College London.
-\newblock unpublished thesis.
-
-\bibitem[McLean et~al., 2018]{mclean2018high}
-McLean, N., Van Der~Jeugd, H.~P., and van~de Pol, M. (2018).
-\newblock High intra-specific variation in avian body condition responses to
-  climate limits generalisation across species.
-\newblock {\em PLoS One}, 13(2):e0192401.
 
 \bibitem[McRae et~al., 2017]{mcrae2017diversity}
 McRae, L., Deinet, S., and Freeman, R. (2017).
@@ -172,14 +150,6 @@ McRae, L., Deinet, S., and Freeman, R. (2017).
 Millennium~ecosystem assessment, M. (2005).
 \newblock {\em Ecosystems and human well-being}, volume~5.
 \newblock Island press Washington, DC.
-
-\bibitem[Newbold et~al., 2016]{newbold2016global}
-Newbold, T., Hudson, L.~N., Hill, S.~L., Contu, S., Gray, C.~L., Scharlemann,
-  J.~P., B{\"o}rger, L., Phillips, H.~R., Sheil, D., Lysenko, I., et~al.
-  (2016).
-\newblock Global patterns of terrestrial assemblage turnover within and among
-  land uses.
-\newblock {\em Ecography}, 39(12):1151--1163.
 
 \bibitem[Newbold et~al., 2020]{newbold2020tropical}
 Newbold, T., Oppenheimer, P., Etard, A., and Williams, J.~J. (2020).
@@ -206,12 +176,6 @@ Ogar, E., Pecl, G., and Mustonen, T. (2020).
 Pereira, H.~M., Navarro, L.~M., and Martins, I.~S. (2012).
 \newblock Global biodiversity change: the bad, the good, and the unknown.
 \newblock {\em Annual Review of Environment and Resources}, 37:25--50.
-
-\bibitem[Phillips, 2016]{phillips2016effects}
-Phillips, H. R.~P. (2016).
-\newblock {\em Effects of land use and habitat fragmentation on local
-  biodiversity}.
-\newblock PhD thesis, Imperial College London.
 
 \bibitem[Plumptre et~al., 2021]{plumptre2021might}
 Plumptre, A.~J., Baisero, D., Belote, R.~T., V{\'a}zquez-Dom{\'\i}nguez, E.,
@@ -245,6 +209,11 @@ Sala, O.~E., Stuart~Chapin, F., Armesto, J.~J., Berlow, E., Bloomfield, J.,
   et~al. (2000).
 \newblock Global biodiversity scenarios for the year 2100.
 \newblock {\em science}, 287(5459):1770--1774.
+
+\bibitem[Sandbrook et~al., 2019]{sandbrook2019global}
+Sandbrook, C., Fisher, J.~A., Holmes, G., Luque-Lora, R., and Keane, A. (2019).
+\newblock The global conservation movement is diverse but not divided.
+\newblock {\em Nature Sustainability}, 2(4):316--323.
 
 \bibitem[Shin et~al., 2022]{shin2022actions}
 Shin, Y.-J., Midgley, G.~F., Archer, E.~R., Arneth, A., Barnes, D.~K., Chan,
@@ -283,6 +252,14 @@ Velde, M. (2022).
 Wade, T.~G., Riitters, K.~H., Wickham, J.~D., and Jones, K.~B. (2003).
 \newblock Distribution and causes of global forest fragmentation.
 \newblock {\em Conservation Ecology}, 7(2).
+
+\bibitem[Watson et~al., 2019]{watson2019summary}
+Watson, R., Baste, I., Larigauderie, A., Leadley, P., Pascual, U., Baptiste,
+  B., Demissew, S., Dziba, L., Erpul, G., Fazel, A., et~al. (2019).
+\newblock {\em Summary for policymakers of the global assessment report on
+  biodiversity and ecosystem services of the Intergovernmental Science-Policy
+  Platform on Biodiversity and Ecosystem Services}.
+\newblock Bonn, Germany: IPBES Secretariat.
 
 \bibitem[WWF, 2020]{wwf2020}
 WWF (2020).
