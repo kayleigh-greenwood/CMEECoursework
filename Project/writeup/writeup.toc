@@ -6,20 +6,19 @@
 \contentsline {section}{Methods}{7}{section*.1}%
 \contentsline {subsection}{Overview}{7}{section*.2}%
 \contentsline {subsection}{Data}{7}{section*.2}%
-\contentsline {subsection}{Individual Pressures}{8}{section*.2}%
 \contentsline {subsection}{Data Wrangling}{8}{section*.2}%
-\contentsline {subsection}{Modelling}{8}{section*.2}%
-\contentsline {subsection}{Multi-pressure model}{9}{section*.2}%
-\contentsline {subsection}{Data Wrangling}{9}{section*.2}%
 \contentsline {subsection}{Modelling}{9}{section*.2}%
-\contentsline {subsection}{Benchmark data}{9}{section*.2}%
-\contentsline {section}{Results}{10}{section*.2}%
-\contentsline {subsection}{Climate Model}{10}{section*.3}%
-\contentsline {subsection}{Pollution Model}{12}{figure.2}%
-\contentsline {subsection}{Land Use Model}{12}{figure.3}%
-\contentsline {subsection}{Invasive Species Model}{13}{figure.4}%
-\contentsline {section}{Discussion}{15}{figure.5}%
-\contentsline {subsection}{Importance of Findings}{15}{section*.4}%
-\contentsline {section}{Conclusion}{16}{section*.4}%
-\contentsline {section}{Data and Code Availability}{17}{section*.4}%
-\contentsline {section}{Acknowledgements}{18}{section*.4}%
+\contentsline {subsection}{Climate Model}{9}{section*.2}%
+\contentsline {subsection}{Pollution Model}{9}{section*.2}%
+\contentsline {subsection}{Climate Model}{9}{section*.2}%
+\contentsline {subsection}{Invasive Species Model}{10}{section*.2}%
+\contentsline {section}{Results}{11}{section*.2}%
+\contentsline {subsection}{Climate Model}{11}{section*.3}%
+\contentsline {subsection}{Pollution Model}{14}{table.caption.4}%
+\contentsline {subsection}{Land Use Model}{16}{table.caption.5}%
+\contentsline {subsection}{Invasive Species Model}{18}{table.caption.6}%
+\contentsline {section}{Discussion}{21}{table.caption.7}%
+\contentsline {subsection}{Importance of Findings}{21}{section*.8}%
+\contentsline {section}{Conclusion}{22}{section*.8}%
+\contentsline {section}{Data and Code Availability}{23}{section*.8}%
+\contentsline {section}{Acknowledgements}{24}{section*.8}%

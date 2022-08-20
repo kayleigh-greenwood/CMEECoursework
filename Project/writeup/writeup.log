@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.10.7)  19 AUG 2022 21:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.10.7)  21 AUG 2022 00:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -790,202 +790,218 @@ Underfull \hbox (badness 10000) in paragraph at lines 96--97
 [5] [6]
 
 Package hyperref Warning: The anchor of a bookmark and its parent's must not
-(hyperref)                be the same. Added a new anchor on input line 113.
+(hyperref)                be the same. Added a new anchor on input line 114.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 115--117
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 118--119
+Underfull \hbox (badness 10000) in paragraph at lines 116--118
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 120--122
+Underfull \hbox (badness 10000) in paragraph at lines 119--120
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 126--127
+Underfull \hbox (badness 10000) in paragraph at lines 121--123
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 129--130
+Underfull \hbox (badness 10000) in paragraph at lines 127--128
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 132--133
+Underfull \hbox (badness 10000) in paragraph at lines 130--131
 
  []
 
 [7]
+Underfull \hbox (badness 10000) in paragraph at lines 133--134
+
+ []
+
 
 Package natbib Warning: Citation `united nations' on page 8 undefined on input 
-line 135.
+line 136.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 135--136
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 137--138
+Underfull \hbox (badness 10000) in paragraph at lines 136--137
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 149--150
+Package natbib Warning: Citation `seebens2017no' on page 8 undefined on input l
+ine 138.
+
+
+Package natbib Warning: Citation `seebens2018global' on page 8 undefined on inp
+ut line 138.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 138--139
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 156--157
+Underfull \hbox (badness 10000) in paragraph at lines 150--151
 
  []
 
-[8]
+
 Underfull \hbox (badness 10000) in paragraph at lines 159--160
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 172--173
+[8]
+Underfull \hbox (badness 10000) in paragraph at lines 162--163
 
  []
 
-[9]
+[9] [10]
 
 Package hyperref Warning: The anchor of a bookmark and its parent's must not
-(hyperref)                be the same. Added a new anchor on input line 197.
+(hyperref)                be the same. Added a new anchor on input line 219.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 199--200
+Underfull \hbox (badness 10000) in paragraph at lines 221--223
 
  []
 
-<../images/climatesensitivitymapgradient.pdf, id=286, 505.89pt x 505.89pt>
+<../images/climatesensitivitymapgradient.pdf, id=287, 505.89pt x 505.89pt>
 File: ../images/climatesensitivitymapgradient.pdf Graphic file (type pdf)
 <use ../images/climatesensitivitymapgradient.pdf>
 Package pdftex.def Info: ../images/climatesensitivitymapgradient.pdf  used on i
-nput line 201.
+nput line 224.
 (pdftex.def)             Requested size: 480.59276pt x 480.59276pt.
 
 Package caption Warning: \captionsetup{type*=...} or \captionof
-(caption)                outside box or environment on input line 202.
+(caption)                outside box or environment on input line 225.
 See the caption package documentation for explanation.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 202.
+(caption)                particular \caption on input line 225.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (13.89589pt too wide) in paragraph at lines 201--202
+Overfull \hbox (13.89589pt too wide) in paragraph at lines 224--225
 [][] 
  []
 
-<../images/climatesensitivityboxplot.pdf, id=287, 505.89pt x 505.89pt>
+<../images/climatesensitivityboxplot.pdf, id=288, 505.89pt x 505.89pt>
 File: ../images/climatesensitivityboxplot.pdf Graphic file (type pdf)
 <use ../images/climatesensitivityboxplot.pdf>
 Package pdftex.def Info: ../images/climatesensitivityboxplot.pdf  used on input
- line 204.
+ line 228.
 (pdftex.def)             Requested size: 480.59276pt x 480.59276pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 205.
+(caption)                particular \caption on input line 229.
 See the caption package documentation for explanation.
 
-[10
+[11
 
- <../images/climatesensitivitymapgradient.pdf>] [11 <../images/climatesensitivi
+ <../images/climatesensitivitymapgradient.pdf>] [12 <../images/climatesensitivi
 tyboxplot.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 215--216
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 217--218
-
- []
-
-<../images/pollutionsensitivitymapgradient.pdf, id=313, 505.89pt x 505.89pt>
+LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <10.95> not available
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 247.
+ [13]
+<../images/pollutionsensitivitymapgradient.pdf, id=322, 505.89pt x 505.89pt>
 File: ../images/pollutionsensitivitymapgradient.pdf Graphic file (type pdf)
 <use ../images/pollutionsensitivitymapgradient.pdf>
 Package pdftex.def Info: ../images/pollutionsensitivitymapgradient.pdf  used on
- input line 219.
+ input line 269.
+(pdftex.def)             Requested size: 480.59276pt x 480.59276pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 270.
+See the caption package documentation for explanation.
+
+<../images/pollutionsensitivityboxplot.pdf, id=323, 505.89pt x 505.89pt>
+File: ../images/pollutionsensitivityboxplot.pdf Graphic file (type pdf)
+<use ../images/pollutionsensitivityboxplot.pdf>
+Package pdftex.def Info: ../images/pollutionsensitivityboxplot.pdf  used on inp
+ut line 273.
 (pdftex.def)             Requested size: 480.59276pt x 480.59276pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 220.
+(caption)                particular \caption on input line 274.
 See the caption package documentation for explanation.
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 224--225
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 228--229
+[14 <../images/pollutionsensitivitymapgradient.pdf>] [15 <../images/pollutionse
+nsitivityboxplot.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 301--302
 
  []
 
-<../images/buildlandsensitivitymapgradient.pdf, id=314, 505.89pt x 505.89pt>
-File: ../images/buildlandsensitivitymapgradient.pdf Graphic file (type pdf)
-<use ../images/buildlandsensitivitymapgradient.pdf>
-Package pdftex.def Info: ../images/buildlandsensitivitymapgradient.pdf  used on
- input line 230.
+<../images/builtlandsensitivitymapgradient.pdf, id=349, 505.89pt x 505.89pt>
+File: ../images/builtlandsensitivitymapgradient.pdf Graphic file (type pdf)
+<use ../images/builtlandsensitivitymapgradient.pdf>
+Package pdftex.def Info: ../images/builtlandsensitivitymapgradient.pdf  used on
+ input line 303.
 (pdftex.def)             Requested size: 480.59276pt x 480.59276pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 231.
+(caption)                particular \caption on input line 304.
 See the caption package documentation for explanation.
 
-[12 <../images/pollutionsensitivitymapgradient.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 235--236
+<../images/builtlandsensitivityboxplot.pdf, id=350, 505.89pt x 505.89pt>
+File: ../images/builtlandsensitivityboxplot.pdf Graphic file (type pdf)
+<use ../images/builtlandsensitivityboxplot.pdf>
+Package pdftex.def Info: ../images/builtlandsensitivityboxplot.pdf  used on inp
+ut line 308.
+(pdftex.def)             Requested size: 480.59276pt x 480.59276pt.
 
- []
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 309.
+See the caption package documentation for explanation.
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 239--240
-
- []
-
-<../images/invasivesensitivitymapgradient.pdf, id=326, 505.89pt x 505.89pt>
+[16 <../images/builtlandsensitivitymapgradient.pdf>] [17 <../images/builtlandse
+nsitivityboxplot.pdf>]
+<../images/invasivesensitivitymapgradient.pdf, id=376, 505.89pt x 505.89pt>
 File: ../images/invasivesensitivitymapgradient.pdf Graphic file (type pdf)
 <use ../images/invasivesensitivitymapgradient.pdf>
 Package pdftex.def Info: ../images/invasivesensitivitymapgradient.pdf  used on 
-input line 241.
+input line 339.
+(pdftex.def)             Requested size: 480.59276pt x 480.59276pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 340.
+See the caption package documentation for explanation.
+
+<../images/invasivesensitivityboxplot.pdf, id=377, 505.89pt x 505.89pt>
+File: ../images/invasivesensitivityboxplot.pdf Graphic file (type pdf)
+<use ../images/invasivesensitivityboxplot.pdf>
+Package pdftex.def Info: ../images/invasivesensitivityboxplot.pdf  used on inpu
+t line 343.
 (pdftex.def)             Requested size: 480.59276pt x 480.59276pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 242.
+(caption)                particular \caption on input line 344.
 See the caption package documentation for explanation.
 
-[13 <../images/buildlandsensitivitymapgradient.pdf>] [14 <../images/invasivesen
-sitivitymapgradient.pdf>]
+[18 <../images/invasivesensitivitymapgradient.pdf>] [19 <../images/invasivesens
+itivityboxplot.pdf>] [20]
 
 Package hyperref Warning: The anchor of a bookmark and its parent's must not
-(hyperref)                be the same. Added a new anchor on input line 253.
+(hyperref)                be the same. Added a new anchor on input line 373.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 255--256
+Underfull \hbox (badness 10000) in paragraph at lines 375--376
 
  []
 
-[15
+[21
 
-] [16
+] [22
 
-] [17
+] [23
 
-] (./writeup.bbl
-LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <10.95> not available
-(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 14.
- [18
+] (./writeup.bbl [24
 
 ]
 
@@ -1001,39 +1017,40 @@ l.182   Faurby, S., Jȩ
 You may provide a definition with
 \DeclareUnicodeCharacter 
 
-[19])
+[25])
 
 Package natbib Warning: There were undefined citations.
 
-[20]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 274.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 274.
+[26]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 394.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 394.
  (./writeup.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 274.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 274.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 394.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 394.
 Package rerunfilecheck Info: File `writeup.out' has not changed.
-(rerunfilecheck)             Checksum: D8911C374A5B8812FEDB197342D53018;1484.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 274.
+(rerunfilecheck)             Checksum: 031EE7DEC93DF9C66B8421C6580F8D76;1458.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 394.
  ) 
 Here is how much of TeX's memory you used:
- 20066 strings out of 481239
- 394892 string characters out of 5920377
- 649934 words of memory out of 5000000
- 34874 multiletter control sequences out of 15000+600000
+ 20109 strings out of 481239
+ 396064 string characters out of 5920377
+ 651263 words of memory out of 5000000
+ 34901 multiletter control sequences out of 15000+600000
  549508 words of font info for 50 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 68i,5n,69p,1843b,474s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 68i,10n,69p,1843b,474s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/t
-ype1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/hel
-vetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvro8
-a.pfb>
-Output written on writeup.pdf (21 pages, 2024386 bytes).
+fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
+rw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/
+uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
+
+Output written on writeup.pdf (27 pages, 2054312 bytes).
 PDF statistics:
- 436 PDF objects out of 1000 (max. 8388607)
- 389 compressed objects within 4 object streams
- 72 named destinations out of 1000 (max. 500000)
- 238 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 504 PDF objects out of 1000 (max. 8388607)
+ 443 compressed objects within 5 object streams
+ 85 named destinations out of 1000 (max. 500000)
+ 245 words of extra memory for PDF output out of 10000 (max. 10000000)
 
