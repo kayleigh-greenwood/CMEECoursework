@@ -172,6 +172,8 @@ resultsDF <- data.frame(matchingcountrys)
 row.names(resultsDF) <- matchingcountrys
 resultsDF <- resultsDF[-1]
 resultsDF$corr <- NA
+resultsDF$se <- NA
+
 
 # loop through countrys and find significant correlation coefficients
 
@@ -190,7 +192,8 @@ for (country in seq_along(matchingcountrys)){
   abline(model)
   
   #add correlation result to results data frame
-    resultsDF$corr[country] <- as.numeric(model[[1]][2])
+  resultsDF$corr[country] <- as.numeric(model[[1]][2])
+  resultsDF$se[country] <- as.numeric(sqrt(diag(vcov(model)))[2])
   
 }
 
@@ -201,8 +204,8 @@ rm(list=c("BDvalues", "Builtvalues","model", "country"))
 
 #visualize
 
-resultsDF$ID <- 1:175
-plot(x=resultsDF$ID,y=resultsDF$corr)
+# resultsDF$ID <- 1:175
+# plot(x=resultsDF$ID,y=resultsDF$corr)
 
 
 #add in continents and regions
@@ -213,8 +216,33 @@ resultsDF$continent <- countrycode(sourcevar = row.names(resultsDF),
 resultsDF$region <- countrycode(sourcevar = row.names(resultsDF),
                                 origin = "country.name",
                                 destination = "region")
+# add western sahara to north africa
+resultsDF[c("Western Sahara"),][4] <- "Middle East & North Africa"
 
+# this adds north and south america as 'the americas' so i must separate:
+for (row in 1:nrow(resultsDF)){
+  if (resultsDF[row, 4]=='Latin America & Caribbean'){
+    resultsDF[row, 3] <- 'S America'
+  }
+}
 
+resultsDF$continent <- replace(resultsDF$continent, resultsDF$continent=='Americas', 'N America')
+
+for (row in 1:nrow(resultsDF)){
+  if (resultsDF[row, 4]=='North America'){
+    resultsDF[row, 3] <- 'N America'
+  }
+}
+
+##################################################
+## DESCRIPTIVE STATISTICS OF SENSITIVITY SCORES ##
+##################################################
+
+mean(resultsDF$corr)
+# install.packages("plotrix")
+library('plotrix')
+std.error(resultsDF$corr)
+range(resultsDF$corr)
 ##################################
 ## VISUALISE SENSITIVITY SCORES ##
 ##################################
@@ -242,13 +270,13 @@ names(mapdata)[names(mapdata) == 'region'] <- 'country' # change the name of the
 
 mapdata <- left_join(mapdata, resultsDFmapping, by='country') # join the data frames
 
-pdf(file="../images/buildlandsensitivitymapgradient.pdf")
+pdf(file="../images/builtlandsensitivitymapgradient.pdf")
 # base plot
 map <- ggplot(mapdata, aes(x = long, y = lat, group = group)) +
   geom_polygon(aes(fill= corr), colour = "black") 
 
 # add colours
-map <- map + scale_fill_gradient2(name="Sensitivity Score", midpoint = 0, mid = "white", high = "darkgoldenrod2", low = "blue4", limits = c(-0.001, 0.001), space="Lab") # maybe would be better to make all countries below zero on a different colour gradient
+map <- map + scale_fill_gradient2(name="Sensitivity Score", midpoint = 0, mid = "white", high = "darkgoldenrod2", low = "blue4", limits = c(-3.222472, 2.756498), space="Lab") # maybe would be better to make all countries below zero on a different colour gradient
 
 # install.packages("viridis")
 # library(viridis)
@@ -267,6 +295,34 @@ map <- map + theme(panel.grid.major = element_blank(), panel.grid.minor = elemen
 map
 
 dev.off()
+
+##################################
+## COMPARING SENSITIVITY SCORES ##
+##################################
+
+library(ggplot2)
+
+ggplot(data = resultsDF, mapping = aes(y=corr, x=continent, xlab = "Continent", ylab = "Sensitivity Score")) +
+  geom_point() + #plot sensitivity score against continent (Scatter)
+  ylab("Sensitivity Score")
+
+pdf(file="../images/builtlandsensitivityboxplot.pdf")
+boxplot(corr ~ continent, data=resultsDF,  xlab = "Continent", ylab = "Sensitivity Score") # plot sensitivity score against continent (boxplot)
+dev.off()
+
+###################################
+## model continental differences ##
+###################################
+mean(resultsDF$corr)
+
+## remove countries with SE of 0
+resultsDF <- subset(resultsDF, se != 0)
+
+sensitivitymodel <- lm(resultsDF$corr ~ resultsDF$continent, weights = 1/(resultsDF$se))
+summary(sensitivitymodel)
+
+
+
 ####### try clustering by continent
 ##########################
 library(cluster)

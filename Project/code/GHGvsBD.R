@@ -154,6 +154,7 @@ resultsDF <- data.frame(matchingcountrys)
 row.names(resultsDF) <- matchingcountrys
 resultsDF <- resultsDF[-1]
 resultsDF$corr <- NA
+resultsDF$se <- NA
 
 # loop through countrys and find significant correlation coefficients
 
@@ -173,7 +174,7 @@ for (country in seq_along(matchingcountrys)){
   
   #add correlation result to results data frame
   resultsDF$corr[country] <- as.numeric(model[[1]][2])
-  
+  resultsDF$se[country] <- as.numeric(sqrt(diag(vcov(model)))[2])
 }
 
 #remove unnecessary variables from loop
@@ -182,8 +183,8 @@ rm(list=c("BDvalues", "GHGvalues","model", "country"))
 
 #visualize
 
-resultsDF$ID <- 1:43
-plot(x=resultsDF$ID,y=resultsDF$corr)
+# resultsDF$ID <- 1:43
+# plot(x=resultsDF$ID,y=resultsDF$corr)
 
 
 #add in continents and regions
@@ -194,6 +195,21 @@ resultsDF$continent <- countrycode(sourcevar = row.names(resultsDF),
 resultsDF$region <- countrycode(sourcevar = row.names(resultsDF),
                                 origin = "country.name",
                                 destination = "region")
+
+# this adds north and south america as 'the americas' so i must separate:
+for (row in 1:nrow(resultsDF)){
+  if (resultsDF[row, 4]=='Latin America & Caribbean'){
+    resultsDF[row, 3] <- 'S America'
+  }
+}
+
+resultsDF$continent <- replace(resultsDF$continent, resultsDF$continent=='Americas', 'N America')
+
+for (row in 1:nrow(resultsDF)){
+  if (resultsDF[row, 4]=='North America'){
+    resultsDF[row, 3] <- 'N America'
+  }
+}
 ##################################
 ## VISUALISE SENSITIVITY SCORES ##
 ##################################
@@ -257,7 +273,7 @@ ggplot(data = resultsDF, mapping = aes(y=corr, x=continent, xlab = "Continent", 
   geom_point() + #plot sensitivity score against continent (Scatter)
   ylab("Sensitivity Score")
 
-pdf(file="../images/climatesensitivityboxplot.pdf")
+pdf(file="../images/pollutionsensitivityboxplot.pdf")
 boxplot(corr ~ continent, data=resultsDF,  xlab = "Continent", ylab = "Sensitivity Score") # plot sensitivity score against continent (boxplot)
 dev.off()
 
@@ -265,8 +281,12 @@ dev.off()
 ## model continental differences ##
 ###################################
 mean(resultsDF$corr)
-sensitivitymodel <- lm(resultsDF$corr ~ resultsDF$continent, weights = 1/(resultsDF$se))
 
+# remove 13th country (cyprus) because SE was 0 and can't get inverse of 0 (it's infinity!)
+resultsDF <- resultsDF[-13,]
+
+sensitivitymodel <- lm(resultsDF$corr ~ resultsDF$continent, weights = 1/(resultsDF$se))
+summary(sensitivitymodel)
 
 
 

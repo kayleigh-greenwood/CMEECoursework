@@ -309,18 +309,29 @@ resultsDF$region <- countrycode(sourcevar = row.names(resultsDF),
 
 # this adds north and south america as 'the americas' so i must separate:
 for (row in 1:nrow(resultsDF)){
-  if (resultsDF[row, 3]=='Latin America & Caribbean'){
-    resultsDF[row, 2] <- 'S America'
+  if (resultsDF[row, 4]=='Latin America & Caribbean'){
+    resultsDF[row, 3] <- 'S America'
   }
 }
 
 resultsDF$continent <- replace(resultsDF$continent, resultsDF$continent=='Americas', 'N America')
 
 for (row in 1:nrow(resultsDF)){
-  if (resultsDF[row, 3]=='North America'){
-    resultsDF[row, 2] <- 'N America'
+  if (resultsDF[row, 4]=='North America'){
+    resultsDF[row, 3] <- 'N America'
   }
 }
+
+##################################################
+## DESCRIPTIVE STATISTICS OF SENSITIVITY SCORES ##
+##################################################
+
+mean(resultsDF$corr)
+# install.packages("plotrix")
+library('plotrix')
+std.error(resultsDF$corr)
+range(resultsDF$corr)
+
 ##################################
 ## VISUALISE SENSITIVITY SCORES ##
 ##################################
@@ -459,7 +470,7 @@ dev.off()
 ###################################
 mean(resultsDF$corr)
 sensitivitymodel <- lm(resultsDF$corr ~ resultsDF$continent, weights = 1/(resultsDF$se))
-
+summary(sensitivitymodel)
 
 
 

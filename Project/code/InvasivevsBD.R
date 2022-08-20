@@ -157,6 +157,7 @@ resultsDF <- data.frame(matchingcountrys)
 row.names(resultsDF) <- matchingcountrys
 resultsDF <- resultsDF[-1]
 resultsDF$corr <- NA
+resultsDF$se <- NA
 
 # make row names into a column
 library(tibble)
@@ -189,7 +190,9 @@ for (countryloop in seq_along(matchingcountrys)){ # this for loop is absolutely 
     # plot(onecountry$TaxonCount, onecountry$Biodiversity)
     #abline(model)
     #add correlation result to results data frame
-        resultsDF$corr[countryloop] <- as.numeric(model[[1]][2])
+    resultsDF$corr[countryloop] <- as.numeric(model[[1]][2])
+    resultsDF$se[countryloop] <- as.numeric(sqrt(diag(vcov(model)))[2])
+    
     }
   }
 }
@@ -200,7 +203,9 @@ rm(list=c("BDvalues", "Invasivevalues","model", "country"))
 
 #remove NAs 
 resultsDF <- na.omit(resultsDF)
-#leaves 88 countries from 158 (50%)
+
+## remove countries with SE of 0
+resultsDF <- subset(resultsDF, se != 0)
 
 # get continents and region
 library(countrycode)
@@ -210,7 +215,30 @@ resultsDF$continent <- countrycode(sourcevar = row.names(resultsDF),
 resultsDF$region <- countrycode(sourcevar = row.names(resultsDF),
                                 origin = "country.name",
                                 destination = "region")
+# this adds north and south america as 'the americas' so i must separate:
+for (row in 1:nrow(resultsDF)){
+  if (resultsDF[row, 4]=='Latin America & Caribbean'){
+    resultsDF[row, 3] <- 'S America'
+  }
+}
 
+resultsDF$continent <- replace(resultsDF$continent, resultsDF$continent=='Americas', 'N America')
+
+for (row in 1:nrow(resultsDF)){
+  if (resultsDF[row, 4]=='North America'){
+    resultsDF[row, 3] <- 'N America'
+  }
+}
+
+##################################################
+## DESCRIPTIVE STATISTICS OF SENSITIVITY SCORES ##
+##################################################
+
+mean(resultsDF$corr)
+# install.packages("plotrix")
+library('plotrix')
+std.error(resultsDF$corr)
+range(resultsDF$corr)
 ##################################
 ## VISUALISE SENSITIVITY SCORES ##
 ##################################
@@ -264,12 +292,13 @@ library(ggplot2)
 ggplot(data = resultsDF, mapping = aes(y=corr, x=continent)) +
   geom_point() # plot sensitivity score against continent (Scatter)
 
+pdf(file="../images/invasivesensitivityboxplot.pdf")
 boxplot(corr ~ continent, data=resultsDF) # plot sensitivity score against continent (boxplot)
+dev.off()
 
-sensitivitymodel <- lm(resultsDF$corr ~ resultsDF$continent)
+sensitivitymodel <- lm(resultsDF$corr ~ resultsDF$continent, weights = 1/(resultsDF$se))
 
-TukeyHSD(x=aov(sensitivitymodel))
-
+summary(sensitivitymodel)
 
 
 
