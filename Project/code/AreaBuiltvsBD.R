@@ -161,6 +161,10 @@ plotly_interaction(alldata, "built", "Biodiversity", "Continent")
 ################################################################################################################################################
 # method of assessing each country as its own linear model
 
+##################################
+## PREPARE AND MERGE DATAFRAMES ##
+##################################
+
 #create results data frame
 resultsDF <- data.frame(matchingcountrys)
 
@@ -182,29 +186,17 @@ for (country in seq_along(matchingcountrys)){
   model <- (lm(BDvalues~Builtvalues))
   
   #plot models
-  #plot(x=Builtvalues, y=BDvalues)
-  #abline(model)
+  # plot(x=Builtvalues, y=BDvalues)
+  abline(model)
   
-  #check if p value is below 0.05 (make sure )
-  if (as.numeric(summary(model)$coefficients[,4][2]) < 0.05){
-    # REMEMBER TO ADD THIS P VALUE SIGNIFICANCE BACK IN
-    #add correlation result to results data frame
+  #add correlation result to results data frame
     resultsDF$corr[country] <- as.numeric(model[[1]][2])
-  }
   
 }
 
-########  I DON'T THINK IT WORKS BECAUSE THERE ARE ONLY THREE DATA POINTS FOR EACH COUNTRY AND THEREFORE NOT ENOUGH DEGREES OF FREEDOM
 
 #remove unnecessary variables from loop
 rm(list=c("BDvalues", "Builtvalues","model", "country"))
-
-#remove NAs where p value wasn't significant
-resultsDF <- na.omit(resultsDF)
-
-
-#leaves us with 1 country
-
 
 
 #visualize
@@ -222,8 +214,61 @@ resultsDF$region <- countrycode(sourcevar = row.names(resultsDF),
                                 origin = "country.name",
                                 destination = "region")
 
-####### try clustering by continent
 
+##################################
+## VISUALISE SENSITIVITY SCORES ##
+##################################
+
+####################################
+## Map with gradient colour scale ##
+####################################
+
+# install.packages(c("cowplot", "googleway", "ggplot2", "ggrepel", "ggspatial", "libwgeom", "sf", "rnaturalearth", "rnaturalearthdata"))
+# install.packages("classInt")
+# install.packages('sf') #if this isn't working, try 'sudo apt install libudunits2-dev' in terminal
+library("ggplot2")
+theme_set(theme_bw())
+library("sf") 
+library("rnaturalearth")
+library("rnaturalearthdata")
+
+world <- ne_countries(scale = "medium", returnclass = "sf")
+library('tidyverse')
+
+mapdata <- map_data("world")
+library(tibble)
+resultsDFmapping <- tibble::rownames_to_column(resultsDF, "country") # create new results DF where country is a column so that it can be joined with another df
+names(mapdata)[names(mapdata) == 'region'] <- 'country' # change the name of the countries column to match the other DF
+
+mapdata <- left_join(mapdata, resultsDFmapping, by='country') # join the data frames
+
+pdf(file="../images/buildlandsensitivitymapgradient.pdf")
+# base plot
+map <- ggplot(mapdata, aes(x = long, y = lat, group = group)) +
+  geom_polygon(aes(fill= corr), colour = "black") 
+
+# add colours
+map <- map + scale_fill_gradient2(name="Sensitivity Score", midpoint = 0, mid = "white", high = "darkgoldenrod2", low = "blue4", limits = c(-0.001, 0.001), space="Lab") # maybe would be better to make all countries below zero on a different colour gradient
+
+# install.packages("viridis")
+# library(viridis)
+# map <- map + scale_fill_viridis(midpoint = 0, mid = "white")
+
+
+# Remove axis titles and details
+map <- map + theme(axis.text.x=element_blank(), 
+                   axis.ticks.x=element_blank(),
+                   axis.text.y=element_blank(),
+                   axis.ticks.y=element_blank(),
+                   axis.title.y = element_blank(),
+                   axis.title.x = element_blank())
+map <- map + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), legend.position = c(0.1, 0.25))
+
+map
+
+dev.off()
+####### try clustering by continent
+##########################
 library(cluster)
 numcontinents <- length(unique(resultsDF$continent))
 kvals <- kmeans(resultsDF$corr, numcontinents)

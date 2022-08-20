@@ -3,14 +3,12 @@
 #################################################################################################################################################
 ## SET UP WORKSPACE ##
 #################################################################################################################################################
-
 setwd("~/CMEECoursework/Project/code")
 rm(list=ls())
 
 #################################################################################################################################################
 ## IMPORT DATA ##
 #################################################################################################################################################
-
 countryBD<- readRDS("../data/RawDataFiles/NHMBiodiversityData/countryBD.RDS")
 countryClimate<- readRDS("../data/RawDataFiles/WorldBankClimateData/countryclimate.RDS")
 
@@ -273,6 +271,7 @@ resultsDF <- data.frame(matchingcountrys)
 row.names(resultsDF) <- matchingcountrys
 resultsDF <- resultsDF[-1]
 resultsDF$corr <- NA
+resultsDF$se <- NA
 
 ###############################
 ## OBTAIN SENSITIVITY SCORES ##
@@ -284,26 +283,20 @@ for (country in seq_along(matchingcountrys)){
   BDvalues <- as.numeric(as.vector(countryBD[country,]))
   Climatevalues <- as.numeric(as.vector(countryClimate[country,]))
   
-  #myDF <- data.frame(colnames(countryBD), BD, Climate)
+  myDF <- data.frame(colnames(countryBD), BDvalues, Climatevalues)
   
   # fit model
   model <- (lm(BDvalues~Climatevalues))
-  plot(Climatevalues, BDvalues)
-  abline(model)
-  #check if p value is below 0.05 (make sure)
-  if (as.numeric(summary(model)$coefficients[,4][2]) < 0.05){
-    
-    #add correlation result to results data frame
-    resultsDF$corr[country] <- as.numeric(model[[1]][2])
-  }
+  #plot(Climatevalues, BDvalues)
+  #title(matchingcountrys[country])
+  #abline(model)
+  #add correlation result to results data frame
+  resultsDF$corr[country] <- as.numeric(model[[1]][2])
+  resultsDF$se[country] <- as.numeric(sqrt(diag(vcov(model)))[2])
 }
 
 #remove unnecessary variables from loop
 rm(list=c("BDvalues", "Climatevalues","model", "country"))
-
-#remove NAs where p value wasn't significant
-resultsDF <- na.omit(resultsDF)
-#leaves 88 countries from 158 (50%)
 
 # get continents and region
 library(countrycode)
@@ -314,9 +307,28 @@ resultsDF$region <- countrycode(sourcevar = row.names(resultsDF),
                           origin = "country.name",
                           destination = "region")
 
+# this adds north and south america as 'the americas' so i must separate:
+for (row in 1:nrow(resultsDF)){
+  if (resultsDF[row, 3]=='Latin America & Caribbean'){
+    resultsDF[row, 2] <- 'S America'
+  }
+}
+
+resultsDF$continent <- replace(resultsDF$continent, resultsDF$continent=='Americas', 'N America')
+
+for (row in 1:nrow(resultsDF)){
+  if (resultsDF[row, 3]=='North America'){
+    resultsDF[row, 2] <- 'N America'
+  }
+}
 ##################################
 ## VISUALISE SENSITIVITY SCORES ##
 ##################################
+
+####################################
+## Map with gradient colour scale ##
+####################################
+
 # install.packages(c("cowplot", "googleway", "ggplot2", "ggrepel", "ggspatial", "libwgeom", "sf", "rnaturalearth", "rnaturalearthdata"))
 # install.packages("classInt")
 # install.packages('sf') #if this isn't working, try 'sudo apt install libudunits2-dev' in terminal
@@ -327,11 +339,11 @@ library("rnaturalearth")
 library("rnaturalearthdata")
 
 world <- ne_countries(scale = "medium", returnclass = "sf")
-class(world)
+# class(world)
 
-ggplot(data = world) +
-  geom_sf() +
-  ggtitle("World map", subtitle = paste0("(", length(unique(world$NAME)), " countries)"))
+# ggplot(data = world) +
+#   geom_sf() +
+#   ggtitle("World map", subtitle = paste0("(", length(unique(world$NAME)), " countries)"))
 #########
 library('ggplot2')
 library('tidyverse')
@@ -342,25 +354,111 @@ resultsDFmapping <- tibble::rownames_to_column(resultsDF, "country") # create ne
 names(mapdata)[names(mapdata) == 'region'] <- 'country' # change the name of the countries column to match the other DF
 
 mapdata <- left_join(mapdata, resultsDFmapping, by='country') # join the data frames
-# mapdata <- mapdata %>%  filter(!is.na(mapdata$corr))   # remove NAs
 
+pdf(file="../images/climatesensitivitymapgradient.pdf")
+# base plot
 map <- ggplot(mapdata, aes(x = long, y = lat, group = group)) +
-  geom_polygon(aes(fill= corr), colour = "black")
+  geom_polygon(aes(fill= corr), colour = "black") 
 
-map <- map + scale_fill_gradient(name = "Sensitivity Score", low = "red", high = "green", na.value = "grey50") # maybe would be better to make all countries below zero on a different colour gradient
+# add colours
+map <- map + scale_fill_gradient2(name="Sensitivity Score", midpoint = 0, mid = "white", high = "darkgoldenrod2", low = "blue4", limits = c(-0.25, 0.1), space="Lab") # maybe would be better to make all countries below zero on a different colour gradient
+
+# install.packages("viridis")
+# library(viridis)
+# map <- map + scale_fill_viridis(midpoint = 0, mid = "white")
+
+
+# Remove axis titles and details
+map <- map + theme(axis.text.x=element_blank(), 
+                   axis.ticks.x=element_blank(),
+                   axis.text.y=element_blank(),
+                   axis.ticks.y=element_blank(),
+                   axis.title.y = element_blank(),
+                   axis.title.x = element_blank())
+map <- map + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), legend.position = c(0.1, 0.25))
+
 map
 
-###########
-## ANOVA ##
-###########
+dev.off()
+####################################
+## Map with binned data colour gradient ##
+####################################
+
+
+
+# ggplot(data = world) +
+#   geom_sf() +
+#   ggtitle("World map", subtitle = paste0("(", length(unique(world$NAME)), " countries)"))
+
+mapdata <- map_data("world")
+# wrangle results data to prepare for mapping
+resultsDFmapping <- tibble::rownames_to_column(resultsDF, "country") # create new results DF where country is a column so that it can be joined with another df
+names(mapdata)[names(mapdata) == 'region'] <- 'country' # change the name of the countries column to match the other DF
+
+
+
+
+
+mapdata <- left_join(mapdata, resultsDFmapping, by='country') # join the data frames
+
+
+world <- ne_countries(scale = "medium", returnclass = "sf")
+
+
+
+# Generate a list of expressions that will become the legend labels
+# lbls <- list(expression(-0.25 <= x < -0.20), expression(-0.20 <= x < -0.15), expression(-0.15 <= x < -0.10), expression(-0.10 <= x < -0.05), expression(-0.05 <= x < 0), expression(0 <= x < 0.05), expression(0.05 <= x < 0.10))
+
+
+# add column for which bin the correlation value is in 
+mapdata$corrbins <- cut(mapdata$corr, include.lowest = TRUE,
+                        breaks = c( -0.25, -0.2, -0.15, -0.1, -0.05, 0, 0.05, 0.1),
+                        labels = c("(-) 0.25 to < 0.20", "(-) 0.20 to < 0.15", "(-) 0.15 to < 0.10", "(-) 0.10 to < 0.05", "(-) 0.05 to < 0", "0 to < 0.05", "0.05 to < 0.10"))
+
+
+pdf(file="../images/climatesensitivitymapbins.pdf")
+# Base plot
+map <- ggplot(mapdata, aes(x = long, y = lat, group = group)) +
+        geom_polygon(aes(fill= corrbins), colour = "black") 
+
+
+# Amend colour gradient
+map <- map + scale_fill_manual(name = "Sensitivity Score", 
+                               values = c("firebrick4", "firebrick3", "firebrick2", "lightcoral", "pink", "lightgreen", "green4"), 
+                               guide=guide_legend(reverse=TRUE)
+                            )
+
+# Remove axis titles and details
+map <- map + theme(axis.text.x=element_blank(), 
+        axis.ticks.x=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank(),
+        axis.title.y = element_blank(),
+        axis.title.x = element_blank())
+# map <- map + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+
+map
+dev.off()
+
+##################################
+## COMPARING SENSITIVITY SCORES ##
+##################################
 
 library(ggplot2)
-boxplot(corr ~ continent, data=resultsDF)
-plot(resultsDF$continent, resultsDF$corr)
-ggplot(data = resultsDF) +
-  aes(y=corr, x=continent)
 
+ggplot(data = resultsDF, mapping = aes(y=corr, x=continent, xlab = "Continent", ylab = "Sensitivity Score")) +
+  geom_point() + #plot sensitivity score against continent (Scatter)
+  ylab("Sensitivity Score")
 
+pdf(file="../images/climatesensitivityboxplot.pdf")
+boxplot(corr ~ continent, data=resultsDF,  xlab = "Continent", ylab = "Sensitivity Score") # plot sensitivity score against continent (boxplot)
+dev.off()
+
+###################################
+## model continental differences ##
+###################################
+mean(resultsDF$corr)
+sensitivitymodel <- lm(resultsDF$corr ~ resultsDF$continent, weights = 1/(resultsDF$se))
 
 
 

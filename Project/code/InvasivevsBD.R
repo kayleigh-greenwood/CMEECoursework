@@ -140,3 +140,144 @@ plotly_interaction <- function(data, x, y, category, colors = col2rgb(viridis(nl
 
 plotly_interaction(alldata, "TaxonCount", "Biodiversity", "Continent")
 
+
+
+################################################################################################################################################
+## METHOD 2 ##
+################################################################################################################################################
+# method of assessing each country as its own linear model
+
+##################################
+## PREPARE AND MERGE DATAFRAMES ##
+##################################
+#create results data frame
+resultsDF <- data.frame(matchingcountrys)
+
+#make the countrys the row names
+row.names(resultsDF) <- matchingcountrys
+resultsDF <- resultsDF[-1]
+resultsDF$corr <- NA
+
+# make row names into a column
+library(tibble)
+countryBD2 <- tibble::rownames_to_column(countryBD, "country")
+
+# pivot BD dataframe longer
+library(tidyr)
+countryBD2 <- pivot_longer(countryBD2, -c(country), values_to = "Biodiversity", names_to = "Year")
+colnames(countryInvasive)[2] <- "Year"
+
+# merge data frames into one
+alldata <- merge(countryInvasive, countryBD2, by=c("country", "Year"))
+
+###############################
+## OBTAIN SENSITIVITY SCORES ##
+###############################
+library(dplyr)
+# loop through countrys and find significant correlation coefficients
+for (countryloop in seq_along(matchingcountrys)){ # this for loop is absolutely fucked and doesn't work
+  
+  print(matchingcountrys[countryloop])
+  # make subset of dataframe containing only entries from that country
+  onecountry <- alldata %>% dplyr::filter(country == matchingcountrys[countryloop])
+  
+  if (length(levels(as.factor(onecountry$TaxonCount)))>1) {
+    print(onecountry)
+    # fit model
+    model <- (lm(onecountry$Biodiversity~onecountry$TaxonCount))
+    # print(model)
+    # plot(onecountry$TaxonCount, onecountry$Biodiversity)
+    #abline(model)
+    #add correlation result to results data frame
+        resultsDF$corr[countryloop] <- as.numeric(model[[1]][2])
+    }
+  }
+}
+
+
+#remove unnecessary variables from loop
+rm(list=c("BDvalues", "Invasivevalues","model", "country"))
+
+#remove NAs 
+resultsDF <- na.omit(resultsDF)
+#leaves 88 countries from 158 (50%)
+
+# get continents and region
+library(countrycode)
+resultsDF$continent <- countrycode(sourcevar = row.names(resultsDF),
+                                   origin = "country.name",
+                                   destination = "continent")
+resultsDF$region <- countrycode(sourcevar = row.names(resultsDF),
+                                origin = "country.name",
+                                destination = "region")
+
+##################################
+## VISUALISE SENSITIVITY SCORES ##
+##################################
+# install.packages(c("cowplot", "googleway", "ggplot2", "ggrepel", "ggspatial", "libwgeom", "sf", "rnaturalearth", "rnaturalearthdata"))
+# install.packages("classInt")
+# install.packages('sf') #if this isn't working, try 'sudo apt install libudunits2-dev' in terminal
+library("ggplot2")
+theme_set(theme_bw())
+library("sf") 
+library("rnaturalearth")
+library("rnaturalearthdata")
+
+world <- ne_countries(scale = "medium", returnclass = "sf")
+
+library('tidyverse')
+
+mapdata <- map_data("world")
+library(tibble)
+resultsDFmapping <- tibble::rownames_to_column(resultsDF, "country") # create new results DF where country is a column so that it can be joined with another df
+names(mapdata)[names(mapdata) == 'region'] <- 'country' # change the name of the countries column to match the other DF
+
+mapdata <- left_join(mapdata, resultsDFmapping, by='country') # join the data frames
+# mapdata <- mapdata %>%  filter(!is.na(mapdata$corr))   # remove NAs
+
+pdf(file="../images/invasivesensitivitymapgradient.pdf")
+
+map <- ggplot(mapdata, aes(x = long, y = lat, group = group)) +
+  geom_polygon(aes(fill= corr), colour = "black")
+
+map <- map + scale_fill_gradient2(name="Sensitivity Score", midpoint = 0, mid = "white", high = "darkgoldenrod2", low = "blue4", limits = c(-0.02300198, 0.05477224), space="Lab") # maybe would be better to make all countries below zero on a different colour gradient
+
+# Remove axis titles and details
+map <- map + theme(axis.text.x=element_blank(), 
+                   axis.ticks.x=element_blank(),
+                   axis.text.y=element_blank(),
+                   axis.ticks.y=element_blank(),
+                   axis.title.y = element_blank(),
+                   axis.title.x = element_blank())
+map <- map + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), legend.position = c(0.1, 0.25))
+
+map
+
+dev.off()
+
+##################################
+## COMPARING SENSITIVITY SCORES ##
+##################################
+
+library(ggplot2)
+
+ggplot(data = resultsDF, mapping = aes(y=corr, x=continent)) +
+  geom_point() # plot sensitivity score against continent (Scatter)
+
+boxplot(corr ~ continent, data=resultsDF) # plot sensitivity score against continent (boxplot)
+
+sensitivitymodel <- lm(resultsDF$corr ~ resultsDF$continent)
+
+TukeyHSD(x=aov(sensitivitymodel))
+
+
+
+
+
+
+
+
+
+
+
+

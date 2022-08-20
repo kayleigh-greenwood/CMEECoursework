@@ -171,24 +171,18 @@ for (country in seq_along(matchingcountrys)){
   #plot(x=GHGvalues, y=BDvalues)
   #abline(model)
   
-  #check if p value is below 0.05 (make sure )
-  if (as.numeric(summary(model)$coefficients[,4][2]) < 0.05){
-    # REMEMBER TO ADD THIS P VALUE SIGNIFICANCE BACK IN
-    #add correlation result to results data frame
-    resultsDF$corr[country] <- as.numeric(model[[1]][2])
-  }
+  #add correlation result to results data frame
+  resultsDF$corr[country] <- as.numeric(model[[1]][2])
   
 }
 
 #remove unnecessary variables from loop
 rm(list=c("BDvalues", "GHGvalues","model", "country"))
 
-#remove NAs where p value wasn't significant
-resultsDF <- na.omit(resultsDF)
 
 #visualize
 
-resultsDF$ID <- 1:7
+resultsDF$ID <- 1:43
 plot(x=resultsDF$ID,y=resultsDF$corr)
 
 
@@ -200,30 +194,86 @@ resultsDF$continent <- countrycode(sourcevar = row.names(resultsDF),
 resultsDF$region <- countrycode(sourcevar = row.names(resultsDF),
                                 origin = "country.name",
                                 destination = "region")
+##################################
+## VISUALISE SENSITIVITY SCORES ##
+##################################
 
-####### try clustering by continent
+####################################
+## Map with gradient colour scale ##
+####################################
 
-library(cluster)
-numcontinents <- length(unique(resultsDF$continent))
-kvals <- kmeans(resultsDF$corr, numcontinents)
-rm(numcontinents)
-resultsDF$continentcluster <- as.numeric(kvals$cluster)
+# install.packages(c("cowplot", "googleway", "ggplot2", "ggrepel", "ggspatial", "libwgeom", "sf", "rnaturalearth", "rnaturalearthdata"))
+# install.packages("classInt")
+# install.packages('sf') #if this isn't working, try 'sudo apt install libudunits2-dev' in terminal
+library("ggplot2")
+theme_set(theme_bw())
+library("sf") 
+library("rnaturalearth")
+library("rnaturalearthdata")
 
-#print continents in clusters
+world <- ne_countries(scale = "medium", returnclass = "sf")
+library('tidyverse')
 
-for (cluster in 1:5){
-  print(table(resultsDF[resultsDF$continentcluster == cluster, "continent"]))
-}
-rm(cluster)
+mapdata <- map_data("world")
+library(tibble)
+resultsDFmapping <- tibble::rownames_to_column(resultsDF, "country") # create new results DF where country is a column so that it can be joined with another df
+names(mapdata)[names(mapdata) == 'region'] <- 'country' # change the name of the countries column to match the other DF
 
-#visualize
+mapdata <- left_join(mapdata, resultsDFmapping, by='country') # join the data frames
 
-resultsDF$ID <- 1:7
-plot(x=resultsDF$ID,y=resultsDF$corr, col=factor(resultsDF$continent))
+pdf(file="../images/pollutionsensitivitymapgradient.pdf")
+# base plot
+map <- ggplot(mapdata, aes(x = long, y = lat, group = group)) +
+  geom_polygon(aes(fill= corr), colour = "black") 
 
-require(ggplot2)
-qplot(resultsDF$continent, resultsDF$corr)
-qplot(resultsDF$continent, resultsDF$corr, 
-      geom=c("boxplot"))
+# add colours
+map <- map + scale_fill_gradient2(name="Sensitivity Score", midpoint = 0, mid = "white", high = "darkgoldenrod2", low = "blue4", limits = c(-0.0004, 0.00008), space="Lab") # maybe would be better to make all countries below zero on a different colour gradient
+
+# install.packages("viridis")
+# library(viridis)
+# map <- map + scale_fill_viridis(midpoint = 0, mid = "white")
+
+
+# Remove axis titles and details
+map <- map + theme(axis.text.x=element_blank(), 
+                   axis.ticks.x=element_blank(),
+                   axis.text.y=element_blank(),
+                   axis.ticks.y=element_blank(),
+                   axis.title.y = element_blank(),
+                   axis.title.x = element_blank())
+map <- map + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), legend.position = c(0.1, 0.25))
+
+map
+
+dev.off()
+
+##################################
+## COMPARING SENSITIVITY SCORES ##
+##################################
+
+library(ggplot2)
+
+ggplot(data = resultsDF, mapping = aes(y=corr, x=continent, xlab = "Continent", ylab = "Sensitivity Score")) +
+  geom_point() + #plot sensitivity score against continent (Scatter)
+  ylab("Sensitivity Score")
+
+pdf(file="../images/climatesensitivityboxplot.pdf")
+boxplot(corr ~ continent, data=resultsDF,  xlab = "Continent", ylab = "Sensitivity Score") # plot sensitivity score against continent (boxplot)
+dev.off()
+
+###################################
+## model continental differences ##
+###################################
+mean(resultsDF$corr)
+sensitivitymodel <- lm(resultsDF$corr ~ resultsDF$continent, weights = 1/(resultsDF$se))
+
+
+
+
+
+
+
+
+
 
 
