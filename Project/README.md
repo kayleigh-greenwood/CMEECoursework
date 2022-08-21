@@ -3,7 +3,7 @@
 ## Title
 This README file contains details about how to run the code from this project.
 
-INSTRUCTIONS: run 'xyz' line to collate scripts and run project
+INSTRUCTIONS: run 'xyz' line to collate scripts and run project (after downloading the folders from the dropbox into a folder named "data" inside the "Project" folder. )
 AUTHOR: Kayleigh Greenwood
 
 ## Languages
@@ -11,36 +11,117 @@ R version 3.6.3
 
 ## Dependencies/packages
 
-### R
+### R: Wrangling
+rjson (importing .json files)
+stringr (string manipulation)
+tidyr (pivoting dataframes)
+readr (importing csv files)
+readxl (importing xlsx files)
+dplyr (grouping and summarising data)
+tibble (converting rownames to a column)
+countrycode (converting country codes to country names)
+dplyr (left joining tables)
 
-### Latex
+### R: Data Analysis & Modelling
+plotrix (calculating standard error)
+stats (linear models)
 
-## Scripts
+### R: Plotting
+graphics (boxplot)
+grDevices (creating pdfs)
+rnaturalearth (plotting world map)
+ggplot2 (plotting)
+
+### Latex: Formatting
+setspace (setting spacing)
+fullpage (using headers and footers)
+helvet (chosen font)
+titlesec (title formatting)
+lineno (add line numbers)
+natbib (enhanced referencing)
+geometry (sets margins)
+hyperref (for in-text links)
+caption (customising captions)
+xcolor (link colour options)
+
+### Latex: Graphics
+graphicx (enhanced graphics)
+float (accurate placement of figures and tables)
+
+## Coding Scripts
 ***
 
-### Data Preparation
+### Data Wrangling
 
-    NameofFile.R
+    WrangleBiodiversityData.R
 
-**Summary:**  <br />
-**Input:** x.csv in that folder <br />
-**Output:** x.txt in that folder <br />
-**Required packages:** x (for this) <br />
+**Summary:**  Wrangles the biodiversity data and matches area codes to countries <br />
+**Input:** detailedBDdata.rds and area_code_hier.json <br />
+**Output:** countryBD.RDS <br />
+
+    WrangleClimateData.R
+
+**Summary:**  Wrangles the climate change data <br />
+**Input:** all 230 files in the rawcountrytemp folder <br />
+**Output:** countryclimate.RDS <br />
+
+    WrangleLandUseData.R
+
+**Summary:**  Wrangles the land use data <br />
+**Input:** BUILT_UP_27062022141923706.csv <br />
+**Output:** countrybuilt.RDS <br />
+
+    WranglePollutionData.R
+
+**Summary:**  Wrangles the greenhouse gases data <br />
+**Input:** AIR_GHG_27062022101434000.csv <br />
+**Output:** countrygreenhouse.RDS <br />
+
+    WrangleInvasiveSpeciesData.R
+
+**Summary:**  Wrangles the invasive species data <br />
+**Input:** GlobalAlienSpeciesFirstRecordDatabase_v2(1).xlsx <br />
+**Output:** countryinvasive.RDS <br />
+
 
 ### Modelling
 
-    NameofFile.R
+    ClimateModel.R
 
-**Summary:**  <br />
-**Input:** x.csv in that folder <br />
-**Output:** x.txt in that folder <br />
-**Required packages:** x (for this) <br />
+**Summary:**  Models and plots the relationship between temperature and biodiversity <br />
+**Input:** countryclimate.RDS and countryBD.RDS <br />
+**Output:** climatesensitivitymapgradient.pdf and climatesensitivityboxplot.pdf <br />
+
+    LandUseModel.R
+
+**Summary:**  Models and plots the relationship between built land area and biodiversity <br />
+**Input:** countryBD.RDS and countrybuilt.RDS <br />
+**Output:** builtlandsensitivitymapgradient.pdf and builtlandsensitivityboxplot.pdf <br />
+
+    PollutionModel.R
+
+**Summary:**  Models and plots the relationship between greenhouse gases and biodiversity <br />
+**Input:** countrygreenhouse.RDS and countryBD.RDS <br />
+**Output:** pollutionsensitivitymapgradient.pdf and pollutionsensitivityboxplot.pdf <br />
+
+
+    InvasiveSpecies.R
+
+**Summary:**  Models and plots the relationship between invasive species and biodiversity <br />
+**Input:** countryinvasive.RDS and countryBD.RDS <br />
+**Output:** invasivesensitivitymapgradient.pdf and invasivesensitivityboxplot.pdf <br />
 
 ### Writeup
 
-    NameofFile.R
+    Writeup.tex
 
-**Summary:**  <br />
-**Input:** x.csv in that folder <br />
-**Output:** x.txt in that folder <br />
-**Required packages:** x (for this) <br />
+**Summary:** Source code for write up PDF <br />
+
+    Writeup.bib
+
+**Summary:** Contains bibliography for write up  <br />
+
+    CompileLatex.sh
+
+**Summary:** Compiles Latex code and removes unnecessary files. <br />
+**Output:** writeup.pdf <br />
