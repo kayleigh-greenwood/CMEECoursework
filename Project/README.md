@@ -56,32 +56,32 @@ float (accurate placement of figures and tables)
     WrangleBiodiversityData.R
 
 **Summary:**  Wrangles the biodiversity data and matches area codes to countries <br />
-**Input:** detailedBDdata.rds and area_code_hier.json <br />
-**Output:** countryBD.RDS <br />
+**Input:** RawBiodiversityData.rds and RawAreaCodes.json <br />
+**Output:** WrangledBiodiversityData.RDS <br />
 
     WrangleClimateData.R
 
 **Summary:**  Wrangles the climate change data <br />
-**Input:** all 230 files in the rawcountrytemp folder <br />
-**Output:** countryclimate.RDS <br />
+**Input:** all 230 files in the RawClimateData folder <br />
+**Output:** WrangledClimateData.RDS <br />
 
     WrangleLandUseData.R
 
 **Summary:**  Wrangles the land use data <br />
-**Input:** BUILT_UP_27062022141923706.csv <br />
-**Output:** countrybuilt.RDS <br />
+**Input:** RawLandUseData.csv <br />
+**Output:** WrangledLandUseData.RDS <br />
 
     WranglePollutionData.R
 
 **Summary:**  Wrangles the greenhouse gases data <br />
-**Input:** AIR_GHG_27062022101434000.csv <br />
-**Output:** countrygreenhouse.RDS <br />
+**Input:** RawPollutionData.csv <br />
+**Output:** WrangledPollutionData.RDS <br />
 
     WrangleInvasiveSpeciesData.R
 
 **Summary:**  Wrangles the invasive species data <br />
-**Input:** GlobalAlienSpeciesFirstRecordDatabase_v2(1).xlsx <br />
-**Output:** countryinvasive.RDS <br />
+**Input:** RawInvasiveSpeciesData.xlsx <br />
+**Output:** WrangledInvasiveSpeciesData.RDS <br />
 
 
 ### Modelling
@@ -89,27 +89,27 @@ float (accurate placement of figures and tables)
     ClimateModel.R
 
 **Summary:**  Models and plots the relationship between temperature and biodiversity <br />
-**Input:** countryclimate.RDS and countryBD.RDS <br />
-**Output:** climatesensitivitymapgradient.pdf and climatesensitivityboxplot.pdf <br />
+**Input:** WrangledClimateData.RDS and WrangledBiodiversityData.RDS <br />
+**Output:** ClimateSensitivityMap.pdf and ClimateSensitivityBoxplot.pdf <br />
 
     LandUseModel.R
 
 **Summary:**  Models and plots the relationship between built land area and biodiversity <br />
-**Input:** countryBD.RDS and countrybuilt.RDS <br />
-**Output:** builtlandsensitivitymapgradient.pdf and builtlandsensitivityboxplot.pdf <br />
+**Input:** WrangledBiodiversityData.RDS and WrangledLandUseData.RDS <br />
+**Output:** LandUseSensitivityMap.pdf and LandUseSensitivityBoxplot.pdf <br />
 
     PollutionModel.R
 
 **Summary:**  Models and plots the relationship between greenhouse gases and biodiversity <br />
-**Input:** countrygreenhouse.RDS and countryBD.RDS <br />
-**Output:** pollutionsensitivitymapgradient.pdf and pollutionsensitivityboxplot.pdf <br />
+**Input:** WrangledPollutionData.RDS and WrangledBiodiversityData.RDS <br />
+**Output:** PollutionSensitivityMap.pdf and PollutionSensitivityBoxplot.pdf <br />
 
 
     InvasiveSpecies.R
 
 **Summary:**  Models and plots the relationship between invasive species and biodiversity <br />
-**Input:** countryinvasive.RDS and countryBD.RDS <br />
-**Output:** invasivesensitivitymapgradient.pdf and invasivesensitivityboxplot.pdf <br />
+**Input:** WrangledInvasiveSpeciesData.RDS and WrangledBiodiversityData.RDS <br />
+**Output:** InvasiveSpeciesSensitivityMap.pdf and InvasiveSpeciesSensitivityBoxplot.pdf <br />
 
 ### Writeup
 
@@ -124,4 +124,4 @@ float (accurate placement of figures and tables)
     CompileLatex.sh
 
 **Summary:** Compiles Latex code and removes unnecessary files. <br />
-**Output:** writeup.pdf <br />
+**Output:** Writeup.pdf <br />
