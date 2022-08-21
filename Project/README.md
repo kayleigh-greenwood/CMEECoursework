@@ -123,5 +123,5 @@ float (accurate placement of figures and tables)
 
     CompileLatex.sh
 
-**Summary:** Compiles Latex code and removes unnecessary files. <br />
+**Summary:** Compiles Latex code and removes unnecessary files <br />
 **Output:** Writeup.pdf <br />
