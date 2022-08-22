@@ -3,5 +3,3 @@ __pycache__
 *.tmp
 **/results/*
 !**/results/.gitkeep
-Project/Data/*
-Project/Images/*
