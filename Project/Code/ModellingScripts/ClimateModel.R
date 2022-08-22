@@ -85,15 +85,15 @@ resultsDF$region <- countrycode(sourcevar = row.names(resultsDF),
 # this adds north and south america as 'the americas' so i must separate:
 for (row in 1:nrow(resultsDF)){
   if (resultsDF[row, 4]=='Latin America & Caribbean'){
-    resultsDF[row, 3] <- 'S America'
+    resultsDF[row, 3] <- 'S. America'
   }
 }
 
-resultsDF$continent <- replace(resultsDF$continent, resultsDF$continent=='Americas', 'N America')
+resultsDF$continent <- replace(resultsDF$continent, resultsDF$continent=='Americas', 'N. America')
 
 for (row in 1:nrow(resultsDF)){
   if (resultsDF[row, 4]=='North America'){
-    resultsDF[row, 3] <- 'N America'
+    resultsDF[row, 3] <- 'N. America'
   }
 }
 

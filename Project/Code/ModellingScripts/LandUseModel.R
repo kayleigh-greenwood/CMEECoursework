@@ -80,15 +80,15 @@ resultsDF[172, "region"] <- "Middle East & North Africa"
 
 for (row in 1:nrow(resultsDF)){
   if (resultsDF[row, "region"]=='Latin America & Caribbean'){
-    resultsDF[row, 4] <- 'S America'
+    resultsDF[row, 4] <- 'S. America'
   }
 }
 
-resultsDF$continent <- replace(resultsDF$continent, resultsDF$continent=='Americas', 'N America')
+resultsDF$continent <- replace(resultsDF$continent, resultsDF$continent=='Americas', 'N. America')
 
 for (row in 1:nrow(resultsDF)){
   if (resultsDF[row, "region"]=='North America'){
-    resultsDF[row, 4] <- 'N America'
+    resultsDF[row, 4] <- 'N. America'
   }
 }
 

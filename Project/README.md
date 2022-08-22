@@ -1,4 +1,4 @@
-# Kayleigh's CMEE MSc Projec
+# Kayleigh's CMEE MSc Project
 
 ## Title
 This README file contains details about how to run the code from this project.

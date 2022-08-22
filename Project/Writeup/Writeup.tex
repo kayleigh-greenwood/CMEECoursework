@@ -11,7 +11,7 @@
 
 % Load packages: graphics
 \usepackage{graphicx} %enhanced graphics
-\graphicspath{./images/}
+\graphicspath{./Images/}
 \usepackage{float} % places float in precise location in text
 
 % Load packages: formatting
@@ -47,21 +47,30 @@
         {\Huge 
     	 Geographical Variations in the Sensitivity of Terrestrial Biodiversity to Anthropogenic Pressures}
         \\[2in]
+        \begin{center}
         Author: Kayleigh Greenwood, MSc CMEE (kg21@ic.ac.uk)
+        \end{center}
         \bigskip
-        \newline
+
        Internal Supervisor: Dr James Rosindell, Imperial College London (j.rosindell@imperial.ac.uk)
        \bigskip
-       \newline
+
+       \begin{center}
         External Supervisor: Dr Joss Wright, University of Oxford (joss.wright@oii.ox.ac.uk)
+       \end{center}
         \bigskip
-        \newline
+
+
 
         25/08/2022
         \\[2in]
-        
-        {\bfseries A thesis submitted in partial fulfilment of the requirements for the degree of Master of Science at Imperial College London \newline \newline Submitted for the MSc in Computational Methods in Ecology and Evolution }
-
+        \begin{center}
+        {\bfseries A thesis submitted in partial fulfilment of the requirements for the degree of Master of Science at Imperial College London}
+        \end{center}
+    
+        \begin{center}
+        {\bfseries Submitted for the MSc in Computational Methods in Ecology and Evolution }
+        \end{center}
         
 
     
@@ -71,7 +80,7 @@
     \end{titlepage}
 	\section*{Declaration}
 
-	Data was obtained from existing online databases, and therefore I was not responsible for data processing or cleaning. All data analysis and modelling is my own, with all code written by me. No mathematical models were developed for this project.
+	Data was obtained from existing online databases, and therefore I was not responsible for data collection. All data analysis and modelling is my own, with all code written by me. No mathematical models were developed for this project.
 
 	\newpage
 	
@@ -86,7 +95,8 @@
     \addcontentsline{toc}{section}{Introduction}
     	
     %Para 1: biodiversity is important. pressures act on biodiversity
-Ecosystems with intact biodiversity provide services such as clean air and pollination, which make the earth habitable for humans \citep{leemans2003millennium}. Biodiversity loss diminishes ecosystem productivity \citep{duffy2017biodiversity} and threatens all life on earth, including human well-being \citep{diaz2006biodiversity} leading to unstable environments which are less resistant to change. Both natural and anthropogenic pressures act on biodiversity \citep{nobel2020anthropogenic}, but it it is the latter which is accelerating extinction rates dramatically \citep{ceballos2015accelerated}. Understanding the impacts of anthropogenic pressures on biodiversity is necessary to inform more effective policies, strategies and tools \citep{diaz2006biodiversity}. This understanding is aided by an understanding of the  distribution of biodiversity, how its pressures are distributed, and understanding how sensitive biodiversity is to these pressures. The worlds' biodiversity is not equally distributed, it varies geographically \citep{gaston2000global, ricklefs2004comprehensive, mcrae2017diversity}  as do the pressures acting on it \citep{millennium2005ecosystems, sala2000global, bowler2020mapping}, and these distributions often correlate \citep{ament2019compatibility, Velde2022}. Despite any such correlations between biodiversity and its pressures, there will always be variation in biodiversity response to such pressures due to variations in sensitivity of species \citep{bowler2020mapping}. \newline
+	Ecosystems with intact biodiversity provide services such as clean air and pollination, which make the earth habitable for humans \citep{leemans2003millennium}. Biodiversity loss diminishes ecosystem productivity \citep{duffy2017biodiversity} and threatens all life on earth, including human well-being \citep{diaz2006biodiversity} leading to unstable environments which are less resistant to change. Both natural and anthropogenic pressures act on biodiversity \citep{nobel2020anthropogenic}, but it it is the latter which is accelerating extinction rates dramatically \citep{ceballos2015accelerated}. Understanding the impacts of anthropogenic pressures on biodiversity is necessary to inform more effective policies, strategies and tools \citep{diaz2006biodiversity}. This understanding is aided by an understanding of the  distribution of biodiversity, how its pressures are distributed, and understanding how sensitive biodiversity is to these pressures. The worlds' biodiversity is not equally distributed, it varies geographically \citep{gaston2000global, ricklefs2004comprehensive, mcrae2017diversity}  as do the pressures acting on it \citep{millennium2005ecosystems, sala2000global, bowler2020mapping}, and these distributions often correlate \citep{ament2019compatibility, Velde2022}. Despite any such correlations between biodiversity and its pressures, there will always be variation in biodiversity response to such pressures due to variations in sensitivity of species \citep{bowler2020mapping}. 
+	
    	\phantomsection
    	\subsection*{Interspecific Variation in Sensitivity}
    	\addcontentsline{toc}{subsection}{Interspecific Variation in Sensitivity} 
@@ -112,118 +122,113 @@ Ecosystems with intact biodiversity provide services such as clean air and polli
    	%Para: Conclusion
    	 Given that anthropogenic impact on the environment is worldwide \citep{plumptre2021might}, the question should be raised of whether the geographic location of biodiversity pressures affects their impact on global biodiversity. The understanding of variations in biodiversity sensitivity, along with many other aspects of biodiversity, has knowledge gaps which desperately need filling \citep{pereira2012global}. If such geographic differences exist, they should be taken into account when attributing biodiversity-related merit to investments. To widen the scope of impact outside of the Benchmark for Nature project, taking into account geographic variations in sensitivity to biodiversity pressures could make estimates about biodiversity impact more accurate. Better understanding of biodiversity pressures will aid a better understanding of the implications of investments (and other policies) on natural ecosystems.
    	 
-   	%para: aims
+   	%para: Aims
  	The aim of this project is to investigate whether sensitivity of biodiversity to pressures varies geographically. I will amalgamate country-level data to look at continental differences in the main pressures on biodiversity. I hypothesise that continents with a higher proportion of tropical biomes (e.g. South America) will have higher sensitivity scores than continents with a lower proportion of tropical biomes (e.g Europe and North America) across all pressures.  \newpage
 
     \section*{Methods}
 	\addcontentsline{toc}{section}{Methods}
-	 % very very very important that if i'm using BII, i talk about measuring biodiversity INTACTNESS instead of measuring biodiversity.
 	 % Julia emphasises JUSTIFY everything you do in the results, preferably with biological reason
 
-	The focus of this study is on anthropogenic biodiversity pressures only. Anthropogenic pressures on biodiversity are typically grouped, in the current literature, into 5 main pressures; climate change, land use change, pollution, invasive species and overexploitation \citep{watson2019summary}. In order to assess whether sensitivity to each pressure varies by country, data was needed in the form of time series (how each of these pressures had been changing in each country over time, as well as how each country's biodiversity had been changing over time). The time series of biodiversity in a country was compared to the time series of a pressure on biodiversity in that country, in order to extract a `sensitivity score' for each country to assess any effect of geography. Due to comparisons between countries, only terrestrial biodiversity was included. 	 % Get James' opinion
+	The focus of this study is on anthropogenic biodiversity pressures only (for reasons outlined in the introduction). Anthropogenic pressures on biodiversity are typically grouped, in the current literature, into 5 main pressures; climate change, land use change, pollution, invasive species and overexploitation \citep{watson2019summary}. The most similar study to this one \citep{louette2010bioscore} used an alternative method of gathering information from both the literature and experts about the sensitivity of individual species (within various species groups) to the pressures on biodiversity. Focal species were selected, as it is impracticable to include every species in Europe (the geographical scope of the project). 
+	This gave each species a sensitivity score, and this data coupled with information on species distributions were used to make inferences about countries on the whole. Though rigorous, the \cite{louette2010bioscore} method was too labour intensive for this study, and so I used an alternative method. In order to assess whether sensitivity to each pressure varies by country, I analysed relationships between annual averages of biodiversity and its' main pressures in each country. I needed data in the form of time series (how each of these pressures had been changing in each country over time, as well as how each country's biodiversity had been changing over time). I compared the time series of biodiversity in a country to the time series of a pressure on biodiversity in that country, in order to extract a `sensitivity score' for each country to assess any effect of geography. Due to comparisons between countries, I only included terrestrial biodiversity in this study. 	 % Get James' opinion
+	% hammer home straight away all of the reasons why what i'm doing is better than that. say in positive light
+	%CONVINCE THEM. 
 	
-
-	First, each pressure's geographic relationship with biodiversity was assessed in isolation. It is important to look at individual biodiversity pressures, as opposed to an aggregated pressure on biodiversity, because the pressures have spatial differences \citep{steffen2015planetary}, meaning the geographical magnitude of each pressure varies. Therefore in order to understand how countries differ in their responses to biodiversity pressures, it must be taken into account the magnitude of each pressure that each country experiences. 
+	It is important to look at individual biodiversity pressures, as opposed to an aggregated `pressure' on biodiversity, because the individual pressures have spatial differences \citep{steffen2015planetary}, meaning the geographical magnitude of each pressure varies. Therefore in order to understand how countries differ in their responses to biodiversity pressures, it must be taken into account the magnitude of each pressure that each country experiences. I modelled each pressure's geographic relationship with biodiversity in isolation as opposed to using a multiple linear model because each pressure dataset came from different sources and therefore had data from different years. Each pressure dataset has to be aligned with the biodiversity dataset to find common years, therefore if this was to be done for all pressures together, the dataset would be drastically reduced and therefore also the statistical power.
 	
-	I used linear models on time series data about biodiversity and its five main pressures at the country level, and interpret the gradient coefficients as the sensitivity' of that country's biodiversity to each pressure. I will further analyse these sensitivity scores to look for geographic variation in sensitivity between the continents. R version 3.6.3 was used for statistical analysis and plotting, and results were reported as statistically significant is p $\leq$ 0.05. In comparison to the previously mentioned common method of gathering information about species-level sensitivities and mapping them, this method is less labour intense and is designed to give broad insights into whether biodiversity trends differ among continents. \newline
+	I used R for all data wrangling, analysis, modelling and plotting in my project. I used linear models on time series data about biodiversity and its five main pressures at the country level, and interpret the gradient coefficients as the sensitivity' of that country's biodiversity to each pressure. I will further analyse these sensitivity scores to look for geographic variation in sensitivity between the continents. I used R version 3.6.3 for statistical analysis and plotting, and reported results as statistically significant is p $\leq$ 0.05. This method is designed to give broad insights into whether biodiversity trends differ among continents. \newline
 	% get James' opinion
 	\phantomsection
 	\subsection*{Data}
 	\addcontentsline{toc}{subsection}{Data}
-	
+	% Julia says describe data structure - eg how much data in each continent. maybe add this data in the boxplots
 	% BD data = 18 years, 240 countries
-	The variable chosen to represent biodiversity was biodiversity intactness. The National History Museum's (NHM) Biodiversity Intactness Index (BII)\citep{phillips2021} was chosen as it presents biodiversity in the context of how many original species remain (relative to reference populations). The unit of BII is \% as it is a proportion of species. The NHM's Index is the best for this project as the database used is that of the PREDICTS project, which more geographically representative than other datasets \citep{purvis2018modelling}. This allows for direct comparison of these changes, with the changes in anthropogenic pressures. Historical BII data spanned 18 years between 1970 - 2014. 
+	I chose biodiversity intactness as the variable to represent biodiversity. I chose the National History Museum's (NHM) Biodiversity Intactness Index (BII)\citep{phillips2021} as it presents biodiversity in the context of how many original species remain (relative to reference populations). The unit of BII is \% as it is a proportion of species. The NHM's Index is the best for this project as the database used is that of the PREDICTS project, which more geographically representative than other datasets \citep{purvis2018modelling}. This allows for direct comparison of these changes, with the changes in anthropogenic pressures. Historical BII data spanned 18 years between 1970 - 2014. 
 	
 	% Climate data = 230 countries
-	Climate change time series data was obtained in the form of annual average temperature for each country. The temperature dataset chosen was from the World Bank's Climate Change Knowledge Portal. This dataset was chosen because it contains comprehensive historical data, providing an annual average temperature for every year from 1900 until 2020. 
+	I obtained climate change time series data in the form of annual average temperature for each country. The temperature dataset chosen is from the World Bank's Climate Change Knowledge Portal. I chose this dataset because it contains comprehensive historical data, providing an annual average temperature for every year from 1900 until 2020. 
 	
 	% Built Land data = 249 countries (years is big problem!) \newline
-	Land use change data chosen was from The Global Human Settlement Layer data package \citep{JRC117104}. The data contains information on built-up area change over time, which is the variable chosen to represent land use change. The dataset provides the total area of built up land (in square kilometres) for various years. Collective land use change is difficult to quantify from land use statistics. Although satellite data is available to categorise land cover type over time, calculating annual land use change from the proportion of each land cover type is not necessarily accurate, as land use change can be multi-directional. Current studies assessing the impact of land use change on biodiversity are often meta-analyses or use a natural regional situation as the reference land type \citep{de2013land} as opposed to observing direct impacts of land use change. A limitation of this dataset is that only 4 years of data are included. 
+	% Tell James: I intend to change this to "area changed FROM natural and semi natural vegetated land
+	I chose data from the Global Human Settlement Layer data package \citep{JRC117104} to represent land use change. The data contains information on built-up area change over time, which is the variable I chose to represent land use change. The dataset provides the total area of built up land (in square kilometres) for various years. Collective land use change is difficult to quantify from land use statistics. Data is available for amount of each land use type over time, and calculating annual land use change from the proportion of each land cover type is not necessarily accurate, as land use change can be multi-directional. Although satellite data is available to categorise land cover type over time. Current studies assessing the impact of land use change on biodiversity are often meta-analyses or use a natural regional situation as the reference land type \citep{de2013land} as opposed to observing direct impacts of land use change. A limitation of this dataset is that only 4 years of data are included. 
 	
 	% GHG data = 31 years, 63 countries (countries is problem!) \newline
-	Pollution was represented by greenhouse gases (GHG), as the focus is on terrestrial biodiversity. The dataset used to access GHG emissions for each country over time was the `National Inventory Submissions' section of the United Nations - Climate Change website \citep{UN2022}. GHG emissions in this dataset have a unit of `thousand tonnes of CO2 equivalent'. GHG emissions are presented both including and excluding `Land Use, Land-Use Change and Forestry (LULUCF)' related emissions data. When assessing pollution and biodiversity links in isolation, LULUCF was included. However, when modelling all biodiversity pressures together, LULUCF was tested for collinearity with the land use change variable, and consequently included/excluded. The OECD.stat website was used to download the land use change and pollution data. 
+	I chose greenhouse gases (GHG) to represent pollution, as the focus is on terrestrial biodiversity. I chose the dataset to represent GHG emissions for each country over time as the `National Inventory Submissions' section of the United Nations - Climate Change website \citep{UN2022}. GHG emissions in this dataset have a unit of `thousand tonnes of CO2 equivalent'. GHG emissions are presented both including and excluding `Land Use, Land-Use Change and Forestry (LULUCF)' related emissions data. When assessing pollution and biodiversity links in isolation, I included LULUCF. However, when modelling all biodiversity pressures together, I tested LULUCF for collinearity with the land use change variable, and consequently included/excluded. I used the OECD.stat website to download the land use change and pollution data. 
 	
-	Invasive species data was obtained from the Alien Species First Record Database \citep{seebens2017no, seebens2018global}. This database provides information about how many new invasive species were recorded in each country, every year. The reason that this database was used is that it provides time series data. The time span of first records of species spans from 7000BC to 2020.  
+	I obtained invasive species data from the Alien Species First Record Database \citep{seebens2017no, seebens2018global}. This database provides information about how many new invasive species were recorded in each country, every year. The reason that I used this database is that it provides time series data. The time span of first records of species spans from 7000BC to 2020.  
 	
-	Overexploitation was excluded for multiple reasons. Firstly, overexploitation is the vaguest of the main pressures, and is usually used in the context of fishing (marine biodiversity being beyond the scope of this project). One of the most relevant aspects of overexploitation to is deforestation, which is (maybe remove this part depending on methods) already represented in the variable used for land use change. Though there are other aspects of overexploitation that would be relevant (e.g. illegal wildlife trading), there are no databases/studies available representing overexploitation by country.
+	I excluded overexploitation from this analysis for multiple reasons surrounding difficulty obtaining data. Firstly, overexploitation is the vaguest of the main pressures, and is usually used in the context of fishing (marine biodiversity being beyond the scope of this project). One of the most relevant aspects of overexploitation to is deforestation, which is (maybe remove this part depending on methods) already represented in the variable used for land use change. Though there are other aspects of overexploitation that would be relevant (e.g. illegal wildlife trading), there are no databases/studies available representing overexploitation by country.
 
-
-
-%	\subsection*{Individual Pressure Models}
-%	\addcontentsline{toc}{subsection}{Individual Pressures}
-	
 	\subsection*{Data Wrangling}
 	\addcontentsline{toc}{subsection}{Data Wrangling} 
 	
 	Each data set has data from a different combination of years, and countries. For each pressure being investigated, only data from years and countries that are shared between that particular dataset and the biodiversity dataset is included. 
 	
-	For each pressure, the datasets were wrangled and refined to obtain two time series (at an annual level) for each country; biodiversity and the magnitude of the particular pressure.
+	For each pressure, I wrangled and refined the datasets to obtain two time series (at an annual level) for each country; biodiversity and the magnitude of the particular pressure.
 	
 	% if i decide to Z standardize data, say "i z standardized data to a mean of 0 and a SD of 1 because ..."
 	
-	\subsection*{Modelling}
-	\addcontentsline{toc}{subsection}{Modelling} 
+	% could do one cumulative section about how sensitivity scores were obtained.
+	\subsection*{Obtaining Sensitivity Scores}
+	\addcontentsline{toc}{subsection}{Obtaining Sensitivity Scores}
 	
-	For each country, a linear model was fit with biodiversity (BII) as the response variable, and the biodiversity pressure (e.g. pollution) as the explanatory variable. Though both the biodiversity and pressure datasets were time series, the biodiversity and pressure data points were plotted against each other with year being disregarded. The gradient coefficient was recorded as a `sensitivity score', with the standard error of the gradient also recorded, for use in the next step. This sensitivity score is representative of the sensitivity of that country's biodiversity, to the particular biodiversity pressure (e.g., sensitivity of a country's biodiversity to one unit of pollution). The unit of sensitivity scores depend on the pressure being modelled, and represent the \% change in Biodiversity Intactness Index (BII) for a unit increase in pressure. 
+	For each country, I fit a linear model with biodiversity (BII) as the response variable, and the biodiversity pressure (e.g. pollution) as the explanatory variable. Though both the biodiversity and pressure datasets were time series, I plotted the biodiversity and pressure data points against each other with year being disregarded. I recorded the gradient coefficient as a `sensitivity score', with the standard error of the gradient also recorded, for use in the next step. This sensitivity score is representative of the sensitivity of that country's biodiversity, to the particular biodiversity pressure (e.g., sensitivity of a country's biodiversity to one unit of pollution). The unit of sensitivity scores depend on the pressure being modelled, and represent the \% change in Biodiversity Intactness Index (BII) for a unit increase in pressure.  
 	
+	I assigned a 'sensitivity score' representing the sensitivity of each country's biodiversity to climate change using linear models. I fit linear models for each country, with average annual temperature ($^\circ C$) as the explanatory variable, and biodiversity intactness index (\%) as the response variable. The sensitivity score (gradient coefficient) therefore had a unit of BII \% $/ ^\circ C$ representing the \% change in BII for each annual average temperature increase of 1$^\circ C$.
+	
+	I assigned a 'sensitivity score' representing the sensitivity of each country's biodiversity to pollution using linear models. I fit linear models for each country, with tonnes of CO2 equivalent emissions (000s) as the explanatory variable, and biodiversity intactness index (\%) as the response variable. The sensitivity score (gradient coefficient) therefore had a unit of BII \% / tonnes of CO2 equivalent (000s) representing the \% change in BII for each annual additional thousand tonnes of CO2 equivalent emissions. 
+	
+	I assigned a 'sensitivity score' representing the sensitivity of each country's biodiversity to Land Use Change using linear models. I fit linear models for each country, with area of built up land (square kilometres) as the explanatory variable, and biodiversity intactness index (\%) as the response variable. The sensitivity score (gradient coefficient) therefore had a unit of BII \% / square kilometre (of built up land) representing the \% change in BII for each built up land increase of 1 square kilometre.
+	
+	I assigned a 'sensitivity score' representing the sensitivity of each country's biodiversity to invasive species using linear models. I fit linear models for each country, with number of new invasive species as the explanatory variable, and biodiversity intactness index (\%) as the response variable. The sensitivity score (gradient coefficient) therefore had a unit of BII \% / new invasive species representing the \% change in BII for each new invasive species. 
 
-	Sensitivity scores were then compared between continents using a linear model. The weights function of lm() was used to take account for the standard errors of the gradients from the first step, and the inverse of the standard errors were inputted as weights (weights in lm() is inversely proportional to variance). Important to note that this method only tests for differences between each category, and the reference category, and therefore does not test differences between all groups.  
+	\phantomsection
+	\subsection*{Modelling Continental Differences}
+	\addcontentsline{toc}{subsection}{Modelling Continental Differences} 
 	
-	\subsection*{Climate Model}
-	\addcontentsline{toc}{subsection}{Climate Model} 
-	
-	Step 1 included obtaining sensitivity scores of each country's biodiversity to climate change. Linear models were fit for each country, with average annual temperature ($^\circ C$) as the explanatory variable, and biodiversity intactness index (\%) as the response variable. The sensitivity score (gradient coefficient) therefore had a unit of BII \% $/ ^\circ C$ representing the \% change in BII for each annual average temperature increase of 1$^\circ C$.
-	
-	\subsection*{Pollution Model}
-	\addcontentsline{toc}{subsection}{Pollution Model} 
-	
-	Step 1 included obtaining sensitivity scores of each country's biodiversity to pollution (greenhouse gas emissions). Linear models were fit for each country, with tonnes of CO2 equivalent emissions (000s) as the explanatory variable, and biodiversity intactness index (\%) as the response variable. The sensitivity score (gradient coefficient) therefore had a unit of BII \% / tonnes of CO2 equivalent (000s) representing the \% change in BII for each annual additional thousand tonnes of CO2 equivalent emissions. 
-	
-	\subsection*{Land Use Model}
-	\addcontentsline{toc}{subsection}{Climate Model} 
-	
-	Step 1 included obtaining sensitivity scores of each country's biodiversity to changes in built up land area. Linear models were fit for each country, with area of built up land (square kilometres) as the explanatory variable, and biodiversity intactness index (\%) as the response variable. The sensitivity score (gradient coefficient) therefore had a unit of BII \% / square kilometre (of built up land) representing the \% change in BII for each built up land increase of 1 square kilometre.
-	
-	\subsection*{Invasive Species Model}
-	\addcontentsline{toc}{subsection}{Invasive Species Model} 
-	
-	Step 1 included obtaining sensitivity scores of each country's biodiversity to invasive species. Linear models were fit for each country, with number of new invasive species as the explanatory variable, and biodiversity intactness index (\%) as the response variable. The sensitivity score (gradient coefficient) therefore had a unit of BII \% / new invasive species representing the \% change in BII for each new invasive species. 
-	
+	I compared sensitivity scores between continents using a linear model per pressure. I used the weights function of lm() to take account for the standard errors of the gradients from the first step, and I inputted the inverse of the standard errors as weights (weights in lm() is inversely proportional to variance).  
 	
 	\clearpage
 
 	\section*{Results}
 	\addcontentsline{toc}{section}{Results}
 	 \phantomsection
+	 % julia likes degrees of freedom so maybe include these
+	 % Julia is interested in the things to check before running a model. might ask me about that
+	 %Julia - repeatability? how to calculate?
+	 % add in sentence at beginning of each mode sayign we found or ddidn't find continental differences in sensitivity
 	\subsection*{Climate Model}
 	\addcontentsline{toc}{subsection}{Climate Model}
 	
 	158 countries and 18 years matched between the climate and biodiversity datasets. \autoref{figure:climatemap} shows the distribution of country-level climate sensitivity scores, and \autoref{figure:climatebox} groups them by continent. The sensitivity scores of countries (n = 158) to climate change had a mean of -0.016 (SD 0.0037, range: -0.24 - 0.078), so for each increase in average temperature of $1^\circ C$, the average country's BII decreases by 0.016.
-	% Ask James: are confidence intervals relevant here?
 
-	\includegraphics[scale=0.90]{../images/ClimateSensitivityMap.pdf}
-	\captionof{figure}{Biodiversity sensitivity to climate change: distribution of country sensitivity scores.}
-	\label{figure:climatemap}
+	\begin{center}
+		\includegraphics[width=7in]{../Images/ClimateSensitivityMap.pdf}
+		\captionof{figure}{Biodiversity sensitivity to climate change: distribution of country sensitivity scores.}
+		\label{figure:climatemap}
 
-	\includegraphics[scale=0.95]{../images/ClimateSensitivityBoxplot.pdf}
-	\captionof{figure}{Biodiversity sensitivity to climate change: country sensitivity scores grouped by continent.}
-	\label{figure:climatebox}
+		\includegraphics[width=7in]{../Images/ClimateSensitivityBoxplot.pdf}
+		\captionof{figure}{Biodiversity sensitivity to climate change: country sensitivity scores grouped by continent.}
+		\label{figure:climatebox}
+	\end{center}
 	\bigskip
 	
-	The average sensitivity score for countries in Africa (the reference category) did not significantly different from zero, and sensitivity scores in other continents were not significantly different from Africa's apart from Europe and South Africa (\autoref{tab:climatetable}). European countries had sensitivity scores, on average, 0.0081 above countries from other continents. For every $1^\circ C$ increase in annual temperature, the BII of countries within Europe will decrease by 0.0081 less than in other continents, and the BII of countries within South America will decrease by 0.013 more than in other continents. 
+	The mean sensitivity score for Africa (the reference category) did not significantly different from zero, and sensitivity scores in other continents were not significantly different from Africa's apart from Europe and South Africa (\autoref{tab:climatetable}). European countries had sensitivity scores, on average, 0.0081 above countries from other continents. For every $1^\circ C$ increase in annual temperature, the BII of countries within Europe will decrease by 0.0081 less than in other continents, and the BII of countries within South America will decrease by 0.013 more than in other continents. 
 	% Ask James to check. Would it be right to say Africas mean? Do you say in results whether findings support hypothesis? Is it right that I have presented the gradients as "this much more than other continents", I know that it means this gradient plus the reference category
 	
 	%Ask James: should I also report model statistics? maybe in caption of table? r squared, degrees of freedom, F-statistic. Because pollution model has negative adjusted R squared which means insignificance of explanatory variables
 	
 	% Ask James: because most pressures have proven to have no relationship with biodiversity intactness index, should I say in intro how i'm also testing whether there is a relationship between these country-wide variables? I could create model before all of this, and sum all country data and just see which of the pressure data actually predicted any variation in BII. And I could continue to only investigate (and therefore include continent analysis for) the pressures which were shown to predict BII. would avoid reporting lots of insignificant results]
 	
+	% Ask James: what does he think about Francis' proposal of rmeoving outliers to plot
+	% Ask James: does each new table need new page?
 	\newpage
 	
 	\begin{table}[h!]
 		\begin{center}
 			\caption{Results from a linear model explaining effects of Continent on Climate Change Sensitivity Scores. \textmd{N = 158.}}
 			\label{tab:climatetable}
-			\begin{tabular}{l|r|r|r|r} % <-- Alignments: 1st column left, 2nd middle and 3rd right, with vertical lines in between
+			\begin{tabular}{l|r|r|r|r}
 				Variable & $\beta$ & \textit{SE} & \textit{t} & \textit{p}\\
 				\hline
 				Intercept (reference: Africa) & $<$ -0.001 & $<$ 0.001 & 0 & 1\\
@@ -243,17 +248,18 @@ Ecosystems with intact biodiversity provide services such as clean air and polli
 	\subsection*{Pollution Model}
 	\addcontentsline{toc}{subsection}{Pollution Model}
 	
-	There were only 42 countries and 16 years that matched between the datasets (with no data for any African countries). One country with a standard error of 0 was removed due to the inability to calculate variance (weights function uses 1/SE). \autoref{figure:pollutionmap} shows the distribution of country-level pollution sensitivity scores, and \autoref{figure:pollutionbox} groups them by continent. The sensitivity scores of countries (n = 43) to climate change had a mean of -0.0000051 (SD 0.0000073, range: -0.0003  0.00007), so for each thousand tonne increase of CO2 equivalent emissions, the average country's BII decreases by 0.0000051.\newline
+	There were only 42 countries and 16 years that matched between the datasets (with no data for any African countries). I removed one country with a standard error of 0 due to the inability to calculate variance (weights function uses 1/SE). \autoref{figure:pollutionmap} shows the distribution of country-level pollution sensitivity scores, and \autoref{figure:pollutionbox} groups them by continent. The sensitivity scores of countries (n = 43) to climate change had a mean of -0.0000051 (SD 0.0000073, range: -0.0003  0.00007), so for each thousand tonne increase of CO2 equivalent emissions, the average country's BII decreases by 0.0000051.\newline
 	% Ask James, pollution data is in thousands of CO2, should I convet values to actual numbers so that results arent so tedious? Or would it go the other way around..?
 	%Ask James; I was getting error when SE was zero as weights uses 1/SE to attribute weight, sp 1/0 was throwing error so i removed.  but shouldnt estimates of 0 with a standard error of 0 hold the most weight?
-	\includegraphics[scale=0.95]{../images/PollutionSensitivityMap.pdf}
-	\captionof{figure}{Biodiversity sensitivity to pollution.}
-	\label{figure:pollutionmap}
-	
-	\includegraphics[scale=0.95]{../images/PollutionSensitivityBoxplot.pdf}
-	\captionof{figure}{Biodiversity sensitivity to greenhouse gas emissions: country sensitivity scores grouped by continent.}
-	\label{figure:pollutionbox}
-	
+	\begin{center}
+		\includegraphics[width=7in]{../Images/PollutionSensitivityMap.pdf}
+		\captionof{figure}{Biodiversity sensitivity to pollution.}
+		\label{figure:pollutionmap}
+		
+		\includegraphics[width=7in]{../Images/PollutionSensitivityBoxplot.pdf}
+		\captionof{figure}{Biodiversity sensitivity to greenhouse gas emissions: country sensitivity scores grouped by continent.}
+		\label{figure:pollutionbox}
+	\end{center}
 	The average sensitivity score for countries in Asia (the reference category) did not significantly different from zero, and sensitivity scores in other continents were not significantly different from Asia's (\autoref{tab:pollution}).
 	%Ask James: do I need to say more than this?
 	
@@ -280,15 +286,16 @@ Ecosystems with intact biodiversity provide services such as clean air and polli
 	
 	167 countries and 3 years matched between datasets. Eight countries with a standard error of 0 were removed due to the inability to calculate variance (weights function uses 1/SE).  \autoref{fig:landusemap} shows the distribution of country-level built up land sensitivity scores, and \autoref{fig:landusebox} groups them by continent. The sensitivity scores of countries (n = 175) to built up land had a mean of 0.003 (SD 0.025, range: -3.222472  2.756498), so for each square kilometre increase in built up land area, the average country's BII increases by 0.003.
 	
-	\includegraphics[scale=0.95]{../images/LandUseSensitivityMap.pdf}
-	\captionof{figure}{Biodiversity sensitivity to build up land.}
-	\label{fig:landusemap}
-	% Ask James about making scale smaller to show some colour
-	
-	\includegraphics[scale=0.95]{../images/LandUseSensitivityBoxplot.pdf}
-    \captionof{figure}{Biodiversity sensitivity to built up land use: country sensitivity scores grouped by continent.}
-    \label{fig:landusebox}
-    
+	\begin{center}
+		\includegraphics[width=7in]{../Images/LandUseSensitivityMap.pdf}
+		\captionof{figure}{Biodiversity sensitivity to build up land.}
+		\label{fig:landusemap}
+		
+		\includegraphics[width=7in]{../Images/LandUseSensitivityBoxplot.pdf}
+	    \captionof{figure}{Biodiversity sensitivity to built up land use: country sensitivity scores grouped by continent.}
+	    \label{fig:landusebox}
+    \end{center}
+
     The average sensitivity score for countries in Africa (the reference category) did not significantly different from zero, and sensitivity scores in other continents were not significantly different from Africa's (\autoref{tab:landuse}).
     \begin{table}[h!]
     	\begin{center}
@@ -307,7 +314,6 @@ Ecosystems with intact biodiversity provide services such as clean air and polli
     		\end{tabular}
     	\end{center}
     \end{table}
-    % negative adjusted R squared! 
     
     
 	\subsection*{Invasive Species Model}
@@ -316,13 +322,15 @@ Ecosystems with intact biodiversity provide services such as clean air and polli
 	
 	91 countries matched between datasets, with a different amount of years matching per country. Countries with a standard error of 0 were removed. \autoref{invasivemap} shows the distribution of country-level invasive species sensitivity scores, and \autoref{invasivebox} groups them by continent. The sensitivity scores of countries (n = 91) to invasive species had a mean of 0.0017 (SD 0.0012, range: -0.023  0.055), so for each additional new invasive species, the average country's BII increases by 0.0017.\newline
 	% Ask James: seems wrong to say countries with standard error of 0 were removed, why?
-	\includegraphics[scale=0.95]{../images/InvasiveSpeciesSensitivityMap.pdf}
-	\captionof{figure}{Biodiversity sensitivity to Invasive species.}
-	\label{invasivemap}
-	
-	\includegraphics[scale=0.95]{../images/InvasiveSpeciesSensitivityBoxplot.pdf}
-	\captionof{figure}{Biodiversity sensitivity to invasive species: country sensitivity scores grouped by continent.}
-	\label{invasivebox}
+	\begin{center}
+		\includegraphics[width=7in]{../Images/InvasiveSpeciesSensitivityMap.pdf}
+		\captionof{figure}{Biodiversity sensitivity to Invasive species.}
+		\label{invasivemap}
+		
+		\includegraphics[width=7in]{../Images/InvasiveSpeciesSensitivityBoxplot.pdf}
+		\captionof{figure}{Biodiversity sensitivity to invasive species: country sensitivity scores grouped by continent.}
+		\label{invasivebox}
+	\end{center}
 
     The average sensitivity score for countries in Africa (the reference category) did not significantly different from zero, and sensitivity scores in other continents were not significantly different from Africa's (\autoref{tab:invasive}).
 	\begin{table}[h!]
@@ -348,27 +356,57 @@ Ecosystems with intact biodiversity provide services such as clean air and polli
     
      \section*{Discussion}
      \addcontentsline{toc}{section}{Discussion}
-     \phantomsection
-     \subsection*{Importance of Findings}
-     \addcontentsline{toc}{subsection}{Importance of Findings}
-     %Para: Sustainable business and investments
-     Whilst the conservation movement does a lot to help biodiversity \citep{sandbrook2019global}, another response to the biodiversity crisis \citep{ogar2020science} is the beginning of a global movement towards sustainable business and biodiversity-conscious investment \citep{pri2020, worldeconomicforum2020, wwf2020}. Creating a tool which assesses the overall biodiversity impact of a company can help guide investors, and is something that various parties are currently developing \citep{worldbenchmarkingalliance_2022, iccs_2020}.  `Benchmark for Nature' is a project which aims to use data science and to develop a framework for assessing investment impacts on biodiversity by gathering information from online articles about how much of an impact a company/sector is having on biodiversity pressures\citep{iccs_2020}, and where in the world these pressures are taking place. 
-     \clearpage
      
-     \section*{Conclusion }
-     \addcontentsline{toc}{section}{Conclusion}
-     optional section
-     \clearpage
+     The one pressure which was shown to differ between continents (climate change), partly supported the hypothesis about differing biome sensitivities being the cause of continent-wide differences.
+     
+     Talk about how although effect size might seem small, must be rememebred about the BII index so it is actually more biologically meaningful than you would think.
+     
+	\phantomsection
+	\subsection*{Pressure Interactions}
+	\addcontentsline{toc}{subsection}{Pressure Interactions}
+	
+	Though there was not sufficient data to allow all pressures to be modelled together, as explained earlier, modelling pressures separately makes assumptions about how they interact. 
+	
+	\phantomsection
+	\subsection*{Method Limitations}
+	\addcontentsline{toc}{subsection}{Method Limitations}
+     
+     To my knowledge the only other study which obtained country-level sensitivity scores  \citep{louette2010bioscore} did so by summing how many species within that country were classed as 'negatively impacted' by biodiversity pressures, according to prior literature and experts. For aforementioned reasons, I decided to take an alternative approach in the interest of obtaining results at the global level. I analysed relationships between country averages of biodiversity and its' main pressures, to infer the sensitivity of the country by interpreting the gradient as a sensitivity score. Obtaining sensitivity scores in this way could have limited the accuracy of the sensitivity scores, and aggregating sensitivity of species may be the more reliable method.
+     
+     \phantomsection
+     \subsection*{Further Study}
+     \addcontentsline{toc}{subsection}{Further Study}
+     %add about how BII is adding data up until 2021 soon
+     
+     A possible reason for not finding more support for the hypothesis is that each biome's sensitivity could differ between continents, and not be constant as was assumed by the hypothesis. Tropical biomes have been shown to be more sensitive in Asia than in Africa and the Americas \citep{gibson2011primary}, however to my knowledge there is only one study about geographical variations in biome sensitivity, and it was limited to one biome, being the reason for exclusion from the hypothesis reasoning. Further research into biome sensitivity, and in particular how it differs according to continent, could provide more insight into how continent biodiversity sensitivity differs. 
+    
+         
+    \phantomsection
+    \subsection*{Applications}
+    \addcontentsline{toc}{subsection}{Uses of Findings}
+    %Para: Sustainable business and investments
+    Whilst the conservation movement does a lot to help biodiversity \citep{sandbrook2019global}, another response to the biodiversity crisis \citep{ogar2020science} is the beginning of a global movement towards sustainable business and biodiversity-conscious investment \citep{pri2020, worldeconomicforum2020, wwf2020}. Creating a tool which assesses the overall biodiversity impact of a company can help guide investors, and is something that various parties are currently developing \citep{worldbenchmarkingalliance_2022, iccs_2020}. `Benchmark for Nature' is a project which aims to use data science and to develop a framework for assessing investment impacts on biodiversity by gathering information from online articles about how much of an impact a company/sector is having on biodiversity pressures\citep{iccs_2020}, and where in the world these pressures are taking place. 
+    \clearpage
+    
+    \phantomsection
+    \subsection*{Conclusion}
+    \addcontentsline{toc}{subsection}{Conclusion}
+    hold back one perspective to mention in conclusion
     
     \section*{Data and Code Availability}
     \addcontentsline{toc}{section}{Data and Code Availability}
-    Data  and  CodeAvailabilitystatement:  At  the  end  of  your  Main  text,  before  the  References section, you must provide a statement titled “Data and Code Availability”, where you name a data (e.g., Dropbox, FigShare, Zenodo, etc) and a code (e.g., Dropbox, GitHub, etc.) archive 
-    20from where the data and code can be obtained that will allow replication of your results. The code may be in the form of a single script file.
+    Data is available on \href{https://www.dropbox.com/sh/pnoxzydwgmj4eaf/AABYpBAkeQJsY3yqGH8G8J86a?dl=0}{Dropbox.} 
+    Code is available on GitHub in the 'Project' folder of the \href{https://github.com/kayleigh-greenwood/CMEECoursework.git}{Coursework Repository.}
     
     \clearpage
     \section*{Acknowledgements}
     \addcontentsline{toc}{section}{Acknowledgements}
+    I would like express my deepest appreciation to my supervisor Dr James Rosindell for his support and feedback throughout this project. I would also like to thank my external supervisor Dr Joss Wright for his advice and expertise. I am also grateful to Dr Will Pearse for generously providing extensive advice regarding the statistics of the project. I also gratefully acknowledge the help of Isabella Brizzolara in facilitating my access to certain required material.
+    
+    Lastly, I extend my special thanks to Greig Mann for his unwavering support and feedback throughout this project.
+    
+    \newpage
     \bibliographystyle{apalike}
-
     \bibliography{writeup}
+
 \end{document}

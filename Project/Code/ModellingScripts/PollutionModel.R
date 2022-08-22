@@ -83,15 +83,15 @@ resultsDF$region <- countrycode(sourcevar = row.names(resultsDF),
 # this adds north and south america as 'the americas' so i must separate:
 for (row in 1:nrow(resultsDF)){
   if (resultsDF[row, 4]=='Latin America & Caribbean'){
-    resultsDF[row, 3] <- 'S America'
+    resultsDF[row, 3] <- 'S. America'
   }
 }
 
-resultsDF$continent <- replace(resultsDF$continent, resultsDF$continent=='Americas', 'N America')
+resultsDF$continent <- replace(resultsDF$continent, resultsDF$continent=='Americas', 'N. America')
 
 for (row in 1:nrow(resultsDF)){
   if (resultsDF[row, 4]=='North America'){
-    resultsDF[row, 3] <- 'N America'
+    resultsDF[row, 3] <- 'N. America'
   }
 }
 ##################################
@@ -137,11 +137,6 @@ dev.off()
 ##################################
 ## COMPARING SENSITIVITY SCORES ##
 ##################################
-
-
-ggplot(data = resultsDF, mapping = aes(y=corr, x=continent, xlab = "Continent", ylab = "Sensitivity Score")) +
-  geom_point() + #plot sensitivity score against continent (Scatter)
-  ylab("Sensitivity Score")
 
 pdf(file="../../Images/PollutionSensitivityBoxplot.pdf")
 boxplot(corr ~ continent, data=resultsDF,  xlab = "Continent", ylab = "Sensitivity Score") # plot sensitivity score against continent (boxplot)
