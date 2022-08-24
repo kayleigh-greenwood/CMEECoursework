@@ -92,13 +92,47 @@ for (row in 1:nrow(resultsDF)){
   }
 }
 
-##################################################
-## DESCRIPTIVE STATISTICS OF SENSITIVITY SCORES ##
-##################################################
+###################################
+## refine data, remove outliers ##
+###################################
 
-mean(resultsDF$corr)
-std.error(resultsDF$corr)
-range(resultsDF$corr)
+# pivot BD dataframe longer
+countryBD <- pivot_longer(countryBD, -c(Country), values_to = "Biodiversity", names_to = "Year")
+countryBuilt <- pivot_longer(countryBuilt, -c(Country), values_to = "Built", names_to = "Year")
+
+# merge data frames into one
+alldata <- merge(countryBuilt, countryBD, by=c("Country", "Year"))
+
+# investigate surprising outliers
+Europesubset <- subset(resultsDF, resultsDF$continent == "Europe")
+Europeanoutlier <- as.character(Europesubset[which(Europesubset$corr == max(Europesubset$corr)), "country"])
+outlierdata <- alldata[c(which(alldata$Country == Europeanoutlier)), ]
+irelandplot <- plot(outlierdata$Built, outlierdata$Biodiversity) # looks normal
+
+# remove the outlier of Ireland
+resultsDF <- subset(resultsDF, country != "Ireland")
+
+# investigate surprising outliers
+SAmericasubset <- subset(resultsDF, resultsDF$continent == "S. America")
+SAmericanoutlier <- as.character(SAmericasubset[which(SAmericasubset$corr == min(SAmericasubset$corr)), "country"])
+outlierdata <- alldata[c(which(alldata$Country == SAmericanoutlier)), ]
+hondurasplot <- plot(outlierdata$Built, outlierdata$Biodiversity) # looks normal
+
+# remove the outlier of Honduras
+resultsDF <- subset(resultsDF, country != "Honduras")
+
+# investigate surprising outliers
+Oceaniasubset <- subset(resultsDF, resultsDF$continent == "Oceania")
+Oceanianoutlier <- as.character(Oceaniasubset[which(Oceaniasubset$corr == max(Oceaniasubset$corr)), "country"])
+outlierdata <- alldata[c(which(alldata$Country == Oceanianoutlier)), ]
+samoaplot <- plot(outlierdata$Built, outlierdata$Biodiversity) # looks normal
+
+# remove outlier
+resultsDF <- subset(resultsDF, country != "Samoa")
+
+# remove countries with SE of 0
+resultsDF <- subset(resultsDF, se != 0)
+
 
 ##################################
 ## VISUALISE SENSITIVITY SCORES ##
@@ -112,31 +146,33 @@ theme_set(theme_bw())
 
 world <- ne_countries(scale = "medium", returnclass = "sf")
 
-mapdata <- map_data("world")
+LandUseMapData <- map_data("world")
 
-names(mapdata)[names(mapdata) == 'region'] <- 'country' # change the name of the countries column to match the other DF
+names(LandUseMapData)[names(LandUseMapData) == 'region'] <- 'country' # change the name of the countries column to match the other DF
 
-mapdata <- left_join(mapdata, resultsDF, by='country') # join the data frames
+LandUseMapData <- left_join(LandUseMapData, resultsDF, by='country') # join the data frames
 
+minval = min(resultsDF$corr)
+maxval = max(resultsDF$cor)
 pdf(file="../../Images/LandUseSensitivityMap.pdf")
 
 # base plot
-map <- ggplot(mapdata, aes(x = long, y = lat, group = group)) +
+LandUseMap<- ggplot(LandUseMapData, aes(x = long, y = lat, group = group)) +
   geom_polygon(aes(fill= corr), colour = "black") 
 
 # add colours
-map <- map + scale_fill_gradient2(name="Sensitivity Score", midpoint = 0, mid = "white", high = "darkgoldenrod2", low = "blue4", limits = c(-3.222472, 2.756498), space="Lab") # maybe would be better to make all countries below zero on a different colour gradient
+LandUseMap<- LandUseMap+ scale_fill_gradient2(name="Sensitivity Score", midpoint = 0, mid = "white", high = "darkgoldenrod2", low = "blue4", limits = c(-0.121097, 0.07003952), space="Lab") # maybe would be better to make all countries below zero on a different colour gradient
 
 # Remove axis titles and details
-map <- map + theme(axis.text.x=element_blank(), 
+LandUseMap<- LandUseMap+ theme(axis.text.x=element_blank(), 
                    axis.ticks.x=element_blank(),
                    axis.text.y=element_blank(),
                    axis.ticks.y=element_blank(),
                    axis.title.y = element_blank(),
                    axis.title.x = element_blank())
-map <- map + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), legend.position = c(0.1, 0.25))
+LandUseMap<- LandUseMap+ theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), legend.position = c(0.1, 0.25))
 
-map
+LandUseMap
 
 dev.off()
 
@@ -152,13 +188,24 @@ pdf(file="../../Images/LandUseSensitivityBoxplot.pdf")
 boxplot(corr ~ continent, data=resultsDF,  xlab = "Continent", ylab = "Sensitivity Score") # plot sensitivity score against continent (boxplot)
 dev.off()
 
+
+##################################################
+## DESCRIPTIVE STATISTICS OF SENSITIVITY SCORES ##
+##################################################
+
+mean(resultsDF$corr)
+std.error(resultsDF$corr)
+range(resultsDF$corr)
+
+
 ###################################
 ## model continental differences ##
 ###################################
-mean(resultsDF$corr)
+# make reference category the most numerous one
 
-# remove countries with SE of 0
-resultsDF <- subset(resultsDF, se != 0)
+abundancetable <- table(resultsDF$continent)
+resultsDF$continent <- relevel(factor(resultsDF$continent), ref = "Africa")
+
 
 sensitivitymodel <- lm(resultsDF$corr ~ resultsDF$continent, weights = 1/(resultsDF$se))
 summary(sensitivitymodel)

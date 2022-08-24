@@ -110,6 +110,19 @@ for (row in 1:nrow(resultsDF)){
   }
 }
 
+# investigate surprising outliers
+Europesubset <- subset(resultsDF, resultsDF$continent == "Europe")
+Europeanoutlier <- as.character(Europesubset[which(Europesubset$corr == max(Europesubset$corr)), "Country"])
+outlierdata <- alldata[c(which(alldata$Country == Europeanoutlier)), ]
+bosniaplot <- plot(outlierdata$TaxonCount, outlierdata$Biodiversity) # looks normal
+# standard error of Bosnia and Herzegovina is larges (mid-range)
+
+# investigate surprising outliers
+Africasubset <- subset(resultsDF, resultsDF$continent == "Africa")
+Africanoutlier <- as.character(Africasubset[which(Africasubset$corr == max(Africasubset$corr)), "Country"])
+outlierdata <- alldata[c(which(alldata$Country == Africanoutlier)), ]
+malawiplot <- plot(outlierdata$TaxonCount, outlierdata$Biodiversity) # looks normal
+
 ##################################################
 ## DESCRIPTIVE STATISTICS OF SENSITIVITY SCORES ##
 ##################################################
@@ -124,30 +137,31 @@ theme_set(theme_bw())
 
 world <- ne_countries(scale = "medium", returnclass = "sf")
 
-mapdata <- map_data("world")
-names(mapdata)[names(mapdata) == 'region'] <- 'Country' # change the name of the countries column to match the other DF
+InvasiveSpeciesMapData <- map_data("world")
+names(InvasiveSpeciesMapData)[names(InvasiveSpeciesMapData) == 'region'] <- 'Country' # change the name of the countries column to match the other DF
 
-mapdata <- left_join(mapdata, resultsDF, by='Country') # join the data frames
+InvasiveSpeciesMapData <- left_join(InvasiveSpeciesMapData, resultsDF, by='Country') # join the data frames
 
 pdf(file="../../Images/InvasiveSpeciesSensitivityMap.pdf")
 
-map <- ggplot(mapdata, aes(x = long, y = lat, group = group)) +
+InvasiveSpeciesMap<- ggplot(InvasiveSpeciesMapData, aes(x = long, y = lat, group = group)) +
   geom_polygon(aes(fill= corr), colour = "black")
 
-map <- map + scale_fill_gradient2(name="Sensitivity Score", midpoint = 0, mid = "white", high = "darkgoldenrod2", low = "blue4", limits = c(-0.02300198, 0.05477224), space="Lab") # maybe would be better to make all countries below zero on a different colour gradient
+InvasiveSpeciesMap<- InvasiveSpeciesMap+ scale_fill_gradient2(name="Sensitivity Score", midpoint = 0, mid = "white", high = "darkgoldenrod2", low = "blue4", limits = c(-0.02300199, 0.05477225), space="Lab") # maybe would be better to make all countries below zero on a different colour gradient
 
 # Remove axis titles and details
-map <- map + theme(axis.text.x=element_blank(), 
+InvasiveSpeciesMap<- InvasiveSpeciesMap+ theme(axis.text.x=element_blank(), 
                    axis.ticks.x=element_blank(),
                    axis.text.y=element_blank(),
                    axis.ticks.y=element_blank(),
                    axis.title.y = element_blank(),
                    axis.title.x = element_blank())
-map <- map + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), legend.position = c(0.1, 0.25))
+InvasiveSpeciesMap<- InvasiveSpeciesMap+ theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), legend.position = c(0.1, 0.25))
 
-map
+InvasiveSpeciesMap
 
 dev.off()
+
 
 ##################################
 ## COMPARING SENSITIVITY SCORES ##
@@ -160,6 +174,13 @@ ggplot(data = resultsDF, mapping = aes(y=corr, x=continent)) +
 pdf(file="../../Images/InvasiveSpeciesSensitivityBoxplot.pdf")
 boxplot(corr ~ continent, data=resultsDF) # plot sensitivity score against continent (boxplot)
 dev.off()
+
+
+
+# make reference category the most numerous one
+abundancetable <- table(resultsDF$continent)
+resultsDF$continent <- relevel(factor(resultsDF$continent), ref = "Europe")
+
 
 sensitivitymodel <- lm(resultsDF$corr ~ resultsDF$continent, weights = 1/(resultsDF$se))
 

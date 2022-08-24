@@ -72,6 +72,9 @@ for (country in seq_along(matchingcountrys)){
   resultsDF$se[country] <- as.numeric(sqrt(diag(vcov(model)))[2])
 }
 
+# remove 13th country (cyprus) because SE was 0 and can't get inverse of 0 (it's infinity!)
+resultsDF <- resultsDF[-13,]
+
 #add in continents and regions
 resultsDF$continent <- countrycode(sourcevar = row.names(resultsDF),
                                    origin = "country.name",
@@ -94,6 +97,34 @@ for (row in 1:nrow(resultsDF)){
     resultsDF[row, 3] <- 'N. America'
   }
 }
+
+## refine data, remove outliers ##
+###################################
+
+# pivot BD dataframe longer
+countryBD <- pivot_longer(countryBD, -c(Country), values_to = "Biodiversity", names_to = "Year")
+countryGHG <- pivot_longer(countryGHG, -c(Country), values_to = "GHG", names_to = "Year")
+
+# merge data frames into one
+alldata <- merge(countryGHG, countryBD, by=c("Country", "Year"))
+
+# investigate surprising outliers
+Europesubset <- subset(resultsDF, resultsDF$continent == "Europe")
+Europeanoutlier <- as.character(row.names(Europesubset[which(Europesubset$corr == min(Europesubset$corr)), ]))
+outlierdata <- alldata[c(which(alldata$Country == Europeanoutlier)), ]
+spainplot <- plot(outlierdata$GHG, outlierdata$Biodiversity) # looks normal
+
+# remove the outlier of Spain
+resultsDF <- tibble::rownames_to_column(resultsDF, "country") 
+resultsDF <- subset(resultsDF, country != "Spain")
+
+# investigate surprising outliers
+Europeanoutlier <- as.character(row.names(Europesubset[which(Europesubset$corr == max(Europesubset$corr)), ]))
+outlierdata <- alldata[c(which(alldata$Country == Europeanoutlier)), ]
+switzerlandplot <- plot(outlierdata$GHG, outlierdata$Biodiversity) # looks normal
+
+resultsDF <- subset(resultsDF, country != "Switzerland")
+
 ##################################
 ## VISUALISE SENSITIVITY SCORES ##
 ##################################
@@ -106,33 +137,39 @@ theme_set(theme_bw())
 
 world <- ne_countries(scale = "medium", returnclass = "sf")
 
-mapdata <- map_data("world")
-resultsDFmapping <- tibble::rownames_to_column(resultsDF, "country") # create new results DF where country is a column so that it can be joined with another df
-names(mapdata)[names(mapdata) == 'region'] <- 'country' # change the name of the countries column to match the other DF
+PollutionMapData <- map_data("world")
+#resultsDFmapping <- tibble::rownames_to_column(resultsDF, "country") # create new results DF where country is a column so that it can be joined with another df
+names(PollutionMapData)[names(PollutionMapData) == 'region'] <- 'country' # change the name of the countries column to match the other DF
 
-mapdata <- left_join(mapdata, resultsDFmapping, by='country') # join the data frames
+PollutionMapData <- left_join(PollutionMapData, resultsDF, by='country') # join the data frames
 
+# determine range of colour scale
+minval <- min(resultsDF$corr)
+maxval <- max(resultsDF$corr)
+
+# create map
 pdf(file="../../Images/PollutionSensitivityMap.pdf")
 
 # base plot
-map <- ggplot(mapdata, aes(x = long, y = lat, group = group)) +
+PollutionMap<- ggplot(PollutionMapData, aes(x = long, y = lat, group = group)) +
   geom_polygon(aes(fill= corr), colour = "black") 
 
 # add colours
-map <- map + scale_fill_gradient2(name="Sensitivity Score", midpoint = 0, mid = "white", high = "darkgoldenrod2", low = "blue4", limits = c(-0.0004, 0.00008), space="Lab") # maybe would be better to make all countries below zero on a different colour gradient
+PollutionMap<- PollutionMap+ scale_fill_gradient2(name="Sensitivity Score", midpoint = 0, mid = "white", high = "darkgoldenrod2", low = "blue4", limits = c(-0.000006073096, 0.000013764), space="Lab") # maybe would be better to make all countries below zero on a different colour gradient
 
 # Remove axis titles and details
-map <- map + theme(axis.text.x=element_blank(), 
+PollutionMap<- PollutionMap+ theme(axis.text.x=element_blank(), 
                    axis.ticks.x=element_blank(),
                    axis.text.y=element_blank(),
                    axis.ticks.y=element_blank(),
                    axis.title.y = element_blank(),
                    axis.title.x = element_blank())
-map <- map + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), legend.position = c(0.1, 0.25))
+PollutionMap<- PollutionMap+ theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), legend.position = c(0.1, 0.25))
 
-map
+PollutionMap
 
 dev.off()
+
 
 ##################################
 ## COMPARING SENSITIVITY SCORES ##
@@ -142,13 +179,25 @@ pdf(file="../../Images/PollutionSensitivityBoxplot.pdf")
 boxplot(corr ~ continent, data=resultsDF,  xlab = "Continent", ylab = "Sensitivity Score") # plot sensitivity score against continent (boxplot)
 dev.off()
 
+
+
 ###################################
 ## model continental differences ##
 ###################################
-mean(resultsDF$corr)
 
-# remove 13th country (cyprus) because SE was 0 and can't get inverse of 0 (it's infinity!)
-resultsDF <- resultsDF[-13,]
+##################################################
+## DESCRIPTIVE STATISTICS OF SENSITIVITY SCORES ##
+##################################################
+
+mean(resultsDF$corr)
+std.error(resultsDF$corr)
+range(resultsDF$corr)
+# mean(resultsDF$corr)
+
+# make reference category the most numerous one
+abundancetable <- table(resultsDF$continent)
+resultsDF$continent <- relevel(factor(resultsDF$continent), ref = "Europe")
+
 
 sensitivitymodel <- lm(resultsDF$corr ~ resultsDF$continent, weights = 1/(resultsDF$se))
 summary(sensitivitymodel)

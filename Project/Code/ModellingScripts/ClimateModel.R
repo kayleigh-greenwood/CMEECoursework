@@ -5,6 +5,7 @@
 #################################################################################################################################################
 rm(list=ls())
 
+library(tidyr) # for pivot_longer
 library(tibble) # for rownames_to_column
 library(graphics) # for boxplot
 library(grDevices) # for pdf
@@ -40,6 +41,7 @@ matchingcountrys <- intersect(countryBD$Country, countryClimate$Country)
 
 countryBD <- countryBD[countryBD$Country %in% matchingcountrys, ]
 countryClimate <- countryClimate[countryClimate$Country %in% matchingcountrys, ]
+
 
 ##################################
 ## PREPARE AND MERGE DATAFRAMES ##
@@ -97,13 +99,24 @@ for (row in 1:nrow(resultsDF)){
   }
 }
 
-##################################################
-## DESCRIPTIVE STATISTICS OF SENSITIVITY SCORES ##
-##################################################
+######################
+## remove outliers and other values
+#####################
 
-mean(resultsDF$corr)
-std.error(resultsDF$corr)
-range(resultsDF$corr)
+# pivot BD dataframe longer
+countryBD <- pivot_longer(countryBD, -c(Country), values_to = "Biodiversity", names_to = "Year")
+countryClimate <- pivot_longer(countryClimate, -c(Country), values_to = "Climate", names_to = "Year")
+
+# merge data frames into one
+alldata <- merge(countryClimate, countryBD, by=c("Country", "Year"))
+
+# investigate surprising outliers
+Oceaniasubset <- subset(resultsDF, resultsDF$continent == "Oceania")
+Oceanianoutlier <- as.character(row.names(Oceaniasubset[which(Oceaniasubset$corr == min(Oceaniasubset$corr)), ]))
+outlierdata <- alldata[c(which(alldata$Country == Oceanianoutlier)), ]
+fijiplot <- plot(outlierdata$Climate, outlierdata$Biodiversity) # looks normal
+# standard error of Bosnia and Herzegovina is larges (mid-range)
+
 
 ##################################
 ## VISUALISE SENSITIVITY SCORES ##
@@ -117,33 +130,38 @@ theme_set(theme_bw())
 
 world <- ne_countries(scale = "medium", returnclass = "sf")
 
-mapdata <- map_data("world")
+ClimateMapData <- map_data("world")
 resultsDFmapping <- tibble::rownames_to_column(resultsDF, "country") # create new results DF where country is a column so that it can be joined with another df
-names(mapdata)[names(mapdata) == 'region'] <- 'country' # change the name of the countries column to match the other DF
+names(ClimateMapData)[names(ClimateMapData) == 'region'] <- 'country' # change the name of the countries column to match the other DF
 
-mapdata <- left_join(mapdata, resultsDFmapping, by='country') # join the data frames
+ClimateMapData <- left_join(ClimateMapData, resultsDFmapping, by='country') # join the data frames
+
+minval <- min(resultsDF$corr)
+maxval <- max(resultsDF$corr)
 
 pdf(file="../../Images/ClimateSensitivityMap.pdf")
 
 # base plot
-map <- ggplot(mapdata, aes(x = long, y = lat, group = group)) +
+ClimateMap <- ggplot(ClimateMapData, aes(x = long, y = lat, group = group)) +
   geom_polygon(aes(fill= corr), colour = "black") 
 
 # add colours
-map <- map + scale_fill_gradient2(name="Sensitivity Score", midpoint = 0, mid = "white", high = "darkgoldenrod2", low = "blue4", limits = c(-0.25, 0.1), space="Lab") # maybe would be better to make all countries below zero on a different colour gradient
+ClimateMap <- ClimateMap + scale_fill_gradient2(name="Sensitivity Score", midpoint = 0, mid = "white", high = "darkgoldenrod2", low = "blue4", limits = c(-0.2400587, 0.0775445), space="Lab") # maybe would be better to make all countries below zero on a different colour gradient
 
 # Remove axis titles and details
-map <- map + theme(axis.text.x=element_blank(), 
+ClimateMap <- ClimateMap + theme(axis.text.x=element_blank(), 
                    axis.ticks.x=element_blank(),
                    axis.text.y=element_blank(),
                    axis.ticks.y=element_blank(),
                    axis.title.y = element_blank(),
                    axis.title.x = element_blank())
-map <- map + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), legend.position = c(0.1, 0.25))
+ClimateMap <- ClimateMap + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), legend.position = c(0.1, 0.25))
 
-map
+ClimateMap
 
 dev.off()
+
+
 
 ##################################
 ## COMPARING SENSITIVITY SCORES ##
@@ -157,9 +175,21 @@ pdf(file="../../Images/ClimateSensitivityBoxplot.pdf")
 boxplot(corr ~ continent, data=resultsDF,  xlab = "Continent", ylab = "Sensitivity Score") # plot sensitivity score against continent (boxplot)
 dev.off()
 
+##################################################
+## DESCRIPTIVE STATISTICS OF SENSITIVITY SCORES ##
+##################################################
+
+mean(resultsDF$corr)
+std.error(resultsDF$corr)
+range(resultsDF$corr)
 ###################################
 ## model continental differences ##
 ###################################
-mean(resultsDF$corr)
+
+
+# reset reference category as most abundant
+abundancetable <- table(resultsDF$continent)
+
+resultsDF$continent <- relevel(factor(resultsDF$continent), ref = "Africa")
 sensitivitymodel <- lm(resultsDF$corr ~ resultsDF$continent, weights = 1/(resultsDF$se))
 summary(sensitivitymodel)
