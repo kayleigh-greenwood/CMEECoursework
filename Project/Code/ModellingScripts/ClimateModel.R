@@ -55,7 +55,6 @@ resultsDF <- resultsDF[-1]
 resultsDF$corr <- NA
 resultsDF$se <- NA
 
-###############################
 ## OBTAIN SENSITIVITY SCORES ##
 ###############################
 
@@ -172,7 +171,7 @@ ggplot(data = resultsDF, mapping = aes(y=corr, x=continent, xlab = "Continent", 
   ylab("Sensitivity Score")
 
 pdf(file="../../Images/ClimateSensitivityBoxplot.pdf")
-boxplot(corr ~ continent, data=resultsDF,  xlab = "Continent", ylab = "Sensitivity Score") # plot sensitivity score against continent (boxplot)
+boxplot(corr ~ continent, data=resultsDF,  xlab = "Continent", ylab = "Climate Change Sensitivity Score") # plot sensitivity score against continent (boxplot)
 dev.off()
 
 ##################################################

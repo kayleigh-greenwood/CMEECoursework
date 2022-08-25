@@ -4,7 +4,7 @@
 ## SET UP WORKSPACE ##
 #################################################################################################################################################
 
-rm(list=ls())
+    rm(list=ls())
 
 library(tidyr) # for pivot_longer
 library(dplyr) # for left_join
@@ -85,8 +85,7 @@ for (countryloop in seq_along(matchingcountrys)){ # this for loop is absolutely 
 #remove NAs 
 resultsDF <- na.omit(resultsDF)
 
-## remove countries with SE of 0
-resultsDF <- subset(resultsDF, se != 0)
+resultsDF$se[resultsDF$se== 0] <-2.337199e-17
 
 # get continents and region
 resultsDF$continent <- countrycode(sourcevar = resultsDF$Country,
@@ -95,6 +94,10 @@ resultsDF$continent <- countrycode(sourcevar = resultsDF$Country,
 resultsDF$region <- countrycode(sourcevar = resultsDF$Country,
                                 origin = "country.name",
                                 destination = "region")
+
+# resultsDF[93, "region"] <- "Middle East & North Africa"
+resultsDF<-resultsDF[!(resultsDF$Country=="Mayotte"),]
+
 # this adds north and south america as 'the americas' so i must separate:
 for (row in 1:nrow(resultsDF)){
   if (resultsDF[row, 5]=='Latin America & Caribbean'){
@@ -173,7 +176,7 @@ ggplot(data = resultsDF, mapping = aes(y=corr, x=continent)) +
   geom_point() # plot sensitivity score against continent (Scatter)
 
 pdf(file="../../Images/InvasiveSpeciesSensitivityBoxplot.pdf")
-boxplot(corr ~ continent, data=resultsDF) # plot sensitivity score against continent (boxplot)
+boxplot(corr ~ continent, data=resultsDF, xlab = "Continent", ylab = "Invasive Species Sensitivity Score") # plot sensitivity score against continent (boxplot)
 dev.off()
 
 

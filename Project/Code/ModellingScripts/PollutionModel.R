@@ -4,7 +4,7 @@
 ## SET UP WORKSPACE ##
 #################################################################################################################################################
 
-rm(list=ls())
+    rm(list=ls())
 
 library(tibble) # for rownames_to_column
 library(tidyr) # for pivot_longer
@@ -125,6 +125,8 @@ switzerlandplot <- plot(outlierdata$GHG, outlierdata$Biodiversity) # looks norma
 
 resultsDF <- subset(resultsDF, country != "Switzerland")
 
+
+
 ##################################
 ## VISUALISE SENSITIVITY SCORES ##
 ##################################
@@ -176,7 +178,7 @@ dev.off()
 ##################################
 
 pdf(file="../../Images/PollutionSensitivityBoxplot.pdf")
-boxplot(corr ~ continent, data=resultsDF,  xlab = "Continent", ylab = "Sensitivity Score") # plot sensitivity score against continent (boxplot)
+boxplot(corr ~ continent, data=resultsDF,  xlab = "Continent", ylab = "Pollution Sensitivity Score") # plot sensitivity score against continent (boxplot)
 dev.off()
 
 

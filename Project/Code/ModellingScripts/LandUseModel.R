@@ -130,9 +130,7 @@ samoaplot <- plot(outlierdata$Built, outlierdata$Biodiversity) # looks normal
 # remove outlier
 resultsDF <- subset(resultsDF, country != "Samoa")
 
-# remove countries with SE of 0
-resultsDF <- subset(resultsDF, se != 0)
-
+resultsDF$se[resultsDF$se== 0] <-8.131929e-08 
 
 ##################################
 ## VISUALISE SENSITIVITY SCORES ##
@@ -185,7 +183,7 @@ ggplot(data = resultsDF, mapping = aes(y=corr, x=continent, xlab = "Continent", 
   ylab("Sensitivity Score")
 
 pdf(file="../../Images/LandUseSensitivityBoxplot.pdf")
-boxplot(corr ~ continent, data=resultsDF,  xlab = "Continent", ylab = "Sensitivity Score") # plot sensitivity score against continent (boxplot)
+boxplot(corr ~ continent, data=resultsDF,  xlab = "Continent", ylab = "Land Use Change Sensitivity Score") # plot sensitivity score against continent (boxplot)
 dev.off()
 
 
