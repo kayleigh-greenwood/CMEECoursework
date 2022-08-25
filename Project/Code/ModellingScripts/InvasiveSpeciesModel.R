@@ -97,16 +97,16 @@ resultsDF$region <- countrycode(sourcevar = resultsDF$Country,
                                 destination = "region")
 # this adds north and south america as 'the americas' so i must separate:
 for (row in 1:nrow(resultsDF)){
-  if (resultsDF[row, 4]=='Latin America & Caribbean'){
-    resultsDF[row, 3] <- 'S. America'
+  if (resultsDF[row, 5]=='Latin America & Caribbean'){
+    resultsDF[row, 4] <- 'S. America'
   }
 }
 
 resultsDF$continent <- replace(resultsDF$continent, resultsDF$continent=='Americas', 'N. America')
 
 for (row in 1:nrow(resultsDF)){
-  if (resultsDF[row, 4]=='North America'){
-    resultsDF[row, 3] <- 'N. America'
+  if (resultsDF[row, 5]=='North America'){
+    resultsDF[row, 4] <- 'N. America'
   }
 }
 
@@ -139,6 +139,7 @@ world <- ne_countries(scale = "medium", returnclass = "sf")
 
 InvasiveSpeciesMapData <- map_data("world")
 names(InvasiveSpeciesMapData)[names(InvasiveSpeciesMapData) == 'region'] <- 'Country' # change the name of the countries column to match the other DF
+
 
 InvasiveSpeciesMapData <- left_join(InvasiveSpeciesMapData, resultsDF, by='Country') # join the data frames
 
